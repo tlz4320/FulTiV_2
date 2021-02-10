@@ -1,0 +1,16 @@
+[
+  {
+    "id": "chrIS",
+    "name": "Test",
+    "fastaURL": "chrIS.fa",
+    "indexURL": "chrIS.fa.fai",
+    "tracks": [
+      {
+        "name": "Refseq Genes",
+        "url": "chrIS.bed.gz",
+        "removable": false,
+        "indexed" : false
+      }
+    ]
+  }
+]

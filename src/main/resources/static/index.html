@@ -108,13 +108,13 @@
                         </tr>
                         <tr class="info">
                             <td>
-                                CLuster Bed File
+                                Cluster Bed File
                             </td>
                             <td>
                                 <input class="file" type="file" id="bedfile" />
                             </td>
                             <td>
-                                Load FulTiV
+                                Genome Selection
                             </td>
                             <td>
                                 <select class="form-control" id="genome" title="Select Sample to Remove"></select>
@@ -245,6 +245,7 @@ loadFulTiV = function () {
             genome: genomeID,
             clusterurl:cluster,
             clusterindexurl:indexfile,
+            showSVGButton: true,
             tracks: [
                 {
                     format: 'bed',

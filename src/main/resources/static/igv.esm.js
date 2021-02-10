@@ -11,7 +11,7 @@ let igv;
 
 (function () {
 
-    var css =  '.igv-user-feedback {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 512px;\n  height: 360px;\n  z-index: 2048;\n  background-color: white;\n  border-color: #a2a2a2;\n  border-style: solid;\n  border-width: thin;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: medium;\n  font-weight: 400;\n  color: #444;\n  display: flex;\n  flex-direction: column;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: center; }\n  .igv-user-feedback div:first-child {\n    position: relative;\n    height: 24px;\n    width: 100%;\n    background-color: white;\n    border-bottom-color: #a2a2a2;\n    border-bottom-style: solid;\n    border-bottom-width: thin; }\n    .igv-user-feedback div:first-child div {\n      position: absolute;\n      top: 2px;\n      width: 16px;\n      height: 16px;\n      background-color: transparent; }\n    .igv-user-feedback div:first-child div:first-child {\n      left: 8px; }\n    .igv-user-feedback div:first-child div:last-child {\n      cursor: pointer;\n      right: 8px; }\n  .igv-user-feedback div:last-child {\n    width: 100%;\n    height: calc(100% - 24px);\n    border-width: 0; }\n    .igv-user-feedback div:last-child div {\n      width: auto;\n      height: auto;\n      margin: 8px; }\n\n.igv-color-swatch {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  align-items: center;\n  width: 32px;\n  height: 32px;\n  border-style: solid;\n  border-width: 2px;\n  border-color: white;\n  border-radius: 4px; }\n\n.igv-colorpicker-menu-close-button {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: flex-end;\n  align-items: center;\n  width: 100%;\n  height: 32px;\n  margin-top: 4px;\n  margin-bottom: 4px;\n  padding-right: 8px; }\n  .igv-colorpicker-menu-close-button i.fa {\n    display: block;\n    margin-left: 4px;\n    margin-right: 4px;\n    color: #5f5f5f; }\n  .igv-colorpicker-menu-close-button i.fa:hover,\n  .igv-colorpicker-menu-close-button i.fa:focus,\n  .igv-colorpicker-menu-close-button i.fa:active {\n    cursor: pointer;\n    color: #0f0f0f; }\n\n.igv-alert-dialog-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 300px;\n  height: 256px;\n  border-color: #7F7F7F;\n  border-radius: 4px;\n  border-style: solid;\n  border-width: thin;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 15px;\n  font-weight: 400;\n  z-index: 2048;\n  background-color: white;\n  display: flex;\n  flex-flow: column;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: center; }\n  .igv-alert-dialog-container div:first-child {\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-end;\n    align-items: center;\n    width: 100%;\n    height: 24px;\n    cursor: move;\n    border-top-left-radius: 4px;\n    border-top-right-radius: 4px;\n    border-bottom-color: #7F7F7F;\n    border-bottom-style: solid;\n    border-bottom-width: thin;\n    background-color: #eee; }\n    .igv-alert-dialog-container div:first-child div {\n      margin-right: 4px;\n      margin-bottom: 2px;\n      height: 12px;\n      width: 12px;\n      color: #7F7F7F; }\n    .igv-alert-dialog-container div:first-child div:hover {\n      cursor: pointer;\n      color: #444; }\n  .igv-alert-dialog-container #igv-alert-dialog-body {\n    color: #373737;\n    width: 100%;\n    height: calc(100% - 24px - 64px);\n    overflow-y: scroll; }\n    .igv-alert-dialog-container #igv-alert-dialog-body #igv-alert-dialog-body-copy {\n      cursor: pointer;\n      margin: 16px;\n      width: auto;\n      height: auto;\n      overflow-wrap: break-word;\n      word-break: break-word;\n      background-color: white;\n      border: unset; }\n  .igv-alert-dialog-container div:last-child {\n    width: 100%;\n    height: 64px;\n    background-color: white;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: center;\n    align-items: center; }\n    .igv-alert-dialog-container div:last-child div {\n      width: 98px;\n      height: 36px;\n      line-height: 36px;\n      text-align: center;\n      color: white;\n      font-family: \"Open Sans\", sans-serif;\n      font-size: medium;\n      font-weight: 400;\n      border-color: #2B81AF;\n      border-style: solid;\n      border-width: thin;\n      border-radius: 4px;\n      background-color: #2B81AF; }\n    .igv-alert-dialog-container div:last-child div:hover {\n      cursor: pointer;\n      border-color: #25597f;\n      background-color: #25597f; }\n\n.igv-generic-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 2048;\n  background-color: white;\n  cursor: pointer;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: flex-start;\n  align-items: center; }\n  .igv-generic-container div:first-child {\n    cursor: move;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-end;\n    align-items: center;\n    height: 24px;\n    width: 100%;\n    background-color: #dddddd; }\n    .igv-generic-container div:first-child i {\n      display: block;\n      color: #5f5f5f;\n      cursor: pointer;\n      width: 14px;\n      height: 14px;\n      margin-right: 8px;\n      margin-bottom: 4px; }\n\n.igv-generic-dialog-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 300px;\n  height: 200px;\n  border-color: #7F7F7F;\n  border-radius: 4px;\n  border-style: solid;\n  border-width: thin;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: medium;\n  font-weight: 400;\n  z-index: 2048;\n  background-color: white;\n  display: flex;\n  flex-flow: column;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: center; }\n  .igv-generic-dialog-container .igv-generic-dialog-header {\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-end;\n    align-items: center;\n    width: 100%;\n    height: 24px;\n    cursor: move;\n    border-top-left-radius: 4px;\n    border-top-right-radius: 4px;\n    border-bottom-color: #7F7F7F;\n    border-bottom-style: solid;\n    border-bottom-width: thin;\n    background-color: #eee; }\n    .igv-generic-dialog-container .igv-generic-dialog-header div {\n      margin-right: 4px;\n      margin-bottom: 2px;\n      height: 12px;\n      width: 12px;\n      color: #7F7F7F; }\n    .igv-generic-dialog-container .igv-generic-dialog-header div:hover {\n      cursor: pointer;\n      color: #444; }\n  .igv-generic-dialog-container .igv-generic-dialog-one-liner {\n    color: #373737;\n    width: 95%;\n    height: 24px;\n    line-height: 24px;\n    text-align: left;\n    margin-top: 8px;\n    padding-left: 8px;\n    overflow-wrap: break-word;\n    background-color: white; }\n  .igv-generic-dialog-container .igv-generic-dialog-label-input {\n    margin-top: 8px;\n    width: 95%;\n    height: 24px;\n    color: #373737;\n    line-height: 24px;\n    padding-left: 8px;\n    background-color: white;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n    align-items: center; }\n    .igv-generic-dialog-container .igv-generic-dialog-label-input div {\n      width: 30%;\n      height: 100%;\n      font-size: 16px;\n      text-align: right;\n      padding-right: 8px;\n      background-color: white; }\n    .igv-generic-dialog-container .igv-generic-dialog-label-input input {\n      display: block;\n      height: 100%;\n      width: 100%;\n      padding-left: 4px;\n      font-family: \"Open Sans\", sans-serif;\n      font-weight: 400;\n      color: #373737;\n      text-align: left;\n      outline: none;\n      border-style: solid;\n      border-width: thin;\n      border-color: #7F7F7F;\n      background-color: white; }\n    .igv-generic-dialog-container .igv-generic-dialog-label-input input {\n      width: 50%;\n      font-size: 16px; }\n  .igv-generic-dialog-container .igv-generic-dialog-input {\n    margin-top: 8px;\n    width: calc(100% - 16px);\n    height: 24px;\n    color: #373737;\n    line-height: 24px;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: space-around;\n    align-items: center; }\n    .igv-generic-dialog-container .igv-generic-dialog-input input {\n      display: block;\n      height: 100%;\n      width: 100%;\n      padding-left: 4px;\n      font-family: \"Open Sans\", sans-serif;\n      font-weight: 400;\n      color: #373737;\n      text-align: left;\n      outline: none;\n      border-style: solid;\n      border-width: thin;\n      border-color: #7F7F7F;\n      background-color: white; }\n    .igv-generic-dialog-container .igv-generic-dialog-input input {\n      font-size: 16px; }\n  .igv-generic-dialog-container .igv-generic-dialog-ok-cancel {\n    width: 100%;\n    height: 28px;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: space-around;\n    align-items: center; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok-cancel div {\n      margin-top: 32px;\n      color: white;\n      font-family: \"Open Sans\", sans-serif;\n      font-size: 14px;\n      font-weight: 400;\n      width: 75px;\n      height: 28px;\n      line-height: 28px;\n      text-align: center;\n      border-color: transparent;\n      border-style: solid;\n      border-width: thin;\n      border-radius: 2px; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok-cancel div:first-child {\n      margin-left: 32px;\n      margin-right: 0;\n      background-color: #5ea4e0; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok-cancel div:last-child {\n      margin-left: 0;\n      margin-right: 32px;\n      background-color: #c4c4c4; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok-cancel div:first-child:hover {\n      cursor: pointer;\n      background-color: #3b5c7f; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok-cancel div:last-child:hover {\n      cursor: pointer;\n      background-color: #7f7f7f; }\n  .igv-generic-dialog-container .igv-generic-dialog-ok {\n    width: 100%;\n    height: 36px;\n    margin-top: 32px;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: space-around;\n    align-items: center; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok div {\n      width: 98px;\n      height: 36px;\n      line-height: 36px;\n      text-align: center;\n      color: white;\n      font-family: \"Open Sans\", sans-serif;\n      font-size: medium;\n      font-weight: 400;\n      border-color: white;\n      border-style: solid;\n      border-width: thin;\n      border-radius: 4px;\n      background-color: #2B81AF; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok div:hover {\n      cursor: pointer;\n      background-color: #25597f; }\n\n.igv-popover {\n  position: absolute;\n  top: 0;\n  left: 0;\n  min-width: 128px;\n  z-index: 4096;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: small;\n  font-weight: 400;\n  color: #4b4b4b;\n  background-color: white;\n  border-radius: 4px;\n  border-color: #7F7F7F;\n  border-style: solid;\n  border-width: thin;\n  display: none; }\n\n.igv-popover-header {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: flex-end;\n  align-items: center;\n  width: 100%;\n  height: 24px;\n  cursor: move;\n  border-top-left-radius: 4px;\n  border-top-right-radius: 4px;\n  border-bottom-color: #7F7F7F;\n  border-bottom-style: solid;\n  border-bottom-width: thin;\n  background-color: #eee; }\n  .igv-popover-header div {\n    margin-right: 4px;\n    height: 12px;\n    width: 12px;\n    color: #7F7F7F; }\n  .igv-popover-header div:hover {\n    cursor: pointer;\n    color: #444; }\n\n.igv-popover-track-popup-content {\n  position: relative;\n  top: 0;\n  left: 0;\n  max-height: 384px;\n  overflow-x: hidden;\n  overflow-y: auto;\n  background-color: white; }\n  .igv-popover-track-popup-content div {\n    margin-left: 4px;\n    background-color: white; }\n  .igv-popover-track-popup-content div:hover {\n    cursor: pointer;\n    background-color: #efefef; }\n\n.igv-popover-name-value {\n  cursor: default;\n  text-wrap: none;\n  white-space: nowrap;\n  max-width: 384px; }\n\n.igv-popover-name {\n  font-weight: bold;\n  padding-right: 4px;\n  float: left; }\n\n.igv-popover-value {\n  padding-left: 4px;\n  overflow: hidden;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  max-width: 256px;\n  display: inline-block; }\n\n.igv-trackgear-container {\n  position: relative;\n  width: 20px;\n  height: 20px;\n  margin-left: 4px;\n  color: #7F7F7F; }\n\n.igv-trackgear-container:hover {\n  cursor: pointer;\n  color: #444; }\n\n.igv-trackgear-popover {\n  position: absolute;\n  top: 0;\n  left: 0;\n  min-width: 132px;\n  z-index: 4096;\n  cursor: pointer;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: small;\n  font-weight: 400;\n  color: #4b4b4b;\n  background: white;\n  border-radius: 4px;\n  border-color: #7F7F7F;\n  border-style: solid;\n  border-width: thin;\n  display: flex;\n  flex-flow: column;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: flex-end;\n  text-align: left; }\n  .igv-trackgear-popover > div:not(:first-child) {\n    width: 100%; }\n    .igv-trackgear-popover > div:not(:first-child) > div {\n      background: white; }\n    .igv-trackgear-popover > div:not(:first-child) > div:last-child {\n      border-bottom-left-radius: 4px;\n      border-bottom-right-radius: 4px;\n      border-bottom-color: transparent;\n      border-bottom-style: solid;\n      border-bottom-width: thin; }\n    .igv-trackgear-popover > div:not(:first-child) > div:hover {\n      background: #efefef; }\n\n.igv-trackgear-popover-shim {\n  padding-left: 8px;\n  padding-right: 8px; }\n\n.igv-trackgear-popover-header {\n  position: relative;\n  width: 100%;\n  height: 24px;\n  cursor: move;\n  border-top-color: transparent;\n  border-top-left-radius: 4px;\n  border-top-right-radius: 4px;\n  border-bottom-color: #7F7F7F;\n  border-bottom-style: solid;\n  border-bottom-width: thin;\n  background-color: #eee;\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: flex-end;\n  align-items: center; }\n  .igv-trackgear-popover-header div {\n    margin-right: 4px;\n    height: 12px;\n    width: 12px;\n    color: #7F7F7F; }\n  .igv-trackgear-popover-header div:hover {\n    cursor: pointer;\n    color: #444; }\n\n.igv-trackgear-popover-check-container {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: center;\n  width: 100%;\n  height: 20px;\n  background-color: transparent; }\n  .igv-trackgear-popover-check-container div {\n    padding-top: 2px;\n    padding-left: 8px; }\n  .igv-trackgear-popover-check-container div:first-child {\n    position: relative;\n    width: 12px;\n    height: 12px; }\n    .igv-trackgear-popover-check-container div:first-child svg {\n      position: absolute;\n      width: 12px;\n      height: 12px; }\n\n.igvControlDiv {\n  position: relative; }\n\n.igv-content-header {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: center;\n  margin-top: 10px;\n  height: 16px;\n  width: 100%; }\n  .igv-content-header .igv-ideogram-shim {\n    height: 100%;\n    width: 50px;\n    background-color: white; }\n  .igv-content-header .igv-ideogram-content {\n    height: 100%;\n    background-color: white; }\n  .igv-content-header .igv-ideogram-content-border-right {\n    border-right-color: #292929;\n    border-right-style: solid;\n    border-right-width: 1px; }\n\n.igv-multi-locus-panel-border {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 1px;\n  background-color: green;\n  border-right-color: #ff0000;\n  border-right-style: solid;\n  border-right-width: 1px; }\n\n.igv-navbar {\n  position: relative;\n  padding-left: 8px;\n  padding-right: 8px;\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: center;\n  color: #444;\n  font-size: 12px;\n  font-family: \"Open Sans\", sans-serif;\n  font-weight: 400;\n  line-height: 32px;\n  margin-top: 2px;\n  margin-bottom: 4px;\n  height: 32px;\n  border-style: solid;\n  border-radius: 3px;\n  border-width: thin;\n  border-color: #bfbfbf;\n  background-color: #f3f3f3; }\n\n.igv-nav-bar-left-container {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: center;\n  height: 32px;\n  line-height: 32px; }\n  .igv-nav-bar-left-container .igv-logo {\n    width: 34px;\n    height: 32px;\n    margin-top: 6px;\n    margin-right: 8px; }\n  .igv-nav-bar-left-container .igv-current-genome {\n    height: 32px;\n    width: 40px;\n    margin-left: 4px;\n    margin-right: 4px;\n    user-select: none;\n    line-height: 32px;\n    vertical-align: middle;\n    text-align: center; }\n\n.igv-nav-bar-genomic-location {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: center;\n  height: 100%; }\n\n.igv-chromosome-select-widget-container {\n  height: 100%;\n  width: 125px;\n  margin-right: 4px;\n  display: flex;\n  flex-flow: column;\n  flex-wrap: nowrap;\n  justify-content: space-around;\n  align-items: center; }\n  .igv-chromosome-select-widget-container select {\n    display: block;\n    cursor: pointer;\n    width: 100px;\n    height: 75%;\n    outline: none;\n    font-size: 12px;\n    font-family: \"Open Sans\", sans-serif;\n    font-weight: 400; }\n\n.igv-locus-size-group {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: center;\n  margin-left: 8px;\n  height: calc(32px - 10px); }\n  .igv-locus-size-group .igv-search-container {\n    width: 200px;\n    height: calc(32px - 10px);\n    line-height: calc(32px - 10px);\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n    align-items: center; }\n    .igv-locus-size-group .igv-search-container input {\n      cursor: text;\n      width: 85%;\n      height: calc(32px - 10px);\n      line-height: calc(32px - 10px);\n      font-size: 12px;\n      font-family: \"Open Sans\", sans-serif;\n      font-weight: 400;\n      text-align: left;\n      padding-left: 8px;\n      margin-right: 8px;\n      outline: none;\n      border-style: solid;\n      border-radius: 3px;\n      border-width: thin;\n      border-color: #bfbfbf;\n      background-color: white; }\n    .igv-locus-size-group .igv-search-container div {\n      cursor: pointer;\n      height: 16px;\n      width: 16px; }\n  .igv-locus-size-group .igv-windowsizepanel-content-div {\n    margin-left: 4px;\n    user-select: none; }\n\n.igv-nav-bar-right-container {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: center;\n  height: 32px;\n  line-height: 32px; }\n  .igv-nav-bar-right-container .igv-nav-bar-toggle-button-container {\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: space-between;\n    align-items: center;\n    height: 100%; }\n    .igv-nav-bar-right-container .igv-nav-bar-toggle-button-container div {\n      margin-left: 0;\n      margin-right: 4px; }\n    .igv-nav-bar-right-container .igv-nav-bar-toggle-button-container div:last-child {\n      margin-left: 0;\n      margin-right: 0; }\n  .igv-nav-bar-right-container .igv-nav-bar-toggle-button-container-750 {\n    display: none; }\n  .igv-nav-bar-right-container .igv-zoom-widget {\n    color: #737373;\n    font-size: 18px;\n    height: 32px;\n    line-height: 32px;\n    margin-left: 8px;\n    user-select: none;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-end;\n    align-items: center; }\n    .igv-nav-bar-right-container .igv-zoom-widget div {\n      cursor: pointer;\n      margin-left: unset;\n      margin-right: unset; }\n    .igv-nav-bar-right-container .igv-zoom-widget div:first-child {\n      height: 24px;\n      width: 24px;\n      margin-left: unset;\n      margin-right: 8px; }\n    .igv-nav-bar-right-container .igv-zoom-widget div:last-child {\n      height: 24px;\n      width: 24px;\n      margin-left: 8px;\n      margin-right: unset; }\n    .igv-nav-bar-right-container .igv-zoom-widget div:nth-child(even) {\n      display: block;\n      height: fit-content; }\n    .igv-nav-bar-right-container .igv-zoom-widget input {\n      display: block;\n      width: 125px; }\n    .igv-nav-bar-right-container .igv-zoom-widget svg {\n      display: block; }\n  .igv-nav-bar-right-container .igv-zoom-widget-900 {\n    color: #737373;\n    font-size: 18px;\n    height: 32px;\n    line-height: 32px;\n    margin-left: 8px;\n    user-select: none;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-end;\n    align-items: center; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 div {\n      cursor: pointer;\n      margin-left: unset;\n      margin-right: unset; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 div:first-child {\n      height: 24px;\n      width: 24px;\n      margin-left: unset;\n      margin-right: 8px; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 div:last-child {\n      height: 24px;\n      width: 24px;\n      margin-left: 8px;\n      margin-right: unset; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 div:nth-child(even) {\n      width: 0;\n      height: 0;\n      display: none; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 input {\n      width: 0;\n      height: 0;\n      display: none; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 svg {\n      display: block; }\n  .igv-nav-bar-right-container .igv-zoom-widget-hidden {\n    display: none; }\n\n.igv-nav-bar-button {\n  box-sizing: unset;\n  padding-left: 6px;\n  padding-right: 6px;\n  height: 18px;\n  text-transform: capitalize;\n  user-select: none;\n  line-height: 18px;\n  text-align: center;\n  vertical-align: middle;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 11px;\n  font-weight: 200;\n  color: #737373;\n  background-color: #f3f3f3;\n  border-color: #737373;\n  border-style: solid;\n  border-width: thin;\n  border-radius: 6px; }\n\n.igv-nav-bar-button-clicked {\n  color: white;\n  background-color: #737373; }\n\n.igv-nav-bar-button:hover {\n  cursor: pointer; }\n\n.igv-logo-nonav {\n  margin-left: 4px;\n  margin-top: 12px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 34px;\n  height: 16px; }\n\n.igv-search-results {\n  position: absolute;\n  top: 32px;\n  left: 2px;\n  height: 320px;\n  width: 213px;\n  background-color: white;\n  border-color: #7F7F7F;\n  border-style: solid;\n  border-width: thin;\n  overflow-x: hidden;\n  overflow-y: auto;\n  z-index: 9999; }\n  .igv-search-results tr {\n    font-family: \"Open Sans\", sans-serif;\n    font-size: small;\n    font-weight: 400;\n    color: #444; }\n  .igv-search-results tr:hover,\n  .igv-search-results tr:focus,\n  .igv-search-results tr:active {\n    cursor: pointer;\n    font-weight: 700;\n    color: #141414; }\n\n.igv-root-div {\n  position: relative;\n  left: 0;\n  right: 0;\n  height: auto;\n  margin-left: 10px;\n  margin-right: 10px;\n  padding-top: 4px; }\n\n.igv-content-div {\n  position: relative;\n  width: 100%;\n  height: 100%; }\n\n.igv-track-container-div {\n  user-select: none;\n  position: relative;\n  clear: both; }\n\n.igv-track-div {\n  position: relative;\n  width: 100%;\n  margin-top: 5px;\n  margin-bottom: 5px; }\n\n.igv-viewport-container {\n  position: absolute;\n  left: 50px;\n  right: 50px;\n  height: 100%;\n  white-space: nowrap;\n  overflow-x: hidden;\n  overflow-y: hidden; }\n\n.igv-viewport-div {\n  position: relative;\n  display: inline-block;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: hidden; }\n\n.igv-viewport-content-div {\n  position: absolute;\n  width: 100%; }\n\n.igv-viewport-message {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  color: rgba(0, 0, 0, 0.15);\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 25px;\n  font-weight: bold;\n  user-select: none; }\n\n.igv-whole-genome-container {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  width: 100%;\n  height: 100%;\n  background-color: white; }\n  .igv-whole-genome-container div {\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 10px;\n    font-weight: 400;\n    color: #444;\n    height: 100%;\n    text-align: center;\n    border-right-color: #bfbfbf;\n    border-right-style: solid;\n    border-right-width: thin; }\n    .igv-whole-genome-container div span {\n      display: block;\n      padding-top: 6px;\n      text-overflow: ellipsis; }\n  .igv-whole-genome-container div:last-child {\n    border-right-color: transparent; }\n  .igv-whole-genome-container div:hover,\n  .igv-whole-genome-container div:focus,\n  .igv-whole-genome-container div:active {\n    cursor: pointer;\n    background-color: #efefef; }\n\n.igv-viewport-div-border-right {\n  border-right-color: #292929;\n  border-right-style: solid;\n  border-right-width: 1px; }\n\n.igv-multi-locus-panel-close-container {\n  position: absolute;\n  top: 4px;\n  right: 4px;\n  width: 16px;\n  height: 16px;\n  color: #666666;\n  z-index: 1000; }\n\n.igv-multi-locus-panel-close-container:hover {\n  cursor: pointer;\n  color: #434343; }\n\n.igv-multi-locus-panel-label-div {\n  position: absolute;\n  left: 50%;\n  top: 25%;\n  transform: translate(-50%, -25%);\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 12px;\n  font-weight: 400;\n  text-align: center;\n  min-width: 16px;\n  z-index: 64;\n  color: #373737;\n  background-color: white;\n  padding: 1px; }\n\n.igv-multi-locus-panel-label-div:hover {\n  cursor: pointer; }\n\n.igv-viewport-ruler {\n  cursor: pointer;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 10px;\n  font-weight: 200;\n  text-align: center; }\n  .igv-viewport-ruler > div {\n    height: 100%; }\n\n.igv-viewport-sequence {\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 8px;\n  font-weight: 200;\n  text-align: center; }\n\n.igv-viewport-spinner {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1024;\n  width: 24px;\n  height: 24px;\n  pointer-events: none;\n  color: #737373; }\n\n.igv-ruler-sweeper-div {\n  display: none;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 0;\n  height: 100%;\n  z-index: 99999;\n  background-color: rgba(68, 134, 247, 0.25); }\n\n.igv-right-hand-gutter {\n  position: absolute;\n  right: 0;\n  width: 36px;\n  height: 100%;\n  background: white; }\n\n.igv-left-hand-gutter {\n  position: absolute;\n  left: 0;\n  width: 50px;\n  height: 100%; }\n  .igv-left-hand-gutter canvas {\n    position: absolute; }\n\n.igv-track-menu-border-top {\n  border-top-color: #a2a2a2;\n  border-top-style: solid;\n  border-top-width: thin; }\n\n.igv-track-menu-category {\n  padding-left: 4px;\n  font-weight: 400; }\n\n.igv-track-drag-scrim {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 256;\n  background-color: rgba(68, 134, 247, 0.25); }\n\n.igv-track-manipulation-handle {\n  cursor: pointer;\n  position: absolute;\n  right: 36px;\n  width: 12px;\n  margin-left: 2px;\n  height: 100%;\n  box-sizing: border-box;\n  font-size: medium;\n  border-color: #c4c4c4;\n  border-style: solid;\n  border-width: thin;\n  border-top-right-radius: 6px;\n  border-bottom-right-radius: 6px;\n  z-index: 512;\n  background-color: #c4c4c4; }\n\n.igv-track-manipulation-handle:hover,\n.igv-track-manipulation-handle:focus,\n.igv-track-manipulation-handle:active {\n  border-color: #7e7e7e;\n  background-color: #7e7e7e; }\n\n.igv-track-label {\n  position: absolute;\n  left: 8px;\n  top: 4px;\n  width: auto;\n  height: auto;\n  max-width: 200px;\n  padding-left: 4px;\n  padding-right: 4px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: small;\n  font-weight: 400;\n  text-align: center;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  border-color: #444;\n  border-radius: 2px;\n  border-style: solid;\n  border-width: thin;\n  background-color: white;\n  z-index: 128;\n  cursor: pointer; }\n\n.igv-track-label:hover,\n.igv-track-label:focus,\n.igv-track-label:active {\n  background-color: rgba(0, 0, 0, 0.05); }\n\n.igv-scrollbar-outer-div {\n  position: absolute;\n  top: 0;\n  right: 0;\n  width: 14px;\n  height: 100%;\n  background-color: white; }\n  .igv-scrollbar-outer-div div {\n    position: absolute;\n    top: 0;\n    left: 3px;\n    width: 8px;\n    border-style: solid;\n    border-width: thin;\n    border-color: #c4c4c4;\n    border-top-left-radius: 4px;\n    border-top-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    background-color: white; }\n  .igv-scrollbar-outer-div div:hover,\n  .igv-scrollbar-outer-div div:focus,\n  .igv-scrollbar-outer-div div:active {\n    cursor: pointer;\n    background-color: #c4c4c4; }\n\n.zoom-in-notice-container {\n  position: absolute;\n  top: 10px;\n  left: 50%; }\n  .zoom-in-notice-container div {\n    position: relative;\n    left: -50%;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: medium;\n    font-weight: 400;\n    color: #3f3f3f;\n    background-color: rgba(255, 255, 255, 0.51);\n    z-index: 64; }\n\n.igv-center-guide {\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 50%;\n  width: 8px;\n  z-index: 8;\n  display: none;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  border-left-style: dashed;\n  border-left-width: thin;\n  border-right-style: dashed;\n  border-right-width: thin; }\n\n.igv-center-guide-wide {\n  background-color: rgba(0, 0, 0, 0);\n  border-left-color: rgba(127, 127, 127, 0.51);\n  border-right-color: rgba(127, 127, 127, 0.51); }\n\n.igv-center-guide-thin {\n  left: 50%;\n  width: 1px;\n  background-color: rgba(0, 0, 0, 0);\n  border-left-color: rgba(127, 127, 127, 0.51);\n  border-right-color: rgba(0, 0, 0, 0);\n  /*background-color: rgba(127, 127, 127, 0.51);*/\n  /*border-left-color: rgba(0,0,0,0);*/\n  /*border-right-color: rgba(0,0,0,0);*/ }\n\n.igv-cursor-tracking-guide {\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 50%;\n  width: 1px;\n  z-index: 1;\n  border-left-style: dotted;\n  border-left-width: thin;\n  border-left-color: rgba(127, 127, 127, 0.76);\n  display: none;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none; }\n\n.igv-clickable {\n  cursor: pointer;\n  background-color: white; }\n\n#color-by-tag {\n  color: #444; }\n\n#color-by-tag:hover,\n#color-by-tag:focus,\n#color-by-tag:active {\n  cursor: pointer;\n  padding-left: 2px;\n  padding-right: 2px;\n  color: white;\n  border-color: #444;\n  border-radius: 2px;\n  border-style: solid;\n  border-width: thin;\n  background-color: #7f7f7f; }\n\n.igv-ellipsis {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n.igv-spinner-container {\n  color: #3f3f3f;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  padding-top: 8px;\n  font-size: 24px;\n  z-index: 512; }\n\n.igv-fa-check-visible {\n  color: inherit;\n  padding-right: 2px; }\n\n.igv-fa-check-hidden {\n  color: transparent;\n  padding-right: 2px; }\n\n.validateTips {\n  border: 1px solid transparent;\n  padding: 0.3em; }\n  .validateTips fieldset {\n    border: 0; }\n\n.igv-spacer-10 {\n  height: 10px;\n  width: 100%;\n  font-size: 0;\n  margin: 0;\n  padding: 0;\n  border: 0;\n  display: block; }\n\n/*# sourceMappingURL=igv.css.map */\n\n/*!\n * Font Awesome Free 5.0.8 by @fontawesome - https://fontawesome.com\n * License - https://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)\n */\nsvg:not(:root).svg-inline--fa5 {\n  overflow: visible;\n  }\n\n.svg-inline--fa5 {\n  display: inline-block;\n  font-size: inherit;\n  height: 1em;\n  overflow: visible;\n  vertical-align: -.125em; }\n  .svg-inline--fa5.fa5-lg {\n    vertical-align: -.225em; }\n  .svg-inline--fa5.fa5-w-1 {\n    width: 0.0625em; }\n  .svg-inline--fa5.fa5-w-2 {\n    width: 0.125em; }\n  .svg-inline--fa5.fa5-w-3 {\n    width: 0.1875em; }\n  .svg-inline--fa5.fa5-w-4 {\n    width: 0.25em; }\n  .svg-inline--fa5.fa5-w-5 {\n    width: 0.3125em; }\n  .svg-inline--fa5.fa5-w-6 {\n    width: 0.375em; }\n  .svg-inline--fa5.fa5-w-7 {\n    width: 0.4375em; }\n  .svg-inline--fa5.fa5-w-8 {\n    width: 0.5em; }\n  .svg-inline--fa5.fa5-w-9 {\n    width: 0.5625em; }\n  .svg-inline--fa5.fa5-w-10 {\n    width: 0.625em; }\n  .svg-inline--fa5.fa5-w-11 {\n    width: 0.6875em; }\n  .svg-inline--fa5.fa5-w-12 {\n    width: 0.75em; }\n  .svg-inline--fa5.fa5-w-13 {\n    width: 0.8125em; }\n  .svg-inline--fa5.fa5-w-14 {\n    width: 0.875em; }\n  .svg-inline--fa5.fa5-w-15 {\n    width: 0.9375em; }\n  .svg-inline--fa5.fa5-w-16 {\n    /* width: 1em; */\n    }\n  .svg-inline--fa5.fa5-w-17 {\n    width: 1.0625em; }\n  .svg-inline--fa5.fa5-w-18 {\n    width: 1.125em; }\n  .svg-inline--fa5.fa5-w-19 {\n    width: 1.1875em; }\n  .svg-inline--fa5.fa5-w-20 {\n    width: 1.25em; }\n  .svg-inline--fa5.fa5-pull-left {\n    margin-right: .3em;\n    width: auto; }\n  .svg-inline--fa5.fa5-pull-right {\n    margin-left: .3em;\n    width: auto; }\n  .svg-inline--fa5.fa5-border {\n    height: 1.5em; }\n  .svg-inline--fa5.fa5-li {\n    width: 2em; }\n  .svg-inline--fa5.fa5-fw {\n    width: 1.25em; }\n\n.fa5-layers svg.svg-inline--fa5 {\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: 0; }\n\n.fa5-layers {\n  display: inline-block;\n  height: 1em;\n  position: relative;\n  text-align: center;\n  vertical-align: -.125em;\n  width: 1em; }\n  .fa5-layers svg.svg-inline--fa5 {\n    -webkit-transform-origin: center center;\n            transform-origin: center center; }\n\n.fa5-layers-text, .fa5-layers-counter {\n  display: inline-block;\n  position: absolute;\n  text-align: center; }\n\n.fa5-layers-text {\n  left: 50%;\n  top: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -webkit-transform-origin: center center;\n          transform-origin: center center; }\n\n.fa5-layers-counter {\n  background-color: #ff253a;\n  border-radius: 1em;\n  color: #fff;\n  height: 1.5em;\n  line-height: 1;\n  max-width: 5em;\n  min-width: 1.5em;\n  overflow: hidden;\n  padding: .25em;\n  right: 0;\n  text-overflow: ellipsis;\n  top: 0;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: top right;\n          transform-origin: top right; }\n\n.fa5-layers-bottom-right {\n  bottom: 0;\n  right: 0;\n  top: auto;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: bottom right;\n          transform-origin: bottom right; }\n\n.fa5-layers-bottom-left {\n  bottom: 0;\n  left: 0;\n  right: auto;\n  top: auto;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: bottom left;\n          transform-origin: bottom left; }\n\n.fa5-layers-top-right {\n  right: 0;\n  top: 0;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: top right;\n          transform-origin: top right; }\n\n.fa5-layers-top-left {\n  left: 0;\n  right: auto;\n  top: 0;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: top left;\n          transform-origin: top left; }\n\n.fa5-lg {\n  font-size: 1.33333em;\n  line-height: 0.75em;\n  vertical-align: -.0667em; }\n\n.fa5-xs {\n  font-size: .75em; }\n\n.fa5-sm {\n  font-size: .875em; }\n\n.fa5-1x {\n  font-size: 1em; }\n\n.fa5-2x {\n  font-size: 2em; }\n\n.fa5-3x {\n  font-size: 3em; }\n\n.fa5-4x {\n  font-size: 4em; }\n\n.fa5-5x {\n  font-size: 5em; }\n\n.fa5-6x {\n  font-size: 6em; }\n\n.fa5-7x {\n  font-size: 7em; }\n\n.fa5-8x {\n  font-size: 8em; }\n\n.fa5-9x {\n  font-size: 9em; }\n\n.fa5-10x {\n  font-size: 10em; }\n\n.fa5-fw {\n  text-align: center;\n  width: 1.25em; }\n\n.fa5-ul {\n  list-style-type: none;\n  margin-left: 2.5em;\n  padding-left: 0; }\n  .fa5-ul > li {\n    position: relative; }\n\n.fa5-li {\n  left: -2em;\n  position: absolute;\n  text-align: center;\n  width: 2em;\n  line-height: inherit; }\n\n.fa5-border {\n  border: solid 0.08em #eee;\n  border-radius: .1em;\n  padding: .2em .25em .15em; }\n\n.fa5-pull-left {\n  float: left; }\n\n.fa5-pull-right {\n  float: right; }\n\n.fa5.fa5-pull-left,\n.fas.fa5-pull-left,\n.far.fa5-pull-left,\n.fal.fa5-pull-left,\n.fab.fa5-pull-left {\n  margin-right: .3em; }\n\n.fa5.fa5-pull-right,\n.fas.fa5-pull-right,\n.far.fa5-pull-right,\n.fal.fa5-pull-right,\n.fab.fa5-pull-right {\n  margin-left: .3em; }\n\n.fa5-spin {\n  -webkit-animation: fa5-spin 2s infinite linear;\n          animation: fa5-spin 2s infinite linear; }\n\n.fa5-pulse {\n  -webkit-animation: fa5-spin 1s infinite steps(8);\n          animation: fa5-spin 1s infinite steps(8); }\n\n@-webkit-keyframes fa5-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes fa5-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.fa5-rotate-90 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=1)\";\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg); }\n\n.fa5-rotate-180 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2)\";\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg); }\n\n.fa5-rotate-270 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=3)\";\n  -webkit-transform: rotate(270deg);\n          transform: rotate(270deg); }\n\n.fa5-flip-horizontal {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)\";\n  -webkit-transform: scale(-1, 1);\n          transform: scale(-1, 1); }\n\n.fa5-flip-vertical {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)\";\n  -webkit-transform: scale(1, -1);\n          transform: scale(1, -1); }\n\n.fa5-flip-horizontal.fa5-flip-vertical {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)\";\n  -webkit-transform: scale(-1, -1);\n          transform: scale(-1, -1); }\n\n:root .fa5-rotate-90,\n:root .fa5-rotate-180,\n:root .fa5-rotate-270,\n:root .fa5-flip-horizontal,\n:root .fa5-flip-vertical {\n  -webkit-filter: none;\n          filter: none; }\n\n.fa5-stack {\n  display: inline-block;\n  height: 2em;\n  position: relative;\n  width: 2em; }\n\n.fa5-stack-1x,\n.fa5-stack-2x {\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: 0; }\n\n.svg-inline--fa5.fa5-stack-1x {\n  height: 1em;\n  width: 1em; }\n\n.svg-inline--fa5.fa5-stack-2x {\n  height: 2em;\n  width: 2em; }\n\n.fa5-inverse {\n  color: #fff; }\n\n.sr-only {\n  border: 0;\n  clip: rect(0, 0, 0, 0);\n  height: 1px;\n  margin: -1px;\n  overflow: hidden;\n  padding: 0;\n  position: absolute;\n  width: 1px; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  clip: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  position: static;\n  width: auto; }\n';
+    var css =  '.igv-user-feedback {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 512px;\n  height: 360px;\n  z-index: 2048;\n  background-color: white;\n  border-color: #a2a2a2;\n  border-style: solid;\n  border-width: thin;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: medium;\n  font-weight: 400;\n  color: #444;\n  display: flex;\n  flex-direction: column;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: center; }\n  .igv-user-feedback div:first-child {\n    position: relative;\n    height: 24px;\n    width: 100%;\n    background-color: white;\n    border-bottom-color: #a2a2a2;\n    border-bottom-style: solid;\n    border-bottom-width: thin; }\n    .igv-user-feedback div:first-child div {\n      position: absolute;\n      top: 2px;\n      width: 16px;\n      height: 16px;\n      background-color: transparent; }\n    .igv-user-feedback div:first-child div:first-child {\n      left: 8px; }\n    .igv-user-feedback div:first-child div:last-child {\n      cursor: pointer;\n      right: 8px; }\n  .igv-user-feedback div:last-child {\n    width: 100%;\n    height: calc(100% - 24px);\n    border-width: 0; }\n    .igv-user-feedback div:last-child div {\n      width: auto;\n      height: auto;\n      margin: 8px; }\n\n.igv-color-swatch {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  align-items: center;\n  width: 32px;\n  height: 32px;\n  border-style: solid;\n  border-width: 2px;\n  border-color: white;\n  border-radius: 4px; }\n\n.igv-colorpicker-menu-close-button {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: flex-end;\n  align-items: center;\n  width: 100%;\n  height: 32px;\n  margin-top: 4px;\n  margin-bottom: 4px;\n  padding-right: 8px; }\n  .igv-colorpicker-menu-close-button i.fa {\n    display: block;\n    margin-left: 4px;\n    margin-right: 4px;\n    color: #5f5f5f; }\n  .igv-colorpicker-menu-close-button i.fa:hover,\n  .igv-colorpicker-menu-close-button i.fa:focus,\n  .igv-colorpicker-menu-close-button i.fa:active {\n    cursor: pointer;\n    color: #0f0f0f; }\n\n.igv-alert-dialog-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 300px;\n  height: 256px;\n  border-color: #7F7F7F;\n  border-radius: 4px;\n  border-style: solid;\n  border-width: thin;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 15px;\n  font-weight: 400;\n  z-index: 2048;\n  background-color: white;\n  display: flex;\n  flex-flow: column;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: center; }\n  .igv-alert-dialog-container div:first-child {\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-end;\n    align-items: center;\n    width: 100%;\n    height: 24px;\n    cursor: move;\n    border-top-left-radius: 4px;\n    border-top-right-radius: 4px;\n    border-bottom-color: #7F7F7F;\n    border-bottom-style: solid;\n    border-bottom-width: thin;\n    background-color: #eee; }\n    .igv-alert-dialog-container div:first-child div {\n      margin-right: 4px;\n      margin-bottom: 2px;\n      height: 12px;\n      width: 12px;\n      color: #7F7F7F; }\n    .igv-alert-dialog-container div:first-child div:hover {\n      cursor: pointer;\n      color: #444; }\n  .igv-alert-dialog-container #igv-alert-dialog-body {\n    color: #373737;\n    width: 100%;\n    height: calc(100% - 24px - 64px);\n    overflow-y: scroll; }\n    .igv-alert-dialog-container #igv-alert-dialog-body #igv-alert-dialog-body-copy {\n      cursor: pointer;\n      margin: 16px;\n      width: auto;\n      height: auto;\n      overflow-wrap: break-word;\n      word-break: break-word;\n      background-color: white;\n      border: unset; }\n  .igv-alert-dialog-container div:last-child {\n    width: 100%;\n    height: 64px;\n    background-color: white;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: center;\n    align-items: center; }\n    .igv-alert-dialog-container div:last-child div {\n      width: 98px;\n      height: 36px;\n      line-height: 36px;\n      text-align: center;\n      color: white;\n      font-family: \"Open Sans\", sans-serif;\n      font-size: medium;\n      font-weight: 400;\n      border-color: #2B81AF;\n      border-style: solid;\n      border-width: thin;\n      border-radius: 4px;\n      background-color: #2B81AF; }\n    .igv-alert-dialog-container div:last-child div:hover {\n      cursor: pointer;\n      border-color: #25597f;\n      background-color: #25597f; }\n\n.igv-generic-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 2048;\n  background-color: white;\n  cursor: pointer;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: flex-start;\n  align-items: center; }\n  .igv-generic-container div:first-child {\n    cursor: move;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-end;\n    align-items: center;\n    height: 24px;\n    width: 100%;\n    background-color: #dddddd; }\n    .igv-generic-container div:first-child i {\n      display: block;\n      color: #5f5f5f;\n      cursor: pointer;\n      width: 14px;\n      height: 14px;\n      margin-right: 8px;\n      margin-bottom: 4px; }\n\n.igv-generic-dialog-container {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 300px;\n  height: 200px;\n  border-color: #7F7F7F;\n  border-radius: 4px;\n  border-style: solid;\n  border-width: thin;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: medium;\n  font-weight: 400;\n  z-index: 2048;\n  background-color: white;\n  display: flex;\n  flex-flow: column;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: center; }\n  .igv-generic-dialog-container .igv-generic-dialog-header {\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-end;\n    align-items: center;\n    width: 100%;\n    height: 24px;\n    cursor: move;\n    border-top-left-radius: 4px;\n    border-top-right-radius: 4px;\n    border-bottom-color: #7F7F7F;\n    border-bottom-style: solid;\n    border-bottom-width: thin;\n    background-color: #eee; }\n    .igv-generic-dialog-container .igv-generic-dialog-header div {\n      margin-right: 4px;\n      margin-bottom: 2px;\n      height: 12px;\n      width: 12px;\n      color: #7F7F7F; }\n    .igv-generic-dialog-container .igv-generic-dialog-header div:hover {\n      cursor: pointer;\n      color: #444; }\n  .igv-generic-dialog-container .igv-generic-dialog-one-liner {\n    color: #373737;\n    width: 95%;\n    height: 24px;\n    line-height: 24px;\n    text-align: left;\n    margin-top: 8px;\n    padding-left: 8px;\n    overflow-wrap: break-word;\n    background-color: white; }\n  .igv-generic-dialog-container .igv-generic-dialog-label-input {\n    margin-top: 8px;\n    width: 95%;\n    height: 24px;\n    color: #373737;\n    line-height: 24px;\n    padding-left: 8px;\n    background-color: white;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n    align-items: center; }\n    .igv-generic-dialog-container .igv-generic-dialog-label-input div {\n      width: 30%;\n      height: 100%;\n      font-size: 16px;\n      text-align: right;\n      padding-right: 8px;\n      background-color: white; }\n    .igv-generic-dialog-container .igv-generic-dialog-label-input input {\n      display: block;\n      height: 100%;\n      width: 100%;\n      padding-left: 4px;\n      font-family: \"Open Sans\", sans-serif;\n      font-weight: 400;\n      color: #373737;\n      text-align: left;\n      outline: none;\n      border-style: solid;\n      border-width: thin;\n      border-color: #7F7F7F;\n      background-color: white; }\n    .igv-generic-dialog-container .igv-generic-dialog-label-input input {\n      width: 50%;\n      font-size: 16px; }\n  .igv-generic-dialog-container .igv-generic-dialog-input {\n    margin-top: 8px;\n    width: calc(100% - 16px);\n    height: 24px;\n    color: #373737;\n    line-height: 24px;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: space-around;\n    align-items: center; }\n    .igv-generic-dialog-container .igv-generic-dialog-input input {\n      display: block;\n      height: 100%;\n      width: 100%;\n      padding-left: 4px;\n      font-family: \"Open Sans\", sans-serif;\n      font-weight: 400;\n      color: #373737;\n      text-align: left;\n      outline: none;\n      border-style: solid;\n      border-width: thin;\n      border-color: #7F7F7F;\n      background-color: white; }\n    .igv-generic-dialog-container .igv-generic-dialog-input input {\n      font-size: 16px; }\n  .igv-generic-dialog-container .igv-generic-dialog-ok-cancel {\n    width: 100%;\n    height: 28px;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: space-around;\n    align-items: center; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok-cancel div {\n      margin-top: 32px;\n      color: white;\n      font-family: \"Open Sans\", sans-serif;\n      font-size: 14px;\n      font-weight: 400;\n      width: 75px;\n      height: 28px;\n      line-height: 28px;\n      text-align: center;\n      border-color: transparent;\n      border-style: solid;\n      border-width: thin;\n      border-radius: 2px; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok-cancel div:first-child {\n      margin-left: 32px;\n      margin-right: 0;\n      background-color: #5ea4e0; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok-cancel div:last-child {\n      margin-left: 0;\n      margin-right: 32px;\n      background-color: #c4c4c4; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok-cancel div:first-child:hover {\n      cursor: pointer;\n      background-color: #3b5c7f; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok-cancel div:last-child:hover {\n      cursor: pointer;\n      background-color: #7f7f7f; }\n  .igv-generic-dialog-container .igv-generic-dialog-ok {\n    width: 100%;\n    height: 36px;\n    margin-top: 32px;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: space-around;\n    align-items: center; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok div {\n      width: 98px;\n      height: 36px;\n      line-height: 36px;\n      text-align: center;\n      color: white;\n      font-family: \"Open Sans\", sans-serif;\n      font-size: medium;\n      font-weight: 400;\n      border-color: white;\n      border-style: solid;\n      border-width: thin;\n      border-radius: 4px;\n      background-color: #2B81AF; }\n    .igv-generic-dialog-container .igv-generic-dialog-ok div:hover {\n      cursor: pointer;\n      background-color: #25597f; }\n\n.igv-popover {\n  position: absolute;\n  top: 0;\n  left: 0;\n  min-width: 128px;\n  z-index: 4096;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: small;\n  font-weight: 400;\n  color: #4b4b4b;\n  background-color: white;\n  border-radius: 4px;\n  border-color: #7F7F7F;\n  border-style: solid;\n  border-width: thin;\n  display: none; }\n\n.igv-popover-header {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: flex-end;\n  align-items: center;\n  width: 100%;\n  height: 24px;\n  cursor: move;\n  border-top-left-radius: 4px;\n  border-top-right-radius: 4px;\n  border-bottom-color: #7F7F7F;\n  border-bottom-style: solid;\n  border-bottom-width: thin;\n  background-color: #eee; }\n  .igv-popover-header div {\n    margin-right: 4px;\n    height: 12px;\n    width: 12px;\n    color: #7F7F7F; }\n  .igv-popover-header div:hover {\n    cursor: pointer;\n    color: #444; }\n\n.igv-popover-track-popup-content {\n  position: relative;\n  top: 0;\n  left: 0;\n  max-height: 384px;\n  overflow-x: hidden;\n  overflow-y: auto;\n  background-color: white; }\n  .igv-popover-track-popup-content div {\n    margin-left: 4px;\n    background-color: white; }\n  .igv-popover-track-popup-content div:hover {\n    cursor: pointer;\n    background-color: #efefef; }\n\n.igv-popover-name-value {\n  cursor: default;\n  text-wrap: none;\n  white-space: nowrap;\n  max-width: 384px; }\n\n.igv-popover-name {\n  font-weight: bold;\n  padding-right: 4px;\n  float: left; }\n\n.igv-popover-value {\n  padding-left: 4px;\n  overflow: hidden;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n  max-width: 256px;\n  display: inline-block; }\n\n.igv-trackgear-container {\n  position: relative;\n  width: 20px;\n  height: 20px;\n  margin-left: 4px;\n  color: #7F7F7F; }\n\n.igv-trackgear-container:hover {\n  cursor: pointer;\n  color: #444; }\n\n.igv-trackgear-popover {\n  position: absolute;\n  top: 0;\n  left: 0;\n  min-width: 132px;\n  z-index: 4096;\n  cursor: pointer;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: small;\n  font-weight: 400;\n  color: #4b4b4b;\n  background: white;\n  border-radius: 4px;\n  border-color: #7F7F7F;\n  border-style: solid;\n  border-width: thin;\n  display: flex;\n  flex-flow: column;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: flex-end;\n  text-align: left; }\n  .igv-trackgear-popover > div:not(:first-child) {\n    width: 100%; }\n    .igv-trackgear-popover > div:not(:first-child) > div {\n      background: white; }\n    .igv-trackgear-popover > div:not(:first-child) > div:last-child {\n      border-bottom-left-radius: 4px;\n      border-bottom-right-radius: 4px;\n      border-bottom-color: transparent;\n      border-bottom-style: solid;\n      border-bottom-width: thin; }\n    .igv-trackgear-popover > div:not(:first-child) > div:hover {\n      background: #efefef; }\n\n.igv-trackgear-popover-shim {\n  padding-left: 8px;\n  padding-right: 8px; }\n\n.igv-trackgear-popover-header {\n  position: relative;\n  width: 100%;\n  height: 24px;\n  cursor: move;\n  border-top-color: transparent;\n  border-top-left-radius: 4px;\n  border-top-right-radius: 4px;\n  border-bottom-color: #7F7F7F;\n  border-bottom-style: solid;\n  border-bottom-width: thin;\n  background-color: #eee;\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: flex-end;\n  align-items: center; }\n  .igv-trackgear-popover-header div {\n    margin-right: 4px;\n    height: 12px;\n    width: 12px;\n    color: #7F7F7F; }\n  .igv-trackgear-popover-header div:hover {\n    cursor: pointer;\n    color: #444; }\n\n.igv-trackgear-popover-check-container {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: center;\n  width: 100%;\n  height: 20px;\n  background-color: transparent; }\n  .igv-trackgear-popover-check-container div {\n    padding-top: 2px;\n    padding-left: 8px; }\n  .igv-trackgear-popover-check-container div:first-child {\n    position: relative;\n    width: 12px;\n    height: 12px; }\n    .igv-trackgear-popover-check-container div:first-child svg {\n      position: absolute;\n      width: 12px;\n      height: 12px; }\n\n.igvControlDiv {\n  position: relative; }\n\n.igv-content-header {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: flex-start;\n  align-items: center;\n  margin-top: 10px;\n  height: 16px;\n  width: 100%; }\n  .igv-content-header .igv-ideogram-shim {\n    height: 100%;\n    width: 50px;\n    background-color: white; }\n  .igv-content-header .igv-ideogram-content {\n    height: 100%;\n    background-color: white; }\n  .igv-content-header .igv-ideogram-content-border-right {\n    border-right-color: #292929;\n    border-right-style: solid;\n    border-right-width: 1px; }\n\n.igv-multi-locus-panel-border {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  width: 1px;\n  background-color: green;\n  border-right-color: #ff0000;\n  border-right-style: solid;\n  border-right-width: 1px; }\n\n.igv-navbar {\n  position: relative;\n  padding-left: 8px;\n  padding-right: 8px;\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: center;\n  color: #444;\n  font-size: 12px;\n  font-family: \"Open Sans\", sans-serif;\n  font-weight: 400;\n  line-height: 32px;\n  margin-top: 2px;\n  margin-bottom: 4px;\n  height: 32px;\n  border-style: solid;\n  border-radius: 3px;\n  border-width: thin;\n  border-color: #bfbfbf;\n  background-color: #f3f3f3; }\n\n.igv-nav-bar-left-container {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: center;\n  height: 32px;\n  line-height: 32px; }\n  .igv-nav-bar-left-container .igv-logo {\n    width: 34px;\n    height: 32px;\n    margin-top: 6px;\n    margin-right: 8px; }\n  .igv-nav-bar-left-container .igv-current-genome {\n    height: 32px;\n    width: 40px;\n    margin-left: 4px;\n    margin-right: 4px;\n    user-select: none;\n    line-height: 32px;\n    vertical-align: middle;\n    text-align: center; }\n\n.igv-nav-bar-genomic-location {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: center;\n  height: 100%; }\n\n.igv-chromosome-select-widget-container {\n  height: 100%;\n  width: 125px;\n  margin-right: 4px;\n  display: flex;\n  flex-flow: column;\n  flex-wrap: nowrap;\n  justify-content: space-around;\n  align-items: center; }\n  .igv-chromosome-select-widget-container select {\n    display: block;\n    cursor: pointer;\n    width: 100px;\n    height: 75%;\n    outline: none;\n    font-size: 12px;\n    font-family: \"Open Sans\", sans-serif;\n    font-weight: 400; }\n\n.igv-locus-size-group {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: center;\n  margin-left: 8px;\n  height: calc(32px - 10px); }\n  .igv-locus-size-group .igv-search-container {\n    width: 200px;\n    height: calc(32px - 10px);\n    line-height: calc(32px - 10px);\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-start;\n    align-items: center; }\n    .igv-locus-size-group .igv-search-container input {\n      cursor: text;\n      width: 85%;\n      height: calc(32px - 10px);\n      line-height: calc(32px - 10px);\n      font-size: 12px;\n      font-family: \"Open Sans\", sans-serif;\n      font-weight: 400;\n      text-align: left;\n      padding-left: 8px;\n      margin-right: 8px;\n      outline: none;\n      border-style: solid;\n      border-radius: 3px;\n      border-width: thin;\n      border-color: #bfbfbf;\n      background-color: white; }\n    .igv-locus-size-group .igv-search-container div {\n      cursor: pointer;\n      height: 16px;\n      width: 16px; }\n  .igv-locus-size-group .igv-windowsizepanel-content-div {\n    margin-left: 4px;\n    user-select: none; }\n\n.igv-nav-bar-right-container {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  align-items: center;\n  height: 32px;\n  line-height: 32px; }\n  .igv-nav-bar-right-container .igv-nav-bar-toggle-button-container {\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: space-between;\n    align-items: center;\n    height: 100%; }\n    .igv-nav-bar-right-container .igv-nav-bar-toggle-button-container div {\n      margin-left: 0;\n      margin-right: 4px; }\n    .igv-nav-bar-right-container .igv-nav-bar-toggle-button-container div:last-child {\n      margin-left: 0;\n      margin-right: 0; }\n  .igv-nav-bar-right-container .igv-nav-bar-toggle-button-container-750 {\n    display: none; }\n  .igv-nav-bar-right-container .igv-zoom-widget {\n    color: #737373;\n    font-size: 18px;\n    height: 32px;\n    line-height: 32px;\n    margin-left: 8px;\n    user-select: none;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-end;\n    align-items: center; }\n    .igv-nav-bar-right-container .igv-zoom-widget div {\n      cursor: pointer;\n      margin-left: unset;\n      margin-right: unset; }\n    .igv-nav-bar-right-container .igv-zoom-widget div:first-child {\n      height: 24px;\n      width: 24px;\n      margin-left: unset;\n      margin-right: 8px; }\n    .igv-nav-bar-right-container .igv-zoom-widget div:last-child {\n      height: 24px;\n      width: 24px;\n      margin-left: 8px;\n      margin-right: unset; }\n    .igv-nav-bar-right-container .igv-zoom-widget div:nth-child(even) {\n      display: block;\n      height: fit-content; }\n    .igv-nav-bar-right-container .igv-zoom-widget input {\n      display: block;\n      width: 125px; }\n    .igv-nav-bar-right-container .igv-zoom-widget svg {\n      display: block; }\n  .igv-nav-bar-right-container .igv-zoom-widget-900 {\n    color: #737373;\n    font-size: 18px;\n    height: 32px;\n    line-height: 32px;\n    margin-left: 8px;\n    user-select: none;\n    display: flex;\n    flex-flow: row;\n    flex-wrap: nowrap;\n    justify-content: flex-end;\n    align-items: center; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 div {\n      cursor: pointer;\n      margin-left: unset;\n      margin-right: unset; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 div:first-child {\n      height: 24px;\n      width: 24px;\n      margin-left: unset;\n      margin-right: 8px; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 div:last-child {\n      height: 24px;\n      width: 24px;\n      margin-left: 8px;\n      margin-right: unset; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 div:nth-child(even) {\n      width: 0;\n      height: 0;\n      display: none; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 input {\n      width: 0;\n      height: 0;\n      display: none; }\n    .igv-nav-bar-right-container .igv-zoom-widget-900 svg {\n      display: block; }\n  .igv-nav-bar-right-container .igv-zoom-widget-hidden {\n    display: none; }\n\n.igv-nav-bar-button {\n  box-sizing: unset;\n  padding-left: 6px;\n  padding-right: 6px;\n  height: 18px;\n  text-transform: capitalize;\n  user-select: none;\n  line-height: 18px;\n  text-align: center;\n  vertical-align: middle;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 11px;\n  font-weight: 200;\n  color: #737373;\n  background-color: #f3f3f3;\n  border-color: #737373;\n  border-style: solid;\n  border-width: thin;\n  border-radius: 6px; }\n\n.igv-nav-bar-button-clicked {\n  color: white;\n  background-color: #737373; }\n\n.igv-nav-bar-button:hover {\n  cursor: pointer; }\n\n.igv-logo-nonav {\n  margin-left: 4px;\n  margin-top: 12px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 34px;\n  height: 16px; }\n\n.igv-search-results {\n  position: absolute;\n  top: 32px;\n  left: 2px;\n  height: 320px;\n  width: 213px;\n  background-color: white;\n  border-color: #7F7F7F;\n  border-style: solid;\n  border-width: thin;\n  overflow-x: hidden;\n  overflow-y: auto;\n  z-index: 9999; }\n  .igv-search-results tr {\n    font-family: \"Open Sans\", sans-serif;\n    font-size: small;\n    font-weight: 400;\n    color: #444; }\n  .igv-search-results tr:hover,\n  .igv-search-results tr:focus,\n  .igv-search-results tr:active {\n    cursor: pointer;\n    font-weight: 700;\n    color: #141414; }\n\n.igv-root-div {\n  position: relative;\n  left: 0;\n  right: 0;\n  height: auto;\n  margin-left: 10px;\n  margin-right: 10px;\n  padding-top: 4px; }\n\n.igv-content-div {\n  position: relative;\n  width: 100%;\n  height: 100%; }\n\n.igv-track-container-div {\n  user-select: none;\n  position: relative;\n  clear: both; }\n\n.igv-track-div {\n  position: relative;\n  width: 100%;\n  margin-top: 5px;\n  margin-bottom: 5px; }\n\n.igv-viewport-container {\n  position: absolute;\n  left: 50px;\n  right: 50px;\n  height: 100%;\n  white-space: nowrap;\n  overflow-x: hidden;\n  overflow-y: hidden; }\n\n.igv-viewport-div {\n  position: relative;\n  display: inline-block;\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: hidden; }\n\n.igv-viewport-content-div {\n  position: absolute;\n  width: 100%; }\n\n.igv-viewport-message {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  color: rgba(0, 0, 0, 0.15);\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 25px;\n  font-weight: bold;\n  user-select: none; }\n\n.igv-whole-genome-container {\n  display: flex;\n  flex-flow: row;\n  flex-wrap: nowrap;\n  justify-content: space-between;\n  width: 100%;\n  height: 100%;\n  background-color: white; }\n  .igv-whole-genome-container div {\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 10px;\n    font-weight: 400;\n    color: #444;\n    height: 100%;\n    text-align: center;\n    border-right-color: #bfbfbf;\n    border-right-style: solid;\n    border-right-width: thin; }\n    .igv-whole-genome-container div span {\n      display: block;\n      padding-top: 6px;\n      text-overflow: ellipsis; }\n  .igv-whole-genome-container div:last-child {\n    border-right-color: transparent; }\n  .igv-whole-genome-container div:hover,\n  .igv-whole-genome-container div:focus,\n  .igv-whole-genome-container div:active {\n    cursor: pointer;\n    background-color: #efefef; }\n\n.igv-viewport-div-border-right {\n  border-right-color: #292929;\n  border-right-style: solid;\n  border-right-width: 1px; }\n\n.igv-multi-locus-panel-close-container {\n  position: absolute;\n  top: 4px;\n  right: 4px;\n  width: 16px;\n  height: 16px;\n  color: #666666;\n  z-index: 1000; }\n\n.igv-multi-locus-panel-close-container:hover {\n  cursor: pointer;\n  color: #434343; }\n\n.igv-multi-locus-panel-label-div {\n  position: absolute;\n  left: 50%;\n  top: 25%;\n  transform: translate(-50%, -25%);\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 12px;\n  font-weight: 400;\n  text-align: center;\n  min-width: 16px;\n  z-index: 64;\n  color: #373737;\n  background-color: white;\n  padding: 1px; }\n\n.igv-multi-locus-panel-label-div:hover {\n  cursor: pointer; }\n\n.igv-viewport-ruler {\n  cursor: pointer;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 10px;\n  font-weight: 200;\n  text-align: center; }\n  .igv-viewport-ruler > div {\n    height: 100%; }\n\n.igv-viewport-sequence {\n  font-family: \"Open Sans\", sans-serif;\n  font-size: 8px;\n  font-weight: 200;\n  text-align: center; }\n\n.igv-viewport-spinner {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 1024;\n  width: 24px;\n  height: 24px;\n  pointer-events: none;\n  color: #737373; }\n\n.igv-ruler-sweeper-div {\n  display: none;\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 0;\n  height: 100%;\n  z-index: 99999;\n  background-color: rgba(68, 134, 247, 0.25); }\n\n.igv-right-hand-gutter {\n  position: absolute;\n  right: 0;\n  width: 36px;\n  height: 100%;\n  background: white; }\n\n.igv-left-hand-gutter {\n  position: absolute;\n  left: 0;\n  width: 50px;\n  height: 100%; }\n  .igv-left-hand-gutter canvas {\n    position: absolute; }\n\n.igv-track-menu-border-top {\n  border-top-color: #a2a2a2;\n  border-top-style: solid;\n  border-top-width: thin; }\n\n.igv-track-menu-category {\n  padding-left: 4px;\n  font-weight: 400; }\n\n.igv-track-drag-scrim {\n  position: absolute;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 256;\n  background-color: rgba(68, 134, 247, 0.25); }\n\n.igv-track-manipulation-handle {\n  cursor: pointer;\n  position: absolute;\n  right: 36px;\n  width: 12px;\n  margin-left: 2px;\n  height: 100%;\n  box-sizing: border-box;\n  font-size: medium;\n  border-color: #c4c4c4;\n  border-style: solid;\n  border-width: thin;\n  border-top-right-radius: 6px;\n  border-bottom-right-radius: 6px;\n  z-index: 512;\n  background-color: #c4c4c4; }\n\n.igv-track-manipulation-handle:hover,\n.igv-track-manipulation-handle:focus,\n.igv-track-manipulation-handle:active {\n  border-color: #7e7e7e;\n  background-color: #7e7e7e; }\n\n.igv-track-label2 {\n  position: absolute;\n  left: 8px;\n  top: 4px;\n  width: auto;\n  height: auto;\n  max-width: 200px;\n  padding-left: 4px;\n  padding-right: 4px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: small;\n  font-weight: 400;\n  text-align: center;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  border-color: #444;\n  border-radius: 2px;\n  border-style: solid;\n  border-width: thin;\n  background-color: white;\n  z-index: 128;\n  cursor: pointer; }\n\n.igv-track-label {\n  position: absolute;\n  left: 8px;\n  top: 4px;\n  width: auto;\n  height: auto;\n  max-width: 200px;\n  padding-left: 4px;\n  padding-right: 4px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  font-family: \"Open Sans\", sans-serif;\n  font-size: small;\n  font-weight: 400;\n  text-align: center;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  border-color: #444;\n  border-radius: 2px;\n  border-style: solid;\n  border-width: thin;\n  background-color: white;\n  z-index: 128;\n  cursor: pointer; }\n\n.igv-track-label:hover,\n.igv-track-label:focus,\n.igv-track-label:active {\n  background-color: rgba(0, 0, 0, 0.05); }\n\n.igv-scrollbar-outer-div {\n  position: absolute;\n  top: 0;\n  right: 0;\n  width: 14px;\n  height: 100%;\n  background-color: white; }\n  .igv-scrollbar-outer-div div {\n    position: absolute;\n    top: 0;\n    left: 3px;\n    width: 8px;\n    border-style: solid;\n    border-width: thin;\n    border-color: #c4c4c4;\n    border-top-left-radius: 4px;\n    border-top-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n    background-color: white; }\n  .igv-scrollbar-outer-div div:hover,\n  .igv-scrollbar-outer-div div:focus,\n  .igv-scrollbar-outer-div div:active {\n    cursor: pointer;\n    background-color: #c4c4c4; }\n\n.zoom-in-notice-container {\n  position: absolute;\n  top: 10px;\n  left: 50%; }\n  .zoom-in-notice-container div {\n    position: relative;\n    left: -50%;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: medium;\n    font-weight: 400;\n    color: #3f3f3f;\n    background-color: rgba(255, 255, 255, 0.51);\n    z-index: 64; }\n\n.igv-center-guide {\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 50%;\n  width: 8px;\n  z-index: 8;\n  display: none;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none;\n  border-left-style: dashed;\n  border-left-width: thin;\n  border-right-style: dashed;\n  border-right-width: thin; }\n\n.igv-center-guide-wide {\n  background-color: rgba(0, 0, 0, 0);\n  border-left-color: rgba(127, 127, 127, 0.51);\n  border-right-color: rgba(127, 127, 127, 0.51); }\n\n.igv-center-guide-thin {\n  left: 50%;\n  width: 1px;\n  background-color: rgba(0, 0, 0, 0);\n  border-left-color: rgba(127, 127, 127, 0.51);\n  border-right-color: rgba(0, 0, 0, 0);\n  /*background-color: rgba(127, 127, 127, 0.51);*/\n  /*border-left-color: rgba(0,0,0,0);*/\n  /*border-right-color: rgba(0,0,0,0);*/ }\n\n.igv-cursor-tracking-guide {\n  pointer-events: none;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 50%;\n  width: 1px;\n  z-index: 1;\n  border-left-style: dotted;\n  border-left-width: thin;\n  border-left-color: rgba(127, 127, 127, 0.76);\n  display: none;\n  user-select: none;\n  -moz-user-select: none;\n  -webkit-user-select: none; }\n\n.igv-clickable {\n  cursor: pointer;\n  background-color: white; }\n\n#color-by-tag {\n  color: #444; }\n\n#color-by-tag:hover,\n#color-by-tag:focus,\n#color-by-tag:active {\n  cursor: pointer;\n  padding-left: 2px;\n  padding-right: 2px;\n  color: white;\n  border-color: #444;\n  border-radius: 2px;\n  border-style: solid;\n  border-width: thin;\n  background-color: #7f7f7f; }\n\n.igv-ellipsis {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis; }\n\n.igv-spinner-container {\n  color: #3f3f3f;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n  padding-top: 8px;\n  font-size: 24px;\n  z-index: 512; }\n\n.igv-fa-check-visible {\n  color: inherit;\n  padding-right: 2px; }\n\n.igv-fa-check-hidden {\n  color: transparent;\n  padding-right: 2px; }\n\n.validateTips {\n  border: 1px solid transparent;\n  padding: 0.3em; }\n  .validateTips fieldset {\n    border: 0; }\n\n.igv-spacer-10 {\n  height: 10px;\n  width: 100%;\n  font-size: 0;\n  margin: 0;\n  padding: 0;\n  border: 0;\n  display: block; }\n\n/*# sourceMappingURL=igv.css.map */\n\n/*!\n * Font Awesome Free 5.0.8 by @fontawesome - https://fontawesome.com\n * License - https://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)\n */\nsvg:not(:root).svg-inline--fa5 {\n  overflow: visible;\n  }\n\n.svg-inline--fa5 {\n  display: inline-block;\n  font-size: inherit;\n  height: 1em;\n  overflow: visible;\n  vertical-align: -.125em; }\n  .svg-inline--fa5.fa5-lg {\n    vertical-align: -.225em; }\n  .svg-inline--fa5.fa5-w-1 {\n    width: 0.0625em; }\n  .svg-inline--fa5.fa5-w-2 {\n    width: 0.125em; }\n  .svg-inline--fa5.fa5-w-3 {\n    width: 0.1875em; }\n  .svg-inline--fa5.fa5-w-4 {\n    width: 0.25em; }\n  .svg-inline--fa5.fa5-w-5 {\n    width: 0.3125em; }\n  .svg-inline--fa5.fa5-w-6 {\n    width: 0.375em; }\n  .svg-inline--fa5.fa5-w-7 {\n    width: 0.4375em; }\n  .svg-inline--fa5.fa5-w-8 {\n    width: 0.5em; }\n  .svg-inline--fa5.fa5-w-9 {\n    width: 0.5625em; }\n  .svg-inline--fa5.fa5-w-10 {\n    width: 0.625em; }\n  .svg-inline--fa5.fa5-w-11 {\n    width: 0.6875em; }\n  .svg-inline--fa5.fa5-w-12 {\n    width: 0.75em; }\n  .svg-inline--fa5.fa5-w-13 {\n    width: 0.8125em; }\n  .svg-inline--fa5.fa5-w-14 {\n    width: 0.875em; }\n  .svg-inline--fa5.fa5-w-15 {\n    width: 0.9375em; }\n  .svg-inline--fa5.fa5-w-16 {\n    /* width: 1em; */\n    }\n  .svg-inline--fa5.fa5-w-17 {\n    width: 1.0625em; }\n  .svg-inline--fa5.fa5-w-18 {\n    width: 1.125em; }\n  .svg-inline--fa5.fa5-w-19 {\n    width: 1.1875em; }\n  .svg-inline--fa5.fa5-w-20 {\n    width: 1.25em; }\n  .svg-inline--fa5.fa5-pull-left {\n    margin-right: .3em;\n    width: auto; }\n  .svg-inline--fa5.fa5-pull-right {\n    margin-left: .3em;\n    width: auto; }\n  .svg-inline--fa5.fa5-border {\n    height: 1.5em; }\n  .svg-inline--fa5.fa5-li {\n    width: 2em; }\n  .svg-inline--fa5.fa5-fw {\n    width: 1.25em; }\n\n.fa5-layers svg.svg-inline--fa5 {\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: 0; }\n\n.fa5-layers {\n  display: inline-block;\n  height: 1em;\n  position: relative;\n  text-align: center;\n  vertical-align: -.125em;\n  width: 1em; }\n  .fa5-layers svg.svg-inline--fa5 {\n    -webkit-transform-origin: center center;\n            transform-origin: center center; }\n\n.fa5-layers-text, .fa5-layers-counter {\n  display: inline-block;\n  position: absolute;\n  text-align: center; }\n\n.fa5-layers-text {\n  left: 50%;\n  top: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -webkit-transform-origin: center center;\n          transform-origin: center center; }\n\n.fa5-layers-counter {\n  background-color: #ff253a;\n  border-radius: 1em;\n  color: #fff;\n  height: 1.5em;\n  line-height: 1;\n  max-width: 5em;\n  min-width: 1.5em;\n  overflow: hidden;\n  padding: .25em;\n  right: 0;\n  text-overflow: ellipsis;\n  top: 0;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: top right;\n          transform-origin: top right; }\n\n.fa5-layers-bottom-right {\n  bottom: 0;\n  right: 0;\n  top: auto;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: bottom right;\n          transform-origin: bottom right; }\n\n.fa5-layers-bottom-left {\n  bottom: 0;\n  left: 0;\n  right: auto;\n  top: auto;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: bottom left;\n          transform-origin: bottom left; }\n\n.fa5-layers-top-right {\n  right: 0;\n  top: 0;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: top right;\n          transform-origin: top right; }\n\n.fa5-layers-top-left {\n  left: 0;\n  right: auto;\n  top: 0;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: top left;\n          transform-origin: top left; }\n\n.fa5-lg {\n  font-size: 1.33333em;\n  line-height: 0.75em;\n  vertical-align: -.0667em; }\n\n.fa5-xs {\n  font-size: .75em; }\n\n.fa5-sm {\n  font-size: .875em; }\n\n.fa5-1x {\n  font-size: 1em; }\n\n.fa5-2x {\n  font-size: 2em; }\n\n.fa5-3x {\n  font-size: 3em; }\n\n.fa5-4x {\n  font-size: 4em; }\n\n.fa5-5x {\n  font-size: 5em; }\n\n.fa5-6x {\n  font-size: 6em; }\n\n.fa5-7x {\n  font-size: 7em; }\n\n.fa5-8x {\n  font-size: 8em; }\n\n.fa5-9x {\n  font-size: 9em; }\n\n.fa5-10x {\n  font-size: 10em; }\n\n.fa5-fw {\n  text-align: center;\n  width: 1.25em; }\n\n.fa5-ul {\n  list-style-type: none;\n  margin-left: 2.5em;\n  padding-left: 0; }\n  .fa5-ul > li {\n    position: relative; }\n\n.fa5-li {\n  left: -2em;\n  position: absolute;\n  text-align: center;\n  width: 2em;\n  line-height: inherit; }\n\n.fa5-border {\n  border: solid 0.08em #eee;\n  border-radius: .1em;\n  padding: .2em .25em .15em; }\n\n.fa5-pull-left {\n  float: left; }\n\n.fa5-pull-right {\n  float: right; }\n\n.fa5.fa5-pull-left,\n.fas.fa5-pull-left,\n.far.fa5-pull-left,\n.fal.fa5-pull-left,\n.fab.fa5-pull-left {\n  margin-right: .3em; }\n\n.fa5.fa5-pull-right,\n.fas.fa5-pull-right,\n.far.fa5-pull-right,\n.fal.fa5-pull-right,\n.fab.fa5-pull-right {\n  margin-left: .3em; }\n\n.fa5-spin {\n  -webkit-animation: fa5-spin 2s infinite linear;\n          animation: fa5-spin 2s infinite linear; }\n\n.fa5-pulse {\n  -webkit-animation: fa5-spin 1s infinite steps(8);\n          animation: fa5-spin 1s infinite steps(8); }\n\n@-webkit-keyframes fa5-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n@keyframes fa5-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.fa5-rotate-90 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=1)\";\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg); }\n\n.fa5-rotate-180 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2)\";\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg); }\n\n.fa5-rotate-270 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=3)\";\n  -webkit-transform: rotate(270deg);\n          transform: rotate(270deg); }\n\n.fa5-flip-horizontal {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)\";\n  -webkit-transform: scale(-1, 1);\n          transform: scale(-1, 1); }\n\n.fa5-flip-vertical {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)\";\n  -webkit-transform: scale(1, -1);\n          transform: scale(1, -1); }\n\n.fa5-flip-horizontal.fa5-flip-vertical {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)\";\n  -webkit-transform: scale(-1, -1);\n          transform: scale(-1, -1); }\n\n:root .fa5-rotate-90,\n:root .fa5-rotate-180,\n:root .fa5-rotate-270,\n:root .fa5-flip-horizontal,\n:root .fa5-flip-vertical {\n  -webkit-filter: none;\n          filter: none; }\n\n.fa5-stack {\n  display: inline-block;\n  height: 2em;\n  position: relative;\n  width: 2em; }\n\n.fa5-stack-1x,\n.fa5-stack-2x {\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: 0; }\n\n.svg-inline--fa5.fa5-stack-1x {\n  height: 1em;\n  width: 1em; }\n\n.svg-inline--fa5.fa5-stack-2x {\n  height: 2em;\n  width: 2em; }\n\n.fa5-inverse {\n  color: #fff; }\n\n.sr-only {\n  border: 0;\n  clip: rect(0, 0, 0, 0);\n  height: 1px;\n  margin: -1px;\n  overflow: hidden;\n  padding: 0;\n  position: absolute;\n  width: 1px; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  clip: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  position: static;\n  width: auto; }\n';
 
     var style = document.createElement('style');
     style.setAttribute('type', 'text/css');
@@ -9810,7 +9810,7 @@ var _ = function (obj) {
  * @fileoverview Zlib namespace. Zlib の仕様に準拠した圧縮は Zlib.Deflate で実装
  * されている. これは Inflate との共存を考慮している為.
  */
-
+const ZLIB_STREAM_RAW_INFLATE_BUFFER_SIZE = 65000;
 var USE_TYPEDARRAY = true;
 
 var Zlib = {
@@ -10034,11 +10034,11 @@ Zlib.Zip.prototype.compress = function() {
   for (i = 0, il = files.length; i < il; ++i) {
     file = files[i];
     filenameLength =
-      (file.option['filename']) ? file.option['filename'].length : 0;
+        (file.option['filename']) ? file.option['filename'].length : 0;
     extraFieldLength =
-      (file.option['extraField']) ? file.option['extraField'].length : 0;
+        (file.option['extraField']) ? file.option['extraField'].length : 0;
     commentLength =
-      (file.option['comment']) ? file.option['comment'].length : 0;
+        (file.option['comment']) ? file.option['comment'].length : 0;
 
     // 圧縮されていなかったら圧縮
     if (!file.compressed) {
@@ -10064,18 +10064,16 @@ Zlib.Zip.prototype.compress = function() {
 
       // add header
       buffer = file.buffer;
-      if (USE_TYPEDARRAY) {
+      {
         tmp = new Uint8Array(buffer.length + 12);
         tmp.set(buffer, 12);
         buffer = tmp;
-      } else {
-        buffer.unshift(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
       }
 
       for (j = 0; j < 12; ++j) {
         buffer[j] = this.encode(
-          key,
-          i === 11 ? (file.crc32 & 0xff) : (Math.random() * 256 | 0)
+            key,
+            i === 11 ? (file.crc32 & 0xff) : (Math.random() * 256 | 0)
         );
       }
 
@@ -10088,20 +10086,20 @@ Zlib.Zip.prototype.compress = function() {
 
     // 必要バッファサイズの計算
     localFileSize +=
-      // local file header
-      30 + filenameLength +
-      // file data
-      file.buffer.length;
+        // local file header
+        30 + filenameLength +
+        // file data
+        file.buffer.length;
 
     centralDirectorySize +=
-      // file header
-      46 + filenameLength + commentLength;
+        // file header
+        46 + filenameLength + commentLength;
   }
 
   // end of central directory
   endOfCentralDirectorySize = 22 + (this.comment ? this.comment.length : 0);
-  output = new (USE_TYPEDARRAY ? Uint8Array : Array)(
-    localFileSize + centralDirectorySize + endOfCentralDirectorySize
+  output = new ( Uint8Array )(
+      localFileSize + centralDirectorySize + endOfCentralDirectorySize
   );
   op1 = 0;
   op2 = localFileSize;
@@ -10111,10 +10109,10 @@ Zlib.Zip.prototype.compress = function() {
   for (i = 0, il = files.length; i < il; ++i) {
     file = files[i];
     filenameLength =
-      file.option['filename'] ? file.option['filename'].length :  0;
+        file.option['filename'] ? file.option['filename'].length :  0;
     extraFieldLength = 0; // TODO
     commentLength =
-      file.option['comment'] ? file.option['comment'].length : 0;
+        file.option['comment'] ? file.option['comment'].length : 0;
 
     //-------------------------------------------------------------------------
     // local file header & file header
@@ -10138,9 +10136,9 @@ Zlib.Zip.prototype.compress = function() {
     needVersion = 20;
     output[op2++] = needVersion & 0xff;
     output[op2++] =
-      /** @type {Zlib.Zip.OperatingSystem} */
-      (file.option['os']) ||
-      Zlib.Zip.OperatingSystem.MSDOS;
+        /** @type {Zlib.Zip.OperatingSystem} */
+        (file.option['os']) ||
+        Zlib.Zip.OperatingSystem.MSDOS;
 
     // need version
     output[op1++] = output[op2++] =  needVersion       & 0xff;
@@ -10156,26 +10154,26 @@ Zlib.Zip.prototype.compress = function() {
 
     // compression method
     compressionMethod =
-      /** @type {Zlib.Zip.CompressionMethod} */
-      (file.option['compressionMethod']);
+        /** @type {Zlib.Zip.CompressionMethod} */
+        (file.option['compressionMethod']);
     output[op1++] = output[op2++] =  compressionMethod       & 0xff;
     output[op1++] = output[op2++] = (compressionMethod >> 8) & 0xff;
 
     // date
     date = /** @type {(Date|undefined)} */(file.option['date']) || new Date();
     output[op1++] = output[op2++] =
-      ((date.getMinutes() & 0x7) << 5) |
-      (date.getSeconds() / 2 | 0);
+        ((date.getMinutes() & 0x7) << 5) |
+        (date.getSeconds() / 2 | 0);
     output[op1++] = output[op2++] =
-      (date.getHours()   << 3) |
-      (date.getMinutes() >> 3);
+        (date.getHours()   << 3) |
+        (date.getMinutes() >> 3);
     //
     output[op1++] = output[op2++] =
-      ((date.getMonth() + 1 & 0x7) << 5) |
-      (date.getDate());
+        ((date.getMonth() + 1 & 0x7) << 5) |
+        (date.getDate());
     output[op1++] = output[op2++] =
-      ((date.getFullYear() - 1980 & 0x7f) << 1) |
-      (date.getMonth() + 1 >> 3);
+        ((date.getFullYear() - 1980 & 0x7f) << 1) |
+        (date.getMonth() + 1 >> 3);
 
     // CRC-32
     crc32 = file.crc32;
@@ -10233,43 +10231,31 @@ Zlib.Zip.prototype.compress = function() {
     // filename
     filename = file.option['filename'];
     if (filename) {
-      if (USE_TYPEDARRAY) {
+      {
         output.set(filename, op1);
         output.set(filename, op2);
         op1 += filenameLength;
         op2 += filenameLength;
-      } else {
-        for (j = 0; j < filenameLength; ++j) {
-          output[op1++] = output[op2++] = filename[j];
-        }
       }
     }
 
     // extra field
     extraField = file.option['extraField'];
     if (extraField) {
-      if (USE_TYPEDARRAY) {
+      {
         output.set(extraField, op1);
         output.set(extraField, op2);
         op1 += extraFieldLength;
         op2 += extraFieldLength;
-      } else {
-        for (j = 0; j < commentLength; ++j) {
-          output[op1++] = output[op2++] = extraField[j];
-        }
       }
     }
 
     // comment
     comment = file.option['comment'];
     if (comment) {
-      if (USE_TYPEDARRAY) {
+      {
         output.set(comment, op2);
         op2 += commentLength;
-      } else {
-        for (j = 0; j < commentLength; ++j) {
-          output[op2++] = comment[j];
-        }
       }
     }
 
@@ -10277,13 +10263,9 @@ Zlib.Zip.prototype.compress = function() {
     // file data
     //-------------------------------------------------------------------------
 
-    if (USE_TYPEDARRAY) {
+    {
       output.set(file.buffer, op1);
       op1 += file.buffer.length;
-    } else {
-      for (j = 0, jl = file.buffer.length; j < jl; ++j) {
-        output[op1++] = file.buffer[j];
-      }
     }
   }
 
@@ -10332,13 +10314,9 @@ Zlib.Zip.prototype.compress = function() {
 
   // .ZIP file comment
   if (this.comment) {
-    if (USE_TYPEDARRAY) {
+    {
       output.set(this.comment, op3);
       op3 += commentLength;
-    } else {
-      for (j = 0, jl = commentLength; j < jl; ++j) {
-        output[op3++] = this.comment[j];
-      }
     }
   }
 
@@ -10467,7 +10445,7 @@ Zlib.Huffman.buildHuffmanTable = function(lengths) {
   }
 
   size = 1 << maxCodeLength;
-  table = new (USE_TYPEDARRAY ? Uint32Array : Array)(size);
+  table = new ( Uint32Array )(size);
 
   // ビット長の短い順からハフマン符号を割り当てる
   for (bitLength = 1, code = 0, skip = 2; bitLength <= maxCodeLength;) {
@@ -10500,8 +10478,6 @@ Zlib.Huffman.buildHuffmanTable = function(lengths) {
 
   return [table, maxCodeLength, minCodeLength];
 };
-
-
 
 
 //-----------------------------------------------------------------------------
@@ -10541,7 +10517,7 @@ Zlib.RawInflate = function(input, opt_params) {
   /** @type {!number} bit stream reader buffer size. */
   this.bitsbuflen = 0;
   /** @type {!(Array.<number>|Uint8Array)} input buffer. */
-  this.input = USE_TYPEDARRAY ? new Uint8Array(input) : input;
+  this.input =  new Uint8Array(input) ;
   /** @type {!(Uint8Array|Array.<number>)} output buffer. */
   this.output;
   /** @type {!number} output buffer pointer. */
@@ -10574,20 +10550,21 @@ Zlib.RawInflate = function(input, opt_params) {
     case Zlib.RawInflate.BufferType.BLOCK:
       this.op = Zlib.RawInflate.MaxBackwardLength;
       this.output =
-        new (USE_TYPEDARRAY ? Uint8Array : Array)(
-          Zlib.RawInflate.MaxBackwardLength +
-          this.bufferSize +
-          Zlib.RawInflate.MaxCopyLength
-        );
+          new ( Uint8Array )(
+              Zlib.RawInflate.MaxBackwardLength +
+              this.bufferSize +
+              Zlib.RawInflate.MaxCopyLength
+          );
       break;
     case Zlib.RawInflate.BufferType.ADAPTIVE:
       this.op = 0;
-      this.output = new (USE_TYPEDARRAY ? Uint8Array : Array)(this.bufferSize);
+      this.output = new ( Uint8Array )(this.bufferSize);
       break;
     default:
       throw new Error('invalid inflate mode');
   }
 };
+
 
 /**
  * @enum {number}
@@ -10634,16 +10611,15 @@ Zlib.RawInflate.MaxCopyLength = 258;
  * @type {!(Array.<number>|Uint8Array)}
  */
 Zlib.RawInflate.Order = (function(table) {
-  return USE_TYPEDARRAY ? new Uint16Array(table) : table;
+  return  new Uint16Array(table) ;
 })([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]);
-
 /**
  * huffman length code table.
  * @const
  * @type {!(Array.<number>|Uint16Array)}
  */
 Zlib.RawInflate.LengthCodeTable = (function(table) {
-  return USE_TYPEDARRAY ? new Uint16Array(table) : table;
+  return  new Uint16Array(table) ;
 })([
   0x0003, 0x0004, 0x0005, 0x0006, 0x0007, 0x0008, 0x0009, 0x000a, 0x000b,
   0x000d, 0x000f, 0x0011, 0x0013, 0x0017, 0x001b, 0x001f, 0x0023, 0x002b,
@@ -10657,7 +10633,7 @@ Zlib.RawInflate.LengthCodeTable = (function(table) {
  * @type {!(Array.<number>|Uint8Array)}
  */
 Zlib.RawInflate.LengthExtraTable = (function(table) {
-  return USE_TYPEDARRAY ? new Uint8Array(table) : table;
+  return  new Uint8Array(table) ;
 })([
   0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5,
   5, 5, 0, 0, 0
@@ -10669,7 +10645,7 @@ Zlib.RawInflate.LengthExtraTable = (function(table) {
  * @type {!(Array.<number>|Uint16Array)}
  */
 Zlib.RawInflate.DistCodeTable = (function(table) {
-  return USE_TYPEDARRAY ? new Uint16Array(table) : table;
+  return  new Uint16Array(table) ;
 })([
   0x0001, 0x0002, 0x0003, 0x0004, 0x0005, 0x0007, 0x0009, 0x000d, 0x0011,
   0x0019, 0x0021, 0x0031, 0x0041, 0x0061, 0x0081, 0x00c1, 0x0101, 0x0181,
@@ -10683,7 +10659,7 @@ Zlib.RawInflate.DistCodeTable = (function(table) {
  * @type {!(Array.<number>|Uint8Array)}
  */
 Zlib.RawInflate.DistExtraTable = (function(table) {
-  return USE_TYPEDARRAY ? new Uint8Array(table) : table;
+  return  new Uint8Array(table) ;
 })([
   0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11,
   11, 12, 12, 13, 13
@@ -10697,15 +10673,15 @@ Zlib.RawInflate.DistExtraTable = (function(table) {
 Zlib.RawInflate.FixedLiteralLengthTable = (function(table) {
   return table;
 })((function() {
-  var lengths = new (USE_TYPEDARRAY ? Uint8Array : Array)(288);
+  var lengths = new ( Uint8Array )(288);
   var i, il;
 
   for (i = 0, il = lengths.length; i < il; ++i) {
     lengths[i] =
-      (i <= 143) ? 8 :
-      (i <= 255) ? 9 :
-      (i <= 279) ? 7 :
-      8;
+        (i <= 143) ? 8 :
+            (i <= 255) ? 9 :
+                (i <= 279) ? 7 :
+                    8;
   }
 
   return buildHuffmanTable(lengths);
@@ -10719,7 +10695,7 @@ Zlib.RawInflate.FixedLiteralLengthTable = (function(table) {
 Zlib.RawInflate.FixedDistanceTable = (function(table) {
   return table;
 })((function() {
-  var lengths = new (USE_TYPEDARRAY ? Uint8Array : Array)(30);
+  var lengths = new ( Uint8Array )(30);
   var i, il;
 
   for (i = 0, il = lengths.length; i < il; ++i) {
@@ -10744,19 +10720,19 @@ Zlib.RawInflate.prototype.parseBlock = function() {
   // BTYPE
   hdr >>>= 1;
   switch (hdr) {
-    // uncompressed
+      // uncompressed
     case 0:
       this.parseUncompressedBlock();
       break;
-    // fixed huffman
+      // fixed huffman
     case 1:
       this.parseFixedHuffmanBlock();
       break;
-    // dynamic huffman
+      // dynamic huffman
     case 2:
       this.parseDynamicHuffmanBlock();
       break;
-    // reserved or other
+      // reserved or other
     default:
       throw new Error('unknown BTYPE: ' + hdr);
   }
@@ -10898,14 +10874,10 @@ Zlib.RawInflate.prototype.parseUncompressedBlock = function() {
       while (op + len > output.length) {
         preCopy = olength - op;
         len -= preCopy;
-        if (USE_TYPEDARRAY) {
+        {
           output.set(input.subarray(ip, ip + preCopy), op);
           op += preCopy;
           ip += preCopy;
-        } else {
-          while (preCopy--) {
-            output[op++] = input[ip++];
-          }
         }
         this.op = op;
         output = this.expandBufferBlock();
@@ -10922,14 +10894,10 @@ Zlib.RawInflate.prototype.parseUncompressedBlock = function() {
   }
 
   // copy
-  if (USE_TYPEDARRAY) {
+  {
     output.set(input.subarray(ip, ip + len), op);
     op += len;
     ip += len;
-  } else {
-    while (len--) {
-      output[op++] = input[ip++];
-    }
   }
 
   this.ip = ip;
@@ -10944,14 +10912,14 @@ Zlib.RawInflate.prototype.parseFixedHuffmanBlock = function() {
   switch (this.bufferType) {
     case Zlib.RawInflate.BufferType.ADAPTIVE:
       this.decodeHuffmanAdaptive(
-        Zlib.RawInflate.FixedLiteralLengthTable,
-        Zlib.RawInflate.FixedDistanceTable
+          Zlib.RawInflate.FixedLiteralLengthTable,
+          Zlib.RawInflate.FixedDistanceTable
       );
       break;
     case Zlib.RawInflate.BufferType.BLOCK:
       this.decodeHuffmanBlock(
-        Zlib.RawInflate.FixedLiteralLengthTable,
-        Zlib.RawInflate.FixedDistanceTable
+          Zlib.RawInflate.FixedLiteralLengthTable,
+          Zlib.RawInflate.FixedDistanceTable
       );
       break;
     default:
@@ -10971,7 +10939,7 @@ Zlib.RawInflate.prototype.parseDynamicHuffmanBlock = function() {
   var hclen = this.readBits(4) + 4;
   /** @type {!(Uint8Array|Array.<number>)} code lengths. */
   var codeLengths =
-    new (USE_TYPEDARRAY ? Uint8Array : Array)(Zlib.RawInflate.Order.length);
+      new ( Uint8Array )(Zlib.RawInflate.Order.length);
   /** @type {!Array} code lengths table. */
   var codeLengthsTable;
   /** @type {!(Uint8Array|Array.<number>)} literal and length code table. */
@@ -10995,15 +10963,10 @@ Zlib.RawInflate.prototype.parseDynamicHuffmanBlock = function() {
   for (i = 0; i < hclen; ++i) {
     codeLengths[Zlib.RawInflate.Order[i]] = this.readBits(3);
   }
-  if (!USE_TYPEDARRAY) {
-    for (i = hclen, hclen = codeLengths.length; i < hclen; ++i) {
-      codeLengths[Zlib.RawInflate.Order[i]] = 0;
-    }
-  }
 
   // decode length table
   codeLengthsTable = buildHuffmanTable(codeLengths);
-  lengthTable = new (USE_TYPEDARRAY ? Uint8Array : Array)(hlit + hdist);
+  lengthTable = new ( Uint8Array )(hlit + hdist);
   for (i = 0, il = hlit + hdist; i < il;) {
     code = this.readCodeByTable(codeLengthsTable);
     switch (code) {
@@ -11028,12 +10991,10 @@ Zlib.RawInflate.prototype.parseDynamicHuffmanBlock = function() {
     }
   }
 
-  litlenTable = USE_TYPEDARRAY
-    ? buildHuffmanTable(lengthTable.subarray(0, hlit))
-    : buildHuffmanTable(lengthTable.slice(0, hlit));
-  distTable = USE_TYPEDARRAY
-    ? buildHuffmanTable(lengthTable.subarray(hlit))
-    : buildHuffmanTable(lengthTable.slice(hlit));
+  litlenTable =  buildHuffmanTable(lengthTable.subarray(0, hlit))
+      ;
+  distTable =  buildHuffmanTable(lengthTable.subarray(hlit))
+      ;
 
   switch (this.bufferType) {
     case Zlib.RawInflate.BufferType.ADAPTIVE:
@@ -11197,39 +11158,27 @@ Zlib.RawInflate.prototype.decodeHuffmanAdaptive = function(litlen, dist) {
 Zlib.RawInflate.prototype.expandBufferBlock = function(opt_param) {
   /** @type {!(Array.<number>|Uint8Array)} store buffer. */
   var buffer =
-    new (USE_TYPEDARRAY ? Uint8Array : Array)(
-        this.op - Zlib.RawInflate.MaxBackwardLength
-    );
+      new ( Uint8Array )(
+          this.op - Zlib.RawInflate.MaxBackwardLength
+      );
   /** @type {number} backward base point */
   var backward = this.op - Zlib.RawInflate.MaxBackwardLength;
-  /** @type {number} copy index. */
-  var i;
-  /** @type {number} copy limit */
-  var il;
 
   var output = this.output;
 
   // copy to output buffer
-  if (USE_TYPEDARRAY) {
+  {
     buffer.set(output.subarray(Zlib.RawInflate.MaxBackwardLength, buffer.length));
-  } else {
-    for (i = 0, il = buffer.length; i < il; ++i) {
-      buffer[i] = output[i + Zlib.RawInflate.MaxBackwardLength];
-    }
   }
 
   this.blocks.push(buffer);
   this.totalpos += buffer.length;
 
   // copy to backward buffer
-  if (USE_TYPEDARRAY) {
+  {
     output.set(
-      output.subarray(backward, backward + Zlib.RawInflate.MaxBackwardLength)
+        output.subarray(backward, backward + Zlib.RawInflate.MaxBackwardLength)
     );
-  } else {
-    for (i = 0; i < Zlib.RawInflate.MaxBackwardLength; ++i) {
-      output[i] = output[backward + i];
-    }
   }
 
   this.op = Zlib.RawInflate.MaxBackwardLength;
@@ -11269,21 +11218,19 @@ Zlib.RawInflate.prototype.expandBufferAdaptive = function(opt_param) {
   // calculate new buffer size
   if (ratio < 2) {
     maxHuffCode =
-      (input.length - this.ip) / this.currentLitlenTable[2];
+        (input.length - this.ip) / this.currentLitlenTable[2];
     maxInflateSize = (maxHuffCode / 2 * 258) | 0;
     newSize = maxInflateSize < output.length ?
-      output.length + maxInflateSize :
-      output.length << 1;
+        output.length + maxInflateSize :
+        output.length << 1;
   } else {
     newSize = output.length * ratio;
   }
 
   // buffer expantion
-  if (USE_TYPEDARRAY) {
+  {
     buffer = new Uint8Array(newSize);
     buffer.set(output);
-  } else {
-    buffer = output;
   }
 
   this.output = buffer;
@@ -11307,7 +11254,7 @@ Zlib.RawInflate.prototype.concatBufferBlock = function() {
   /** @type {!(Array.<number>|Uint8Array)} output block array. */
   var block;
   /** @type {!(Array.<number>|Uint8Array)} output buffer. */
-  var buffer = new (USE_TYPEDARRAY ? Uint8Array : Array)(limit);
+  var buffer = new ( Uint8Array )(limit);
   /** @type {number} loop counter. */
   var i;
   /** @type {number} loop limiter. */
@@ -11319,9 +11266,7 @@ Zlib.RawInflate.prototype.concatBufferBlock = function() {
 
   // single buffer
   if (blocks.length === 0) {
-    return USE_TYPEDARRAY ?
-      this.output.subarray(Zlib.RawInflate.MaxBackwardLength, this.op) :
-      this.output.slice(Zlib.RawInflate.MaxBackwardLength, this.op);
+    return         this.output.subarray(Zlib.RawInflate.MaxBackwardLength, this.op) ;
   }
 
   // copy to buffer
@@ -11352,18 +11297,13 @@ Zlib.RawInflate.prototype.concatBufferDynamic = function() {
   var buffer;
   var op = this.op;
 
-  if (USE_TYPEDARRAY) {
+  {
     if (this.resize) {
       buffer = new Uint8Array(op);
       buffer.set(this.output.subarray(0, op));
     } else {
       buffer = this.output.subarray(0, op);
     }
-  } else {
-    if (this.output.length > op) {
-      this.output.length = op;
-    }
-    buffer = this.output;
   }
 
   this.buffer = buffer;
@@ -11387,7 +11327,7 @@ Zlib.RawInflateStream = function(input, ip, opt_buffersize) {
   this.blocks = [];
   /** @type {number} block size. */
   this.bufferSize =
-    opt_buffersize ? opt_buffersize : ZLIB_STREAM_RAW_INFLATE_BUFFER_SIZE;
+      opt_buffersize ? opt_buffersize : ZLIB_STREAM_RAW_INFLATE_BUFFER_SIZE;
   /** @type {!number} total output buffer pointer. */
   this.totalpos = 0;
   /** @type {!number} input buffer pointer. */
@@ -11397,9 +11337,9 @@ Zlib.RawInflateStream = function(input, ip, opt_buffersize) {
   /** @type {!number} bit stream reader buffer size. */
   this.bitsbuflen = 0;
   /** @type {!(Array|Uint8Array)} input buffer. */
-  this.input = USE_TYPEDARRAY ? new Uint8Array(input) : input;
+  this.input =  new Uint8Array(input) ;
   /** @type {!(Uint8Array|Array)} output buffer. */
-  this.output = new (USE_TYPEDARRAY ? Uint8Array : Array)(this.bufferSize);
+  this.output = new ( Uint8Array )(this.bufferSize);
   /** @type {!number} output buffer pointer. */
   this.op = 0;
   /** @type {boolean} is final block flag. */
@@ -11469,14 +11409,14 @@ Zlib.RawInflateStream.prototype.decompress = function(newInput, ip) {
   // decompress
   while (!stop) {
     switch (this.status) {
-      // block header
+        // block header
       case Zlib.RawInflateStream.Status.INITIALIZED:
       case Zlib.RawInflateStream.Status.BLOCK_HEADER_START:
         if (this.readBlockHeader() < 0) {
           stop = true;
         }
         break;
-      // block body
+        // block body
       case Zlib.RawInflateStream.Status.BLOCK_HEADER_END: /* FALLTHROUGH */
       case Zlib.RawInflateStream.Status.BLOCK_BODY_START:
         switch(this.currentBlockType) {
@@ -11497,7 +11437,7 @@ Zlib.RawInflateStream.prototype.decompress = function(newInput, ip) {
             break;
         }
         break;
-      // decode data
+        // decode data
       case Zlib.RawInflateStream.Status.BLOCK_BODY_END:
       case Zlib.RawInflateStream.Status.DECODE_BLOCK_START:
         switch(this.currentBlockType) {
@@ -11545,7 +11485,7 @@ Zlib.RawInflateStream.MaxCopyLength = 258;
  * @type {!(Array.<number>|Uint8Array)}
  */
 Zlib.RawInflateStream.Order = (function(table) {
-  return USE_TYPEDARRAY ? new Uint16Array(table) : table;
+  return  new Uint16Array(table) ;
 })([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]);
 
 /**
@@ -11554,7 +11494,7 @@ Zlib.RawInflateStream.Order = (function(table) {
  * @type {!(Array.<number>|Uint16Array)}
  */
 Zlib.RawInflateStream.LengthCodeTable = (function(table) {
-  return USE_TYPEDARRAY ? new Uint16Array(table) : table;
+  return  new Uint16Array(table) ;
 })([
   0x0003, 0x0004, 0x0005, 0x0006, 0x0007, 0x0008, 0x0009, 0x000a, 0x000b,
   0x000d, 0x000f, 0x0011, 0x0013, 0x0017, 0x001b, 0x001f, 0x0023, 0x002b,
@@ -11568,7 +11508,7 @@ Zlib.RawInflateStream.LengthCodeTable = (function(table) {
  * @type {!(Array.<number>|Uint8Array)}
  */
 Zlib.RawInflateStream.LengthExtraTable = (function(table) {
-  return USE_TYPEDARRAY ? new Uint8Array(table) : table;
+  return  new Uint8Array(table) ;
 })([
   0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5,
   5, 5, 0, 0, 0
@@ -11580,7 +11520,7 @@ Zlib.RawInflateStream.LengthExtraTable = (function(table) {
  * @type {!(Array.<number>|Uint16Array)}
  */
 Zlib.RawInflateStream.DistCodeTable = (function(table) {
-  return USE_TYPEDARRAY ? new Uint16Array(table) : table;
+  return  new Uint16Array(table) ;
 })([
   0x0001, 0x0002, 0x0003, 0x0004, 0x0005, 0x0007, 0x0009, 0x000d, 0x0011,
   0x0019, 0x0021, 0x0031, 0x0041, 0x0061, 0x0081, 0x00c1, 0x0101, 0x0181,
@@ -11594,7 +11534,7 @@ Zlib.RawInflateStream.DistCodeTable = (function(table) {
  * @type {!(Array.<number>|Uint8Array)}
  */
 Zlib.RawInflateStream.DistExtraTable = (function(table) {
-  return USE_TYPEDARRAY ? new Uint8Array(table) : table;
+  return  new Uint8Array(table) ;
 })([
   0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11,
   11, 12, 12, 13, 13
@@ -11608,15 +11548,15 @@ Zlib.RawInflateStream.DistExtraTable = (function(table) {
 Zlib.RawInflateStream.FixedLiteralLengthTable = (function(table) {
   return table;
 })((function() {
-  var lengths = new (USE_TYPEDARRAY ? Uint8Array : Array)(288);
+  var lengths = new ( Uint8Array )(288);
   var i, il;
 
   for (i = 0, il = lengths.length; i < il; ++i) {
     lengths[i] =
-      (i <= 143) ? 8 :
-      (i <= 255) ? 9 :
-      (i <= 279) ? 7 :
-      8;
+        (i <= 143) ? 8 :
+            (i <= 255) ? 9 :
+                (i <= 279) ? 7 :
+                    8;
   }
 
   return buildHuffmanTable(lengths);
@@ -11630,7 +11570,7 @@ Zlib.RawInflateStream.FixedLiteralLengthTable = (function(table) {
 Zlib.RawInflateStream.FixedDistanceTable = (function(table) {
   return table;
 })((function() {
-  var lengths = new (USE_TYPEDARRAY ? Uint8Array : Array)(30);
+  var lengths = new ( Uint8Array )(30);
   var i, il;
 
   for (i = 0, il = lengths.length; i < il; ++i) {
@@ -11886,13 +11826,9 @@ Zlib.RawInflateStream.prototype.parseDynamicHuffmanBlock = function() {
   var hclen;
   /** @type {!(Uint8Array|Array)} code lengths. */
   var codeLengths =
-    new (USE_TYPEDARRAY ? Uint8Array : Array)(Zlib.RawInflateStream.Order.length);
+      new ( Uint8Array )(Zlib.RawInflateStream.Order.length);
   /** @type {!Array} code lengths table. */
   var codeLengthsTable;
-  /** @type {!(Uint32Array|Array)} literal and length code lengths. */
-  var litlenLengths;
-  /** @type {!(Uint32Array|Array)} distance code lengths. */
-  var distLengths;
 
   this.status = Zlib.RawInflateStream.Status.BLOCK_BODY_START;
 
@@ -11935,7 +11871,7 @@ Zlib.RawInflateStream.prototype.parseDynamicHuffmanBlock = function() {
 
     // decode length table
     codeLengthsTable = buildHuffmanTable(codeLengths);
-    lengthTable = new (USE_TYPEDARRAY ? Uint8Array : Array)(hlit + hdist);
+    lengthTable = new ( Uint8Array )(hlit + hdist);
     for (i = 0, il = hlit + hdist; i < il;) {
       code = this.readCodeByTable(codeLengthsTable);
       if (code < 0) {
@@ -11972,18 +11908,10 @@ Zlib.RawInflateStream.prototype.parseDynamicHuffmanBlock = function() {
       }
     }
 
-    // literal and length code
-    litlenLengths = new (USE_TYPEDARRAY ? Uint8Array : Array)(hlit);
-
-    // distance code
-    distLengths = new (USE_TYPEDARRAY ? Uint8Array : Array)(hdist);
-
-    this.litlenTable = USE_TYPEDARRAY
-      ? buildHuffmanTable(lengthTable.subarray(0, hlit))
-      : buildHuffmanTable(lengthTable.slice(0, hlit));
-    this.distTable = USE_TYPEDARRAY
-      ? buildHuffmanTable(lengthTable.subarray(hlit))
-      : buildHuffmanTable(lengthTable.slice(hlit));
+    this.litlenTable =  buildHuffmanTable(lengthTable.subarray(0, hlit))
+        ;
+    this.distTable =  buildHuffmanTable(lengthTable.subarray(hlit))
+        ;
   }
 
   this.status = Zlib.RawInflateStream.Status.BLOCK_BODY_END;
@@ -12130,21 +12058,19 @@ Zlib.RawInflateStream.prototype.expandBuffer = function(opt_param) {
   // calculate new buffer size
   if (ratio < 2) {
     maxHuffCode =
-      (input.length - this.ip) / this.litlenTable[2];
+        (input.length - this.ip) / this.litlenTable[2];
     maxInflateSize = (maxHuffCode / 2 * 258) | 0;
     newSize = maxInflateSize < output.length ?
-      output.length + maxInflateSize :
-      output.length << 1;
+        output.length + maxInflateSize :
+        output.length << 1;
   } else {
     newSize = output.length * ratio;
   }
 
   // buffer expantion
-  if (USE_TYPEDARRAY) {
+  {
     buffer = new Uint8Array(newSize);
     buffer.set(output);
-  } else {
-    buffer = output;
   }
 
   this.output = buffer;
@@ -12165,14 +12091,12 @@ Zlib.RawInflateStream.prototype.concatBuffer = function() {
   var tmp;
 
   if (this.resize) {
-    if (USE_TYPEDARRAY) {
+    {
       buffer = new Uint8Array(this.output.subarray(this.sp, op));
-    } else {
-      buffer = this.output.slice(this.sp, op);
     }
   } else {
     buffer =
-      USE_TYPEDARRAY ? this.output.subarray(this.sp, op) : this.output.slice(this.sp, op);
+         this.output.subarray(this.sp, op) ;
   }
 
   this.sp = op;
@@ -12180,12 +12104,10 @@ Zlib.RawInflateStream.prototype.concatBuffer = function() {
   // compaction
   if (op > Zlib.RawInflateStream.MaxBackwardLength + this.bufferSize) {
     this.op = this.sp = Zlib.RawInflateStream.MaxBackwardLength;
-    if (USE_TYPEDARRAY) {
+    {
       tmp = /** @type {Uint8Array} */(this.output);
       this.output = new Uint8Array(this.bufferSize + Zlib.RawInflateStream.MaxBackwardLength);
       this.output.set(tmp.subarray(op - Zlib.RawInflateStream.MaxBackwardLength, op));
-    } else {
-      this.output = this.output.slice(op - Zlib.RawInflateStream.MaxBackwardLength);
     }
   }
 
@@ -12206,10 +12128,6 @@ Zlib.RawInflateStream.prototype.concatBuffer = function() {
  *       Zlib.Inflate.BufferType は Zlib.RawInflate.BufferType のエイリアス.
  */
 Zlib.Inflate = function(input, opt_params) {
-  /** @type {number} */
-  var bufferSize;
-  /** @type {Zlib.Inflate.BufferType} */
-  var bufferType;
   /** @type {number} */
   var cmf;
   /** @type {number} */
@@ -12264,7 +12182,7 @@ Zlib.Inflate = function(input, opt_params) {
     'bufferType': opt_params['bufferType'],
     'resize': opt_params['resize']
   });
-}
+};
 
 /**
  * @enum {number}
@@ -12289,8 +12207,8 @@ Zlib.Inflate.prototype.decompress = function() {
   // verify adler-32
   if (this.verify) {
     adler32 = (
-      input[this.ip++] << 24 | input[this.ip++] << 16 |
-      input[this.ip++] << 8 | input[this.ip++]
+        input[this.ip++] << 24 | input[this.ip++] << 16 |
+        input[this.ip++] << 8 | input[this.ip++]
     ) >>> 0;
 
     if (adler32 !== Zlib.Adler32(buffer)) {
@@ -12311,7 +12229,7 @@ Zlib.Inflate.prototype.decompress = function() {
  */
 Zlib.InflateStream = function(input) {
   /** @type {!(Uint8Array|Array)} */
-  this.input = input === void 0 ? new (USE_TYPEDARRAY ? Uint8Array : Array)() : input;
+  this.input = input === void 0 ? new ( Uint8Array )() : input;
   /** @type {number} */
   this.ip = 0;
   /** @type {Zlib.RawInflateStream} */
@@ -12329,33 +12247,28 @@ Zlib.InflateStream = function(input) {
 Zlib.InflateStream.prototype.decompress = function(input) {
   /** @type {!(Uint8Array|Array)} inflated buffer. */
   var buffer;
-  /** @type {number} adler-32 checksum */
-  var adler32;
 
   // 新しい入力を入力バッファに結合する
   // XXX Array, Uint8Array のチェックを行うか確認する
   if (input !== void 0) {
-    if (USE_TYPEDARRAY) {
+    {
       var tmp = new Uint8Array(this.input.length + input.length);
       tmp.set(this.input, 0);
       tmp.set(input, this.input.length);
       this.input = tmp;
-    } else {
-      this.input = this.input.concat(input);
     }
   }
 
   if (this.method === void 0) {
     if(this.readHeader() < 0) {
-      return new (USE_TYPEDARRAY ? Uint8Array : Array)();
+      return new ( Uint8Array )();
     }
   }
 
   buffer = this.rawinflate.decompress(this.input, this.ip);
   if (this.rawinflate.ip !== 0) {
-    this.input = USE_TYPEDARRAY ?
-      this.input.subarray(this.rawinflate.ip) :
-      this.input.slice(this.rawinflate.ip);
+    this.input = 
+        this.input.subarray(this.rawinflate.ip) ;
     this.ip = 0;
   }
 
@@ -12508,9 +12421,9 @@ Zlib.Gunzip.prototype.decodeMember = function() {
 
   // modification time
   mtime = (input[ip++])       |
-          (input[ip++] << 8)  |
-          (input[ip++] << 16) |
-          (input[ip++] << 24);
+      (input[ip++] << 8)  |
+      (input[ip++] << 16) |
+      (input[ip++] << 24);
   member.mtime = new Date(mtime * 1000);
 
   // extra flags
@@ -12552,7 +12465,7 @@ Zlib.Gunzip.prototype.decodeMember = function() {
   // isize を事前に取得すると展開後のサイズが分かるため、
   // inflate処理のバッファサイズが事前に分かり、高速になる
   isize = (input[input.length - 4])       | (input[input.length - 3] << 8) |
-          (input[input.length - 2] << 16) | (input[input.length - 1] << 24);
+      (input[input.length - 2] << 16) | (input[input.length - 1] << 24);
 
   // isize の妥当性チェック
   // ハフマン符号では最小 2-bit のため、最大で 1/4 になる
@@ -12571,8 +12484,8 @@ Zlib.Gunzip.prototype.decodeMember = function() {
 
   // crc32
   member.crc32 = crc32 =
-    ((input[ip++])       | (input[ip++] << 8) |
-     (input[ip++] << 16) | (input[ip++] << 24)) >>> 0;
+      ((input[ip++])       | (input[ip++] << 8) |
+          (input[ip++] << 16) | (input[ip++] << 24)) >>> 0;
   if (Zlib.CRC32.calc(inflated) !== crc32) {
     throw new Error('invalid CRC-32 checksum: 0x' +
         Zlib.CRC32.calc(inflated).toString(16) + ' / 0x' + crc32.toString(16));
@@ -12580,8 +12493,8 @@ Zlib.Gunzip.prototype.decodeMember = function() {
 
   // input size
   member.isize = isize =
-    ((input[ip++])       | (input[ip++] << 8) |
-     (input[ip++] << 16) | (input[ip++] << 24)) >>> 0;
+      ((input[ip++])       | (input[ip++] << 8) |
+          (input[ip++] << 16) | (input[ip++] << 24)) >>> 0;
   if ((inflated.length & 0xffffffff) !== isize) {
     throw new Error('invalid input size: ' +
         (inflated.length & 0xffffffff) + ' / ' + isize);
@@ -12620,18 +12533,12 @@ Zlib.Gunzip.prototype.concatMember = function() {
     size += member[i].data.length;
   }
 
-  if (USE_TYPEDARRAY) {
+  {
     buffer = new Uint8Array(size);
     for (i = 0; i < il; ++i) {
       buffer.set(member[i].data, p);
       p += member[i].data.length;
     }
-  } else {
-    buffer = [];
-    for (i = 0; i < il; ++i) {
-      buffer[i] = member[i].data;
-    }
-    buffer = Array.prototype.concat.apply([], buffer);
   }
 
   return buffer;
@@ -12683,7 +12590,7 @@ Zlib.GunzipMember.prototype.getData = function() {
 
 Zlib.GunzipMember.prototype.getMtime = function() {
   return this.mtime;
-}
+};
 
 /**
  * @fileoverview GZIP (RFC1952) 実装.
@@ -12762,7 +12669,7 @@ Zlib.Gzip.prototype.compress = function() {
   var il;
   /** @type {!(Array|Uint8Array)} output buffer. */
   var output =
-    new (USE_TYPEDARRAY ? Uint8Array : Array)(Zlib.Gzip.DefaultBufferSize);
+      new ( Uint8Array )(Zlib.Gzip.DefaultBufferSize);
   /** @type {number} output buffer pointer. */
   var op = 0;
 
@@ -12840,7 +12747,7 @@ Zlib.Gzip.prototype.compress = function() {
   op = rawdeflate.op;
 
   // expand buffer
-  if (USE_TYPEDARRAY) {
+  {
     if (op + 8 > output.buffer.byteLength) {
       this.output = new Uint8Array(op + 8);
       this.output.set(new Uint8Array(output.buffer));
@@ -12866,7 +12773,7 @@ Zlib.Gzip.prototype.compress = function() {
 
   this.ip = ip;
 
-  if (USE_TYPEDARRAY && op < output.length) {
+  if ( op < output.length) {
     this.output = output = output.subarray(0, op);
   }
 
@@ -12912,7 +12819,7 @@ Zlib.Gzip.FlagsMask = {
  * @constructor
  */
 Zlib.Heap = function(length) {
-  this.buffer = new (USE_TYPEDARRAY ? Uint16Array : Array)(length * 2);
+  this.buffer = new ( Uint16Array )(length * 2);
   this.length = 0;
 };
 
@@ -12965,7 +12872,7 @@ Zlib.Heap.prototype.push = function(index, value) {
       heap[parent + 1] = swap;
 
       current = parent;
-    // 入れ替えが必要なくなったらそこで抜ける
+      // 入れ替えが必要なくなったらそこで抜ける
     } else {
       break;
     }
@@ -13026,7 +12933,6 @@ Zlib.Heap.prototype.pop = function() {
   return {index: index, value: value, length: this.length};
 };
 
-
 /* vim:set expandtab ts=2 sw=2 tw=80: */
 
 /**
@@ -13057,7 +12963,7 @@ Zlib.RawDeflate = function(input, opt_params) {
   this.freqsDist;
   /** @type {!(Array.<number>|Uint8Array)} */
   this.input =
-    (USE_TYPEDARRAY && input instanceof Array) ? new Uint8Array(input) : input;
+      ( input instanceof Array) ? new Uint8Array(input) : input;
   /** @type {!(Array.<number>|Uint8Array)} output output buffer. */
   this.output;
   /** @type {number} pos output buffer position. */
@@ -13073,8 +12979,8 @@ Zlib.RawDeflate = function(input, opt_params) {
     }
     if (opt_params['outputBuffer']) {
       this.output =
-        (USE_TYPEDARRAY && opt_params['outputBuffer'] instanceof Array) ?
-        new Uint8Array(opt_params['outputBuffer']) : opt_params['outputBuffer'];
+          ( opt_params['outputBuffer'] instanceof Array) ?
+              new Uint8Array(opt_params['outputBuffer']) : opt_params['outputBuffer'];
     }
     if (typeof opt_params['outputIndex'] === 'number') {
       this.op = opt_params['outputIndex'];
@@ -13082,7 +12988,7 @@ Zlib.RawDeflate = function(input, opt_params) {
   }
 
   if (!this.output) {
-    this.output = new (USE_TYPEDARRAY ? Uint8Array : Array)(0x8000);
+    this.output = new ( Uint8Array )(0x8000);
   }
 };
 
@@ -13158,7 +13064,7 @@ Zlib.RawDeflate.FixedHuffmanTable = (function() {
  * DEFLATE ブロックの作成
  * @return {!(Array.<number>|Uint8Array)} 圧縮済み byte array.
  */
-Zlib.RawDeflate.prototype.compress = function() {
+ Zlib.RawDeflate.prototype.compress = function() {
   /** @type {!(Array.<number>|Uint8Array)} */
   var blockArray;
   /** @type {number} */
@@ -13173,9 +13079,8 @@ Zlib.RawDeflate.prototype.compress = function() {
     case Zlib.RawDeflate.CompressionType.NONE:
       // each 65535-Byte (length header: 16-bit)
       for (position = 0, length = input.length; position < length;) {
-        blockArray = USE_TYPEDARRAY ?
-          input.subarray(position, position + 0xffff) :
-          input.slice(position, position + 0xffff);
+        blockArray = 
+            input.subarray(position, position + 0xffff) ;
         position += blockArray.length;
         this.makeNocompressBlock(blockArray, (position === length));
       }
@@ -13202,62 +13107,53 @@ Zlib.RawDeflate.prototype.compress = function() {
  * @return {!(Array.<number>|Uint8Array)} 非圧縮ブロック byte array.
  */
 Zlib.RawDeflate.prototype.makeNocompressBlock =
-function(blockArray, isFinalBlock) {
-  /** @type {number} */
-  var bfinal;
-  /** @type {Zlib.RawDeflate.CompressionType} */
-  var btype;
-  /** @type {number} */
-  var len;
-  /** @type {number} */
-  var nlen;
-  /** @type {number} */
-  var i;
-  /** @type {number} */
-  var il;
+    function(blockArray, isFinalBlock) {
+      /** @type {number} */
+      var bfinal;
+      /** @type {Zlib.RawDeflate.CompressionType} */
+      var btype;
+      /** @type {number} */
+      var len;
+      /** @type {number} */
+      var nlen;
 
-  var output = this.output;
-  var op = this.op;
+      var output = this.output;
+      var op = this.op;
 
-  // expand buffer
-  if (USE_TYPEDARRAY) {
-    output = new Uint8Array(this.output.buffer);
-    while (output.length <= op + blockArray.length + 5) {
-      output = new Uint8Array(output.length << 1);
-    }
-    output.set(this.output);
-  }
+      // expand buffer
+      {
+        output = new Uint8Array(this.output.buffer);
+        while (output.length <= op + blockArray.length + 5) {
+          output = new Uint8Array(output.length << 1);
+        }
+        output.set(this.output);
+      }
 
-  // header
-  bfinal = isFinalBlock ? 1 : 0;
-  btype = Zlib.RawDeflate.CompressionType.NONE;
-  output[op++] = (bfinal) | (btype << 1);
+      // header
+      bfinal = isFinalBlock ? 1 : 0;
+      btype = Zlib.RawDeflate.CompressionType.NONE;
+      output[op++] = (bfinal) | (btype << 1);
 
-  // length
-  len = blockArray.length;
-  nlen = (~len + 0x10000) & 0xffff;
-  output[op++] =          len & 0xff;
-  output[op++] =  (len >>> 8) & 0xff;
-  output[op++] =         nlen & 0xff;
-  output[op++] = (nlen >>> 8) & 0xff;
+      // length
+      len = blockArray.length;
+      nlen = (~len + 0x10000) & 0xffff;
+      output[op++] =          len & 0xff;
+      output[op++] =  (len >>> 8) & 0xff;
+      output[op++] =         nlen & 0xff;
+      output[op++] = (nlen >>> 8) & 0xff;
 
-  // copy buffer
-  if (USE_TYPEDARRAY) {
-     output.set(blockArray, op);
-     op += blockArray.length;
-     output = output.subarray(0, op);
-  } else {
-    for (i = 0, il = blockArray.length; i < il; ++i) {
-      output[op++] = blockArray[i];
-    }
-    output.length = op;
-  }
+      // copy buffer
+      {
+        output.set(blockArray, op);
+        op += blockArray.length;
+        output = output.subarray(0, op);
+      }
 
-  this.op = op;
-  this.output = output;
+      this.op = op;
+      this.output = output;
 
-  return output;
-};
+      return output;
+    };
 
 /**
  * 固定ハフマンブロックの作成
@@ -13266,29 +13162,29 @@ function(blockArray, isFinalBlock) {
  * @return {!(Array.<number>|Uint8Array)} 固定ハフマン符号化ブロック byte array.
  */
 Zlib.RawDeflate.prototype.makeFixedHuffmanBlock =
-function(blockArray, isFinalBlock) {
-  /** @type {Zlib.BitStream} */
-  var stream = new Zlib.BitStream(USE_TYPEDARRAY ?
-    new Uint8Array(this.output.buffer) : this.output, this.op);
-  /** @type {number} */
-  var bfinal;
-  /** @type {Zlib.RawDeflate.CompressionType} */
-  var btype;
-  /** @type {!(Array.<number>|Uint16Array)} */
-  var data;
+    function(blockArray, isFinalBlock) {
+      /** @type {Zlib.BitStream} */
+      var stream = new Zlib.BitStream(
+          new Uint8Array(this.output.buffer) , this.op);
+      /** @type {number} */
+      var bfinal;
+      /** @type {Zlib.RawDeflate.CompressionType} */
+      var btype;
+      /** @type {!(Array.<number>|Uint16Array)} */
+      var data;
 
-  // header
-  bfinal = isFinalBlock ? 1 : 0;
-  btype = Zlib.RawDeflate.CompressionType.FIXED;
+      // header
+      bfinal = isFinalBlock ? 1 : 0;
+      btype = Zlib.RawDeflate.CompressionType.FIXED;
 
-  stream.writeBits(bfinal, 1, true);
-  stream.writeBits(btype, 2, true);
+      stream.writeBits(bfinal, 1, true);
+      stream.writeBits(btype, 2, true);
 
-  data = this.lz77(blockArray);
-  this.fixedHuffman(data, stream);
+      data = this.lz77(blockArray);
+      this.fixedHuffman(data, stream);
 
-  return stream.finish();
-};
+      return stream.finish();
+    };
 
 /**
  * 動的ハフマンブロックの作成
@@ -13297,121 +13193,121 @@ function(blockArray, isFinalBlock) {
  * @return {!(Array.<number>|Uint8Array)} 動的ハフマン符号ブロック byte array.
  */
 Zlib.RawDeflate.prototype.makeDynamicHuffmanBlock =
-function(blockArray, isFinalBlock) {
-  /** @type {Zlib.BitStream} */
-  var stream = new Zlib.BitStream(USE_TYPEDARRAY ?
-    new Uint8Array(this.output.buffer) : this.output, this.op);
-  /** @type {number} */
-  var bfinal;
-  /** @type {Zlib.RawDeflate.CompressionType} */
-  var btype;
-  /** @type {!(Array.<number>|Uint16Array)} */
-  var data;
-  /** @type {number} */
-  var hlit;
-  /** @type {number} */
-  var hdist;
-  /** @type {number} */
-  var hclen;
-  /** @const @type {Array.<number>} */
-  var hclenOrder =
-        [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15];
-  /** @type {!(Array.<number>|Uint8Array)} */
-  var litLenLengths;
-  /** @type {!(Array.<number>|Uint16Array)} */
-  var litLenCodes;
-  /** @type {!(Array.<number>|Uint8Array)} */
-  var distLengths;
-  /** @type {!(Array.<number>|Uint16Array)} */
-  var distCodes;
-  /** @type {{
-   *   codes: !(Array.<number>|Uint32Array),
-   *   freqs: !(Array.<number>|Uint8Array)
-   * }} */
-  var treeSymbols;
-  /** @type {!(Array.<number>|Uint8Array)} */
-  var treeLengths;
-  /** @type {Array} */
-  var transLengths = new Array(19);
-  /** @type {!(Array.<number>|Uint16Array)} */
-  var treeCodes;
-  /** @type {number} */
-  var code;
-  /** @type {number} */
-  var bitlen;
-  /** @type {number} */
-  var i;
-  /** @type {number} */
-  var il;
+    function(blockArray, isFinalBlock) {
+      /** @type {Zlib.BitStream} */
+      var stream = new Zlib.BitStream(
+          new Uint8Array(this.output.buffer) , this.op);
+      /** @type {number} */
+      var bfinal;
+      /** @type {Zlib.RawDeflate.CompressionType} */
+      var btype;
+      /** @type {!(Array.<number>|Uint16Array)} */
+      var data;
+      /** @type {number} */
+      var hlit;
+      /** @type {number} */
+      var hdist;
+      /** @type {number} */
+      var hclen;
+      /** @const @type {Array.<number>} */
+      var hclenOrder =
+          [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15];
+      /** @type {!(Array.<number>|Uint8Array)} */
+      var litLenLengths;
+      /** @type {!(Array.<number>|Uint16Array)} */
+      var litLenCodes;
+      /** @type {!(Array.<number>|Uint8Array)} */
+      var distLengths;
+      /** @type {!(Array.<number>|Uint16Array)} */
+      var distCodes;
+      /** @type {{
+       *   codes: !(Array.<number>|Uint32Array),
+       *   freqs: !(Array.<number>|Uint8Array)
+       * }} */
+      var treeSymbols;
+      /** @type {!(Array.<number>|Uint8Array)} */
+      var treeLengths;
+      /** @type {Array} */
+      var transLengths = new Array(19);
+      /** @type {!(Array.<number>|Uint16Array)} */
+      var treeCodes;
+      /** @type {number} */
+      var code;
+      /** @type {number} */
+      var bitlen;
+      /** @type {number} */
+      var i;
+      /** @type {number} */
+      var il;
 
-  // header
-  bfinal = isFinalBlock ? 1 : 0;
-  btype = Zlib.RawDeflate.CompressionType.DYNAMIC;
+      // header
+      bfinal = isFinalBlock ? 1 : 0;
+      btype = Zlib.RawDeflate.CompressionType.DYNAMIC;
 
-  stream.writeBits(bfinal, 1, true);
-  stream.writeBits(btype, 2, true);
+      stream.writeBits(bfinal, 1, true);
+      stream.writeBits(btype, 2, true);
 
-  data = this.lz77(blockArray);
+      data = this.lz77(blockArray);
 
-  // リテラル・長さ, 距離のハフマン符号と符号長の算出
-  litLenLengths = this.getLengths_(this.freqsLitLen, 15);
-  litLenCodes = this.getCodesFromLengths_(litLenLengths);
-  distLengths = this.getLengths_(this.freqsDist, 7);
-  distCodes = this.getCodesFromLengths_(distLengths);
+      // リテラル・長さ, 距離のハフマン符号と符号長の算出
+      litLenLengths = this.getLengths_(this.freqsLitLen, 15);
+      litLenCodes = this.getCodesFromLengths_(litLenLengths);
+      distLengths = this.getLengths_(this.freqsDist, 7);
+      distCodes = this.getCodesFromLengths_(distLengths);
 
-  // HLIT, HDIST の決定
-  for (hlit = 286; hlit > 257 && litLenLengths[hlit - 1] === 0; hlit--) {}
-  for (hdist = 30; hdist > 1 && distLengths[hdist - 1] === 0; hdist--) {}
+      // HLIT, HDIST の決定
+      for (hlit = 286; hlit > 257 && litLenLengths[hlit - 1] === 0; hlit--) {}
+      for (hdist = 30; hdist > 1 && distLengths[hdist - 1] === 0; hdist--) {}
 
-  // HCLEN
-  treeSymbols =
-    this.getTreeSymbols_(hlit, litLenLengths, hdist, distLengths);
-  treeLengths = this.getLengths_(treeSymbols.freqs, 7);
-  for (i = 0; i < 19; i++) {
-    transLengths[i] = treeLengths[hclenOrder[i]];
-  }
-  for (hclen = 19; hclen > 4 && transLengths[hclen - 1] === 0; hclen--) {}
+      // HCLEN
+      treeSymbols =
+          this.getTreeSymbols_(hlit, litLenLengths, hdist, distLengths);
+      treeLengths = this.getLengths_(treeSymbols.freqs, 7);
+      for (i = 0; i < 19; i++) {
+        transLengths[i] = treeLengths[hclenOrder[i]];
+      }
+      for (hclen = 19; hclen > 4 && transLengths[hclen - 1] === 0; hclen--) {}
 
-  treeCodes = this.getCodesFromLengths_(treeLengths);
+      treeCodes = this.getCodesFromLengths_(treeLengths);
 
-  // 出力
-  stream.writeBits(hlit - 257, 5, true);
-  stream.writeBits(hdist - 1, 5, true);
-  stream.writeBits(hclen - 4, 4, true);
-  for (i = 0; i < hclen; i++) {
-    stream.writeBits(transLengths[i], 3, true);
-  }
-
-  // ツリーの出力
-  for (i = 0, il = treeSymbols.codes.length; i < il; i++) {
-    code = treeSymbols.codes[i];
-
-    stream.writeBits(treeCodes[code], treeLengths[code], true);
-
-    // extra bits
-    if (code >= 16) {
-      i++;
-      switch (code) {
-        case 16: bitlen = 2; break;
-        case 17: bitlen = 3; break;
-        case 18: bitlen = 7; break;
-        default:
-          throw 'invalid code: ' + code;
+      // 出力
+      stream.writeBits(hlit - 257, 5, true);
+      stream.writeBits(hdist - 1, 5, true);
+      stream.writeBits(hclen - 4, 4, true);
+      for (i = 0; i < hclen; i++) {
+        stream.writeBits(transLengths[i], 3, true);
       }
 
-      stream.writeBits(treeSymbols.codes[i], bitlen, true);
-    }
-  }
+      // ツリーの出力
+      for (i = 0, il = treeSymbols.codes.length; i < il; i++) {
+        code = treeSymbols.codes[i];
 
-  this.dynamicHuffman(
-    data,
-    [litLenCodes, litLenLengths],
-    [distCodes, distLengths],
-    stream
-  );
+        stream.writeBits(treeCodes[code], treeLengths[code], true);
 
-  return stream.finish();
-};
+        // extra bits
+        if (code >= 16) {
+          i++;
+          switch (code) {
+            case 16: bitlen = 2; break;
+            case 17: bitlen = 3; break;
+            case 18: bitlen = 7; break;
+            default:
+              throw 'invalid code: ' + code;
+          }
+
+          stream.writeBits(treeSymbols.codes[i], bitlen, true);
+        }
+      }
+
+      this.dynamicHuffman(
+          data,
+          [litLenCodes, litLenLengths],
+          [distCodes, distLengths],
+          stream
+      );
+
+      return stream.finish();
+    };
 
 
 /**
@@ -13421,53 +13317,53 @@ function(blockArray, isFinalBlock) {
  * @return {!Zlib.BitStream} ハフマン符号化済みビットストリームオブジェクト.
  */
 Zlib.RawDeflate.prototype.dynamicHuffman =
-function(dataArray, litLen, dist, stream) {
-  /** @type {number} */
-  var index;
-  /** @type {number} */
-  var length;
-  /** @type {number} */
-  var literal;
-  /** @type {number} */
-  var code;
-  /** @type {number} */
-  var litLenCodes;
-  /** @type {number} */
-  var litLenLengths;
-  /** @type {number} */
-  var distCodes;
-  /** @type {number} */
-  var distLengths;
+    function(dataArray, litLen, dist, stream) {
+      /** @type {number} */
+      var index;
+      /** @type {number} */
+      var length;
+      /** @type {number} */
+      var literal;
+      /** @type {number} */
+      var code;
+      /** @type {number} */
+      var litLenCodes;
+      /** @type {number} */
+      var litLenLengths;
+      /** @type {number} */
+      var distCodes;
+      /** @type {number} */
+      var distLengths;
 
-  litLenCodes = litLen[0];
-  litLenLengths = litLen[1];
-  distCodes = dist[0];
-  distLengths = dist[1];
+      litLenCodes = litLen[0];
+      litLenLengths = litLen[1];
+      distCodes = dist[0];
+      distLengths = dist[1];
 
-  // 符号を BitStream に書き込んでいく
-  for (index = 0, length = dataArray.length; index < length; ++index) {
-    literal = dataArray[index];
+      // 符号を BitStream に書き込んでいく
+      for (index = 0, length = dataArray.length; index < length; ++index) {
+        literal = dataArray[index];
 
-    // literal or length
-    stream.writeBits(litLenCodes[literal], litLenLengths[literal], true);
+        // literal or length
+        stream.writeBits(litLenCodes[literal], litLenLengths[literal], true);
 
-    // 長さ・距離符号
-    if (literal > 256) {
-      // length extra
-      stream.writeBits(dataArray[++index], dataArray[++index], true);
-      // distance
-      code = dataArray[++index];
-      stream.writeBits(distCodes[code], distLengths[code], true);
-      // distance extra
-      stream.writeBits(dataArray[++index], dataArray[++index], true);
-    // 終端
-    } else if (literal === 256) {
-      break;
-    }
-  }
+        // 長さ・距離符号
+        if (literal > 256) {
+          // length extra
+          stream.writeBits(dataArray[++index], dataArray[++index], true);
+          // distance
+          code = dataArray[++index];
+          stream.writeBits(distCodes[code], distLengths[code], true);
+          // distance extra
+          stream.writeBits(dataArray[++index], dataArray[++index], true);
+          // 終端
+        } else if (literal === 256) {
+          break;
+        }
+      }
 
-  return stream;
-};
+      return stream;
+    };
 
 /**
  * 固定ハフマン符号化
@@ -13489,8 +13385,8 @@ Zlib.RawDeflate.prototype.fixedHuffman = function(dataArray, stream) {
 
     // 符号の書き込み
     Zlib.BitStream.prototype.writeBits.apply(
-      stream,
-      Zlib.RawDeflate.FixedHuffmanTable[literal]
+        stream,
+        Zlib.RawDeflate.FixedHuffmanTable[literal]
     );
 
     // 長さ・距離符号
@@ -13501,7 +13397,7 @@ Zlib.RawDeflate.prototype.fixedHuffman = function(dataArray, stream) {
       stream.writeBits(dataArray[++index], 5);
       // distance extra
       stream.writeBits(dataArray[++index], dataArray[++index], true);
-    // 終端
+      // 終端
     } else if (literal === 0x100) {
       break;
     }
@@ -13530,7 +13426,7 @@ Zlib.RawDeflate.Lz77Match = function(length, backwardDistance) {
  * @type {!(Array.<number>|Uint32Array)}
  */
 Zlib.RawDeflate.Lz77Match.LengthCodeTable = (function(table) {
-  return USE_TYPEDARRAY ? new Uint32Array(table) : table;
+  return  new Uint32Array(table) ;
 })((function() {
   /** @type {!Array} */
   var table = [];
@@ -13550,36 +13446,7 @@ Zlib.RawDeflate.Lz77Match.LengthCodeTable = (function(table) {
    */
   function code(length) {
     switch (true) {
-      case (length === 3): return [257, length - 3, 0]; break;
-      case (length === 4): return [258, length - 4, 0]; break;
-      case (length === 5): return [259, length - 5, 0]; break;
-      case (length === 6): return [260, length - 6, 0]; break;
-      case (length === 7): return [261, length - 7, 0]; break;
-      case (length === 8): return [262, length - 8, 0]; break;
-      case (length === 9): return [263, length - 9, 0]; break;
-      case (length === 10): return [264, length - 10, 0]; break;
-      case (length <= 12): return [265, length - 11, 1]; break;
-      case (length <= 14): return [266, length - 13, 1]; break;
-      case (length <= 16): return [267, length - 15, 1]; break;
-      case (length <= 18): return [268, length - 17, 1]; break;
-      case (length <= 22): return [269, length - 19, 2]; break;
-      case (length <= 26): return [270, length - 23, 2]; break;
-      case (length <= 30): return [271, length - 27, 2]; break;
-      case (length <= 34): return [272, length - 31, 2]; break;
-      case (length <= 42): return [273, length - 35, 3]; break;
-      case (length <= 50): return [274, length - 43, 3]; break;
-      case (length <= 58): return [275, length - 51, 3]; break;
-      case (length <= 66): return [276, length - 59, 3]; break;
-      case (length <= 82): return [277, length - 67, 4]; break;
-      case (length <= 98): return [278, length - 83, 4]; break;
-      case (length <= 114): return [279, length - 99, 4]; break;
-      case (length <= 130): return [280, length - 115, 4]; break;
-      case (length <= 162): return [281, length - 131, 5]; break;
-      case (length <= 194): return [282, length - 163, 5]; break;
-      case (length <= 226): return [283, length - 195, 5]; break;
-      case (length <= 257): return [284, length - 227, 5]; break;
-      case (length === 258): return [285, length - 258, 0]; break;
-      default: throw 'invalid length: ' + length;
+      case (length === 3): return [257, length - 3, 0];      case (length === 4): return [258, length - 4, 0];      case (length === 5): return [259, length - 5, 0];      case (length === 6): return [260, length - 6, 0];      case (length === 7): return [261, length - 7, 0];      case (length === 8): return [262, length - 8, 0];      case (length === 9): return [263, length - 9, 0];      case (length === 10): return [264, length - 10, 0];      case (length <= 12): return [265, length - 11, 1];      case (length <= 14): return [266, length - 13, 1];      case (length <= 16): return [267, length - 15, 1];      case (length <= 18): return [268, length - 17, 1];      case (length <= 22): return [269, length - 19, 2];      case (length <= 26): return [270, length - 23, 2];      case (length <= 30): return [271, length - 27, 2];      case (length <= 34): return [272, length - 31, 2];      case (length <= 42): return [273, length - 35, 3];      case (length <= 50): return [274, length - 43, 3];      case (length <= 58): return [275, length - 51, 3];      case (length <= 66): return [276, length - 59, 3];      case (length <= 82): return [277, length - 67, 4];      case (length <= 98): return [278, length - 83, 4];      case (length <= 114): return [279, length - 99, 4];      case (length <= 130): return [280, length - 115, 4];      case (length <= 162): return [281, length - 131, 5];      case (length <= 194): return [282, length - 163, 5];      case (length <= 226): return [283, length - 195, 5];      case (length <= 257): return [284, length - 227, 5];      case (length === 258): return [285, length - 258, 0];      default: throw 'invalid length: ' + length;
     }
   }
 
@@ -13693,26 +13560,20 @@ Zlib.RawDeflate.prototype.lz77 = function(dataArray) {
   /** @type {Zlib.RawDeflate.Lz77Match} previous longest match */
   var prevMatch;
   /** @type {!(Array.<number>|Uint16Array)} lz77 buffer */
-  var lz77buf = USE_TYPEDARRAY ?
-    new Uint16Array(dataArray.length * 2) : [];
+  var lz77buf = 
+      new Uint16Array(dataArray.length * 2) ;
   /** @type {number} lz77 output buffer pointer */
   var pos = 0;
   /** @type {number} lz77 skip length */
   var skipLength = 0;
   /** @type {!(Array.<number>|Uint32Array)} */
-  var freqsLitLen = new (USE_TYPEDARRAY ? Uint32Array : Array)(286);
+  var freqsLitLen = new ( Uint32Array )(286);
   /** @type {!(Array.<number>|Uint32Array)} */
-  var freqsDist = new (USE_TYPEDARRAY ? Uint32Array : Array)(30);
+  var freqsDist = new ( Uint32Array )(30);
   /** @type {number} */
   var lazy = this.lazy;
   /** @type {*} temporary variable */
   var tmp;
-
-  // 初期化
-  if (!USE_TYPEDARRAY) {
-    for (i = 0; i <= 285;) { freqsLitLen[i++] = 0; }
-    for (i = 0; i <= 29;) { freqsDist[i++] = 0; }
-  }
   freqsLitLen[256] = 1; // EOB の最低出現回数は 1
 
   /**
@@ -13800,7 +13661,7 @@ Zlib.RawDeflate.prototype.lz77 = function(dataArray) {
       } else {
         writeMatch(longestMatch, 0);
       }
-    // 前回マッチしていて今回マッチがなかったら前回のを採用
+      // 前回マッチしていて今回マッチがなかったら前回のを採用
     } else if (prevMatch) {
       writeMatch(prevMatch, -1);
     } else {
@@ -13819,7 +13680,7 @@ Zlib.RawDeflate.prototype.lz77 = function(dataArray) {
   this.freqsDist = freqsDist;
 
   return /** @type {!(Uint16Array|Array.<number>)} */ (
-    USE_TYPEDARRAY ?  lz77buf.subarray(0, pos) : lz77buf
+        lz77buf.subarray(0, pos) 
   );
 };
 
@@ -13832,49 +13693,49 @@ Zlib.RawDeflate.prototype.lz77 = function(dataArray) {
  * @private
  */
 Zlib.RawDeflate.prototype.searchLongestMatch_ =
-function(data, position, matchList) {
-  var match,
-      currentMatch,
-      matchMax = 0, matchLength,
-      i, j, l, dl = data.length;
+    function(data, position, matchList) {
+      var match,
+          currentMatch,
+          matchMax = 0, matchLength,
+          i, j, l, dl = data.length;
 
-  // 候補を後ろから 1 つずつ絞り込んでゆく
-  permatch:
-  for (i = 0, l = matchList.length; i < l; i++) {
-    match = matchList[l - i - 1];
-    matchLength = Zlib.RawDeflate.Lz77MinLength;
+      // 候補を後ろから 1 つずつ絞り込んでゆく
+      permatch:
+          for (i = 0, l = matchList.length; i < l; i++) {
+            match = matchList[l - i - 1];
+            matchLength = Zlib.RawDeflate.Lz77MinLength;
 
-    // 前回までの最長一致を末尾から一致検索する
-    if (matchMax > Zlib.RawDeflate.Lz77MinLength) {
-      for (j = matchMax; j > Zlib.RawDeflate.Lz77MinLength; j--) {
-        if (data[match + j - 1] !== data[position + j - 1]) {
-          continue permatch;
-        }
-      }
-      matchLength = matchMax;
-    }
+            // 前回までの最長一致を末尾から一致検索する
+            if (matchMax > Zlib.RawDeflate.Lz77MinLength) {
+              for (j = matchMax; j > Zlib.RawDeflate.Lz77MinLength; j--) {
+                if (data[match + j - 1] !== data[position + j - 1]) {
+                  continue permatch;
+                }
+              }
+              matchLength = matchMax;
+            }
 
-    // 最長一致探索
-    while (matchLength < Zlib.RawDeflate.Lz77MaxLength &&
-           position + matchLength < dl &&
-           data[match + matchLength] === data[position + matchLength]) {
-      ++matchLength;
-    }
+            // 最長一致探索
+            while (matchLength < Zlib.RawDeflate.Lz77MaxLength &&
+            position + matchLength < dl &&
+            data[match + matchLength] === data[position + matchLength]) {
+              ++matchLength;
+            }
 
-    // マッチ長が同じ場合は後方を優先
-    if (matchLength > matchMax) {
-      currentMatch = match;
-      matchMax = matchLength;
-    }
+            // マッチ長が同じ場合は後方を優先
+            if (matchLength > matchMax) {
+              currentMatch = match;
+              matchMax = matchLength;
+            }
 
-    // 最長が確定したら後の処理は省略
-    if (matchLength === Zlib.RawDeflate.Lz77MaxLength) {
-      break;
-    }
-  }
+            // 最長が確定したら後の処理は省略
+            if (matchLength === Zlib.RawDeflate.Lz77MaxLength) {
+              break;
+            }
+          }
 
-  return new Zlib.RawDeflate.Lz77Match(matchMax, position - currentMatch);
-};
+      return new Zlib.RawDeflate.Lz77Match(matchMax, position - currentMatch);
+    };
 
 /**
  * Tree-Transmit Symbols の算出
@@ -13889,105 +13750,98 @@ function(data, position, matchList) {
  * }} Tree-Transmit Symbols.
  */
 Zlib.RawDeflate.prototype.getTreeSymbols_ =
-function(hlit, litlenLengths, hdist, distLengths) {
-  var src = new (USE_TYPEDARRAY ? Uint32Array : Array)(hlit + hdist),
-      i, j, runLength, l,
-      result = new (USE_TYPEDARRAY ? Uint32Array : Array)(286 + 30),
-      nResult,
-      rpt,
-      freqs = new (USE_TYPEDARRAY ? Uint8Array : Array)(19);
+    function(hlit, litlenLengths, hdist, distLengths) {
+      var src = new ( Uint32Array )(hlit + hdist),
+          i, j, runLength, l,
+          result = new ( Uint32Array )(286 + 30),
+          nResult,
+          rpt,
+          freqs = new ( Uint8Array )(19);
 
-  j = 0;
-  for (i = 0; i < hlit; i++) {
-    src[j++] = litlenLengths[i];
-  }
-  for (i = 0; i < hdist; i++) {
-    src[j++] = distLengths[i];
-  }
-
-  // 初期化
-  if (!USE_TYPEDARRAY) {
-    for (i = 0, l = freqs.length; i < l; ++i) {
-      freqs[i] = 0;
-    }
-  }
-
-  // 符号化
-  nResult = 0;
-  for (i = 0, l = src.length; i < l; i += j) {
-    // Run Length Encoding
-    for (j = 1; i + j < l && src[i + j] === src[i]; ++j) {}
-
-    runLength = j;
-
-    if (src[i] === 0) {
-      // 0 の繰り返しが 3 回未満ならばそのまま
-      if (runLength < 3) {
-        while (runLength-- > 0) {
-          result[nResult++] = 0;
-          freqs[0]++;
-        }
-      } else {
-        while (runLength > 0) {
-          // 繰り返しは最大 138 までなので切り詰める
-          rpt = (runLength < 138 ? runLength : 138);
-
-          if (rpt > runLength - 3 && rpt < runLength) {
-            rpt = runLength - 3;
-          }
-
-          // 3-10 回 -> 17
-          if (rpt <= 10) {
-            result[nResult++] = 17;
-            result[nResult++] = rpt - 3;
-            freqs[17]++;
-          // 11-138 回 -> 18
-          } else {
-            result[nResult++] = 18;
-            result[nResult++] = rpt - 11;
-            freqs[18]++;
-          }
-
-          runLength -= rpt;
-        }
+      j = 0;
+      for (i = 0; i < hlit; i++) {
+        src[j++] = litlenLengths[i];
       }
-    } else {
-      result[nResult++] = src[i];
-      freqs[src[i]]++;
-      runLength--;
+      for (i = 0; i < hdist; i++) {
+        src[j++] = distLengths[i];
+      }
 
-      // 繰り返し回数が3回未満ならばランレングス符号は要らない
-      if (runLength < 3) {
-        while (runLength-- > 0) {
+      // 符号化
+      nResult = 0;
+      for (i = 0, l = src.length; i < l; i += j) {
+        // Run Length Encoding
+        for (j = 1; i + j < l && src[i + j] === src[i]; ++j) {}
+
+        runLength = j;
+
+        if (src[i] === 0) {
+          // 0 の繰り返しが 3 回未満ならばそのまま
+          if (runLength < 3) {
+            while (runLength-- > 0) {
+              result[nResult++] = 0;
+              freqs[0]++;
+            }
+          } else {
+            while (runLength > 0) {
+              // 繰り返しは最大 138 までなので切り詰める
+              rpt = (runLength < 138 ? runLength : 138);
+
+              if (rpt > runLength - 3 && rpt < runLength) {
+                rpt = runLength - 3;
+              }
+
+              // 3-10 回 -> 17
+              if (rpt <= 10) {
+                result[nResult++] = 17;
+                result[nResult++] = rpt - 3;
+                freqs[17]++;
+                // 11-138 回 -> 18
+              } else {
+                result[nResult++] = 18;
+                result[nResult++] = rpt - 11;
+                freqs[18]++;
+              }
+
+              runLength -= rpt;
+            }
+          }
+        } else {
           result[nResult++] = src[i];
           freqs[src[i]]++;
-        }
-      // 3 回以上ならばランレングス符号化
-      } else {
-        while (runLength > 0) {
-          // runLengthを 3-6 で分割
-          rpt = (runLength < 6 ? runLength : 6);
+          runLength--;
 
-          if (rpt > runLength - 3 && rpt < runLength) {
-            rpt = runLength - 3;
+          // 繰り返し回数が3回未満ならばランレングス符号は要らない
+          if (runLength < 3) {
+            while (runLength-- > 0) {
+              result[nResult++] = src[i];
+              freqs[src[i]]++;
+            }
+            // 3 回以上ならばランレングス符号化
+          } else {
+            while (runLength > 0) {
+              // runLengthを 3-6 で分割
+              rpt = (runLength < 6 ? runLength : 6);
+
+              if (rpt > runLength - 3 && rpt < runLength) {
+                rpt = runLength - 3;
+              }
+
+              result[nResult++] = 16;
+              result[nResult++] = rpt - 3;
+              freqs[16]++;
+
+              runLength -= rpt;
+            }
           }
-
-          result[nResult++] = 16;
-          result[nResult++] = rpt - 3;
-          freqs[16]++;
-
-          runLength -= rpt;
         }
       }
-    }
-  }
 
-  return {
-    codes:
-      USE_TYPEDARRAY ? result.subarray(0, nResult) : result.slice(0, nResult),
-    freqs: freqs
-  };
-};
+      return {
+        codes:
+             result.subarray(0, nResult) ,
+        freqs: freqs
+      };
+    };
 
 /**
  * ハフマン符号の長さを取得する
@@ -14002,7 +13856,7 @@ Zlib.RawDeflate.prototype.getLengths_ = function(freqs, limit) {
   /** @type {Zlib.Heap} */
   var heap = new Zlib.Heap(2 * Zlib.RawDeflate.HUFMAX);
   /** @type {!(Array.<number>|Uint8Array)} */
-  var length = new (USE_TYPEDARRAY ? Uint8Array : Array)(nSymbols);
+  var length = new ( Uint8Array )(nSymbols);
   /** @type {Array} */
   var nodes;
   /** @type {!(Array.<number>|Uint32Array)} */
@@ -14014,13 +13868,6 @@ Zlib.RawDeflate.prototype.getLengths_ = function(freqs, limit) {
   /** @type {number} */
   var il;
 
-  // 配列の初期化
-  if (!USE_TYPEDARRAY) {
-    for (i = 0; i < nSymbols; i++) {
-      length[i] = 0;
-    }
-  }
-
   // ヒープの構築
   for (i = 0; i < nSymbols; ++i) {
     if (freqs[i] > 0) {
@@ -14028,7 +13875,7 @@ Zlib.RawDeflate.prototype.getLengths_ = function(freqs, limit) {
     }
   }
   nodes = new Array(heap.length / 2);
-  values = new (USE_TYPEDARRAY ? Uint32Array : Array)(heap.length / 2);
+  values = new ( Uint32Array )(heap.length / 2);
 
   // 非 0 の要素が一つだけだった場合は、そのシンボルに符号長 1 を割り当てて終了
   if (nodes.length === 1) {
@@ -14059,11 +13906,11 @@ Zlib.RawDeflate.prototype.getLengths_ = function(freqs, limit) {
  */
 Zlib.RawDeflate.prototype.reversePackageMerge_ = function(freqs, symbols, limit) {
   /** @type {!(Array.<number>|Uint16Array)} */
-  var minimumCost = new (USE_TYPEDARRAY ? Uint16Array : Array)(limit);
+  var minimumCost = new ( Uint16Array )(limit);
   /** @type {!(Array.<number>|Uint8Array)} */
-  var flag = new (USE_TYPEDARRAY ? Uint8Array : Array)(limit);
+  var flag = new ( Uint8Array )(limit);
   /** @type {!(Array.<number>|Uint8Array)} */
-  var codeLength = new (USE_TYPEDARRAY ? Uint8Array : Array)(symbols);
+  var codeLength = new ( Uint8Array )(symbols);
   /** @type {Array} */
   var value = new Array(limit);
   /** @type {Array} */
@@ -14179,7 +14026,7 @@ Zlib.RawDeflate.prototype.reversePackageMerge_ = function(freqs, symbols, limit)
  * @private
  */
 Zlib.RawDeflate.prototype.getCodesFromLengths_ = function(lengths) {
-  var codes = new (USE_TYPEDARRAY ? Uint16Array : Array)(lengths.length),
+  var codes = new ( Uint16Array )(lengths.length),
       count = [],
       startCode = [],
       code = 0, i, il, j, m;
@@ -14221,8 +14068,8 @@ Zlib.Unzip = function(input, opt_params) {
   opt_params = opt_params || {};
   /** @type {!(Array.<number>|Uint8Array)} */
   this.input =
-    (USE_TYPEDARRAY && (input instanceof Array)) ?
-    new Uint8Array(input) : input;
+      ( (input instanceof Array)) ?
+          new Uint8Array(input) : input;
   /** @type {number} */
   this.ip = 0;
   /** @type {number} */
@@ -14362,20 +14209,20 @@ Zlib.Unzip.FileHeader.prototype.parse = function() {
 
   // crc-32
   this.crc32 = (
-    (input[ip++]      ) | (input[ip++] <<  8) |
-    (input[ip++] << 16) | (input[ip++] << 24)
+      (input[ip++]      ) | (input[ip++] <<  8) |
+      (input[ip++] << 16) | (input[ip++] << 24)
   ) >>> 0;
 
   // compressed size
   this.compressedSize = (
-    (input[ip++]      ) | (input[ip++] <<  8) |
-    (input[ip++] << 16) | (input[ip++] << 24)
+      (input[ip++]      ) | (input[ip++] <<  8) |
+      (input[ip++] << 16) | (input[ip++] << 24)
   ) >>> 0;
 
   // uncompressed size
   this.plainSize = (
-    (input[ip++]      ) | (input[ip++] <<  8) |
-    (input[ip++] << 16) | (input[ip++] << 24)
+      (input[ip++]      ) | (input[ip++] <<  8) |
+      (input[ip++] << 16) | (input[ip++] << 24)
   ) >>> 0;
 
   // file name length
@@ -14395,30 +14242,27 @@ Zlib.Unzip.FileHeader.prototype.parse = function() {
 
   // external file attributes
   this.externalFileAttributes =
-    (input[ip++]      ) | (input[ip++] <<  8) |
-    (input[ip++] << 16) | (input[ip++] << 24);
+      (input[ip++]      ) | (input[ip++] <<  8) |
+      (input[ip++] << 16) | (input[ip++] << 24);
 
   // relative offset of local header
   this.relativeOffset = (
-    (input[ip++]      ) | (input[ip++] <<  8) |
-    (input[ip++] << 16) | (input[ip++] << 24)
+      (input[ip++]      ) | (input[ip++] <<  8) |
+      (input[ip++] << 16) | (input[ip++] << 24)
   ) >>> 0;
 
   // file name
-  this.filename = String.fromCharCode.apply(null, USE_TYPEDARRAY ?
-    input.subarray(ip, ip += this.fileNameLength) :
-    input.slice(ip, ip += this.fileNameLength)
+  this.filename = String.fromCharCode.apply(null, 
+      input.subarray(ip, ip += this.fileNameLength) 
   );
 
   // extra field
-  this.extraField = USE_TYPEDARRAY ?
-    input.subarray(ip, ip += this.extraFieldLength) :
-    input.slice(ip, ip += this.extraFieldLength);
+  this.extraField = 
+      input.subarray(ip, ip += this.extraFieldLength) ;
 
   // file comment
-  this.comment = USE_TYPEDARRAY ?
-    input.subarray(ip, ip + this.fileCommentLength) :
-    input.slice(ip, ip + this.fileCommentLength);
+  this.comment = 
+      input.subarray(ip, ip + this.fileCommentLength) ;
 
   this.length = ip - this.offset;
 };
@@ -14494,20 +14338,20 @@ Zlib.Unzip.LocalFileHeader.prototype.parse = function() {
 
   // crc-32
   this.crc32 = (
-    (input[ip++]      ) | (input[ip++] <<  8) |
-    (input[ip++] << 16) | (input[ip++] << 24)
+      (input[ip++]      ) | (input[ip++] <<  8) |
+      (input[ip++] << 16) | (input[ip++] << 24)
   ) >>> 0;
 
   // compressed size
   this.compressedSize = (
-    (input[ip++]      ) | (input[ip++] <<  8) |
-    (input[ip++] << 16) | (input[ip++] << 24)
+      (input[ip++]      ) | (input[ip++] <<  8) |
+      (input[ip++] << 16) | (input[ip++] << 24)
   ) >>> 0;
 
   // uncompressed size
   this.plainSize = (
-    (input[ip++]      ) | (input[ip++] <<  8) |
-    (input[ip++] << 16) | (input[ip++] << 24)
+      (input[ip++]      ) | (input[ip++] <<  8) |
+      (input[ip++] << 16) | (input[ip++] << 24)
   ) >>> 0;
 
   // file name length
@@ -14517,15 +14361,13 @@ Zlib.Unzip.LocalFileHeader.prototype.parse = function() {
   this.extraFieldLength = input[ip++] | (input[ip++] << 8);
 
   // file name
-  this.filename = String.fromCharCode.apply(null, USE_TYPEDARRAY ?
-    input.subarray(ip, ip += this.fileNameLength) :
-    input.slice(ip, ip += this.fileNameLength)
+  this.filename = String.fromCharCode.apply(null, 
+      input.subarray(ip, ip += this.fileNameLength) 
   );
 
   // extra field
-  this.extraField = USE_TYPEDARRAY ?
-    input.subarray(ip, ip += this.extraFieldLength) :
-    input.slice(ip, ip += this.extraFieldLength);
+  this.extraField = 
+      input.subarray(ip, ip += this.extraFieldLength) ;
 
   this.length = ip - this.offset;
 };
@@ -14583,23 +14425,22 @@ Zlib.Unzip.prototype.parseEndOfCentralDirectoryRecord = function() {
 
   // size of the central directory
   this.centralDirectorySize = (
-    (input[ip++]      ) | (input[ip++] <<  8) |
-    (input[ip++] << 16) | (input[ip++] << 24)
+      (input[ip++]      ) | (input[ip++] <<  8) |
+      (input[ip++] << 16) | (input[ip++] << 24)
   ) >>> 0;
 
   // offset of start of central directory with respect to the starting disk number
   this.centralDirectoryOffset = (
-    (input[ip++]      ) | (input[ip++] <<  8) |
-    (input[ip++] << 16) | (input[ip++] << 24)
+      (input[ip++]      ) | (input[ip++] <<  8) |
+      (input[ip++] << 16) | (input[ip++] << 24)
   ) >>> 0;
 
   // .ZIP file comment length
   this.commentLength = input[ip++] | (input[ip++] << 8);
 
   // .ZIP file comment
-  this.comment = USE_TYPEDARRAY ?
-    input.subarray(ip, ip + this.commentLength) :
-    input.slice(ip, ip + this.commentLength);
+  this.comment = 
+      input.subarray(ip, ip + this.commentLength) ;
 };
 
 Zlib.Unzip.prototype.parseFileHeader = function() {
@@ -14705,9 +14546,8 @@ Zlib.Unzip.prototype.getFileData = function(index, opt_params) {
 
   switch (localFileHeader.compression) {
     case Zlib.Unzip.CompressionMethod.STORE:
-      buffer = USE_TYPEDARRAY ?
-        this.input.subarray(offset, offset + length) :
-        this.input.slice(offset, offset + length);
+      buffer = 
+          this.input.subarray(offset, offset + length) ;
       break;
     case Zlib.Unzip.CompressionMethod.DEFLATE:
       buffer = new Zlib.RawInflate(this.input, {
@@ -14723,8 +14563,8 @@ Zlib.Unzip.prototype.getFileData = function(index, opt_params) {
     crc32 = Zlib.CRC32.calc(buffer);
     if (localFileHeader.crc32 !== crc32) {
       throw new Error(
-        'wrong crc: file=0x' + localFileHeader.crc32.toString(16) +
-        ', data=0x' + crc32.toString(16)
+          'wrong crc: file=0x' + localFileHeader.crc32.toString(16) +
+          ', data=0x' + crc32.toString(16)
       );
     }
   }
@@ -14865,7 +14705,7 @@ Zlib.Adler32.update = function(adler, array) {
 
   while (len > 0) {
     tlen = len > Zlib.Adler32.OptimizationParameter ?
-      Zlib.Adler32.OptimizationParameter : len;
+        Zlib.Adler32.OptimizationParameter : len;
     len -= tlen;
     do {
       s1 += array[i++];
@@ -14902,9 +14742,9 @@ Zlib.BitStream = function(buffer, bufferPosition) {
   /** @type {number} bit index. */
   this.bitindex = 0;
   /** @type {!(Array|Uint8Array)} bit-stream output buffer. */
-  this.buffer = buffer instanceof (USE_TYPEDARRAY ? Uint8Array : Array) ?
-    buffer :
-    new (USE_TYPEDARRAY ? Uint8Array : Array)(Zlib.BitStream.DefaultBlockSize);
+  this.buffer = buffer instanceof ( Uint8Array ) ?
+      buffer :
+      new ( Uint8Array )(Zlib.BitStream.DefaultBlockSize);
 
   // 入力された index が足りなかったら拡張するが、倍にしてもダメなら不正とする
   if (this.buffer.length * 2 <= this.index) {
@@ -14928,22 +14768,15 @@ Zlib.BitStream.DefaultBlockSize = 0x8000;
 Zlib.BitStream.prototype.expandBuffer = function() {
   /** @type {!(Array|Uint8Array)} old buffer. */
   var oldbuf = this.buffer;
-  /** @type {number} loop counter. */
-  var i;
   /** @type {number} loop limiter. */
   var il = oldbuf.length;
   /** @type {!(Array|Uint8Array)} new buffer. */
   var buffer =
-    new (USE_TYPEDARRAY ? Uint8Array : Array)(il << 1);
+      new ( Uint8Array )(il << 1);
 
   // copy buffer
-  if (USE_TYPEDARRAY) {
+  {
     buffer.set(oldbuf);
-  } else {
-    // XXX: loop unrolling
-    for (i = 0; i < il; ++i) {
-      buffer[i] = oldbuf[i];
-    }
   }
 
   return (this.buffer = buffer);
@@ -14974,22 +14807,22 @@ Zlib.BitStream.prototype.writeBits = function(number, n, reverse) {
    */
   function rev32_(n) {
     return (Zlib.BitStream.ReverseTable[n & 0xFF] << 24) |
-      (Zlib.BitStream.ReverseTable[n >>> 8 & 0xFF] << 16) |
-      (Zlib.BitStream.ReverseTable[n >>> 16 & 0xFF] << 8) |
-      Zlib.BitStream.ReverseTable[n >>> 24 & 0xFF];
+        (Zlib.BitStream.ReverseTable[n >>> 8 & 0xFF] << 16) |
+        (Zlib.BitStream.ReverseTable[n >>> 16 & 0xFF] << 8) |
+        Zlib.BitStream.ReverseTable[n >>> 24 & 0xFF];
   }
 
   if (reverse && n > 1) {
     number = n > 8 ?
-      rev32_(number) >> (32 - n) :
-      Zlib.BitStream.ReverseTable[number] >> (8 - n);
+        rev32_(number) >> (32 - n) :
+        Zlib.BitStream.ReverseTable[number] >> (8 - n);
   }
 
   // Byte 境界を超えないとき
   if (n + bitindex < 8) {
     current = (current << n) | number;
     bitindex += n;
-  // Byte 境界を超えるとき
+    // Byte 境界を超えるとき
   } else {
     for (i = 0; i < n; ++i) {
       current = (current << 1) | ((number >> n - i - 1) & 1);
@@ -15034,11 +14867,8 @@ Zlib.BitStream.prototype.finish = function() {
   }
 
   // array truncation
-  if (USE_TYPEDARRAY) {
+  {
     output = buffer.subarray(0, index);
-  } else {
-    buffer.length = index;
-    output = buffer;
   }
 
   return output;
@@ -15053,7 +14883,7 @@ Zlib.BitStream.ReverseTable = (function(table) {
   return table;
 })((function() {
   /** @type {!(Array|Uint8Array)} reverse table. */
-  var table = new (USE_TYPEDARRAY ? Uint8Array : Array)(256);
+  var table = new ( Uint8Array )(256);
   /** @type {number} loop counter. */
   var i;
 
@@ -15075,15 +14905,6 @@ Zlib.BitStream.ReverseTable = (function(table) {
 
   return table;
 })());
-
-
-/**
- * @fileoverview CRC32 実装.
- */
-
-
-/** @define {boolean} */
-var ZLIB_CRC32_COMPACT = false;
 
 /**
  * CRC32 ハッシュ値を取得
@@ -15193,26 +15014,7 @@ Zlib.CRC32.Table_ = [
  * @type {!(Array.<number>|Uint32Array)} CRC-32 Table.
  * @const
  */
-Zlib.CRC32.Table = ZLIB_CRC32_COMPACT ? (function() {
-  /** @type {!(Array.<number>|Uint32Array)} */
-  var table = new (USE_TYPEDARRAY ? Uint32Array : Array)(256);
-  /** @type {number} */
-  var c;
-  /** @type {number} */
-  var i;
-  /** @type {number} */
-  var j;
-
-  for (i = 0; i < 256; ++i) {
-    c = i;
-    for (j = 0; j < 8; ++j) {
-      c = (c & 1) ? (0xedB88320 ^ (c >>> 1)) : (c >>> 1);
-    }
-    table[i] = c >>> 0;
-  }
-
-  return table;
-})() : USE_TYPEDARRAY ? new Uint32Array(Zlib.CRC32.Table_) : Zlib.CRC32.Table_;
+Zlib.CRC32.Table =   new Uint32Array(Zlib.CRC32.Table_) ;
 
 /**
  * @fileoverview Deflate (RFC1951) 実装.
@@ -15230,7 +15032,7 @@ Zlib.Deflate = function(input, opt_params) {
   this.input = input;
   /** @type {!(Array|Uint8Array)} */
   this.output =
-    new (USE_TYPEDARRAY ? Uint8Array : Array)(Zlib.Deflate.DefaultBufferSize);
+      new ( Uint8Array )(Zlib.Deflate.DefaultBufferSize);
   /** @type {Zlib.Deflate.CompressionType} */
   this.compressionType = Zlib.Deflate.CompressionType.DYNAMIC;
   /** @type {Zlib.RawDeflate} */
@@ -15299,11 +15101,7 @@ Zlib.Deflate.prototype.compress = function() {
   /** @type {number} */
   var flevel;
   /** @type {number} */
-  var clevel;
-  /** @type {number} */
   var adler;
-  /** @type {boolean} */
-  var error = false;
   /** @type {!(Array|Uint8Array)} */
   var output;
   /** @type {number} */
@@ -15349,7 +15147,7 @@ Zlib.Deflate.prototype.compress = function() {
   output = this.rawDeflate.compress();
   pos = output.length;
 
-  if (USE_TYPEDARRAY) {
+  {
     // subarray 分を元にもどす
     output = new Uint8Array(output.buffer);
     // expand buffer
@@ -15369,7 +15167,6 @@ Zlib.Deflate.prototype.compress = function() {
 
   return output;
 };
-
 
 /* -*- mode: javascript; c-basic-offset: 4; indent-tabs-mode: nil -*- */
 
@@ -19689,7 +19486,8 @@ var igv = (function (igv) {
 
         if (chrId === undefined) {
             return alignmentContainer;
-
+		if(this.config.start & (this.config.end < bpStart | bpEnd < this.config.start))
+			return alignmentContainer;
 		} else if(!(this.bamPath instanceof File) && this.bamPath.search("bigbam") != -1){
 			const alignmentContainer = new igv.AlignmentContainer(chr, bpStart, bpEnd, this.samplingWindowSize, this.samplingDepth, this.pairsSupported, this.alleleFreqThreshold);
 			const range = {start: bpStart, size: bpEnd - bpStart};
@@ -20350,8 +20148,9 @@ var igv = (function (igv) {
                 this.featureSource = new igv.BamSource(config, browser);
                 this.coverageTrack = new CoverageTrack(config, this);
                 this.alignmentTrack = new AlignmentTrack(config, this);
-
-                this.visibilityWindow = config.visibilityWindow || 30000;
+				this.squish = false;
+				this.samplename = config.samplename;
+                this.visibilityWindow = config.visibilityWindow || 300000;
                 this.viewAsPairs = config.viewAsPairs;
                 this.pairsSupported = (undefined === config.pairsSupported);
                 this.showSoftClips = config.showSoftClips;
@@ -20618,7 +20417,29 @@ var igv = (function (igv) {
                     }
                 });
             }
+			menuItems.push({
+                object: igv.createCheckbox("Squish", self.squish),
+                click: function () {
 
+                    const $fa = $(this).find('i');
+
+                    self.squish = !self.squish;
+					var RowHeight = 14;
+                    if (true === self.squish) {
+                        $fa.removeClass('igv-fa-check-hidden');
+                        $fa.addClass('igv-fa-check-visible');
+						RowHeight = 4;
+                    } else {
+                        $fa.removeClass('igv-fa-check-visible');
+                        $fa.addClass('igv-fa-check-hidden');
+                    }
+					self.trackView.viewports.forEach(function(v){
+						v.track.alignmentTrack.alignmentRowHeight = RowHeight;
+					});
+                    self.trackView.updateViews(true);
+					self.trackView.checkContentHeight()
+                }
+            });
             menuItems.push({
                 object: igv.createCheckbox("Show soft clips", self.showSoftClips),
                 click: function () {
@@ -21015,8 +20836,7 @@ var igv = (function (igv) {
             this.alignmentsYOffset = alignmentRowYInset;
 
             if (packedAlignmentRows) {
-
-                const nRows = packedAlignmentRows.length;
+                const nRows = igv.needDownsample ? Math.min(50, packedAlignmentRows.length) : packedAlignmentRows.length;
 
                 for (let rowIndex = 0; rowIndex < nRows; rowIndex++) {
 
@@ -21083,7 +20903,8 @@ var igv = (function (igv) {
 
                 alignmentColor = this.getAlignmentColor(alignment);
                 const outlineColor = alignmentColor;
-
+				if(alignment.readName === "97963e8f-2db8-4673-bcc0-780f6e662775:P-T-P:77:1113:1037:1126:Q8.03")
+					firstArrowX = 0;
                 blocks = showSoftClips ? alignment.blocks : alignment.blocks.filter(b => 'S' !== b.type);
 
                 if ((alignment.start + alignment.lengthOnRef) < bpStart || alignment.start > bpEnd) {
@@ -21104,7 +20925,7 @@ var igv = (function (igv) {
                     // If this is not the last block, and the next block starts before the orign (off screen to left)
                     // then skip.
                     if ((b != blocks.length - 1) && blocks[b + 1].start < bpStart) continue;
-
+					
                     drawBlock.call(this, block);
 
                     if ((block.start + block.len) > bpEnd) break;  // Do this after drawBlock to insure gaps are drawn
@@ -21118,85 +20939,134 @@ var igv = (function (igv) {
                         }
                     }
                 }
-
                 function drawBlock(block) {
+					const offsetBP = block.start - alignmentContainer.start;
+					const blockStartPixel = (block.start - bpStart) / bpPerPixel;
+					const blockEndPixel = ((block.start + block.len) - bpStart) / bpPerPixel;
+					const blockWidthPixel = Math.max(1, blockEndPixel - blockStartPixel);
+					const arrowHeadWidthPixel = this.alignmentRowHeight / 2.0;
+					const yStrokedLine = yRect + alignmentHeight / 2;
+					const isSoftClip = 'S' === block.type;
 
+					const strokeOutline =
+						alignment.mq <= 0 ||
+						this.highlightedAlignmentReadNamed === alignment.readName ||
+						isSoftClip;
 
-                    const offsetBP = block.start - alignmentContainer.start;
-                    const blockStartPixel = (block.start - bpStart) / bpPerPixel;
-                    const blockEndPixel = ((block.start + block.len) - bpStart) / bpPerPixel;
-                    const blockWidthPixel = Math.max(1, blockEndPixel - blockStartPixel);
-                    const arrowHeadWidthPixel = this.alignmentRowHeight / 2.0;
-                    const yStrokedLine = yRect + alignmentHeight / 2;
-                    const isSoftClip = 'S' === block.type;
+					let blockOutlineColor = outlineColor;
+					if (this.highlightedAlignmentReadNamed === alignment.readName) blockOutlineColor = 'red'
+					else if (isSoftClip) blockOutlineColor = 'rgb(50,50,50)'
 
-                    const strokeOutline =
-                        alignment.mq <= 0 ||
-                        this.highlightedAlignmentReadNamed === alignment.readName ||
-                        isSoftClip;
+					if (block.gapType !== undefined && blockEndPixel !== undefined && lastBlockEnd !== undefined) {
+						if ("D" === block.gapType) {
+							igv.graphics.strokeLine(ctx, lastBlockEnd, yStrokedLine, blockStartPixel, yStrokedLine, {strokeStyle: this.deletionColor});
+						} else if ("N" === block.gapType) {
+							igv.graphics.strokeLine(ctx, lastBlockEnd, yStrokedLine, blockStartPixel, yStrokedLine, {strokeStyle: this.skippedColor});
+						}
+					}
+					lastBlockEnd = blockEndPixel;
 
-                    let blockOutlineColor = outlineColor;
-                    if (this.highlightedAlignmentReadNamed === alignment.readName) blockOutlineColor = 'red'
-                    else if (isSoftClip) blockOutlineColor = 'rgb(50,50,50)'
+					const lastBlockPositiveStrand = (true === alignment.strand && b === blocks.length - 1);
+					const lastBlockReverseStrand = (false === alignment.strand && b === 0);
+					const firstBlockPositiveStrand = (true === alignment.strand && b === 0);
+					const firstBlockReverseStrand = (false === alignment.strand && b === blocks.length - 1); 
 
-                    if (block.gapType !== undefined && blockEndPixel !== undefined && lastBlockEnd !== undefined) {
-                        if ("D" === block.gapType) {
-                            igv.graphics.strokeLine(ctx, lastBlockEnd, yStrokedLine, blockStartPixel, yStrokedLine, {strokeStyle: this.deletionColor});
-                        } else if ("N" === block.gapType) {
-                            igv.graphics.strokeLine(ctx, lastBlockEnd, yStrokedLine, blockStartPixel, yStrokedLine, {strokeStyle: this.skippedColor});
-                        }
-                    }
-                    lastBlockEnd = blockEndPixel;
+					const lastBlock = lastBlockPositiveStrand | lastBlockReverseStrand;
+					const firstBlock = firstBlockPositiveStrand | firstBlockReverseStrand;
+					const polyA = lastBlockPositiveStrand | firstBlockReverseStrand;
+					const primer = lastBlockReverseStrand | firstBlockPositiveStrand;
+					if(primer && block.type === 'A') {
+						let xListPixel;
+						let yListPixel;
+						xListPixel = [
+							blockEndPixel,
+							blockStartPixel - arrowHeadWidthPixel - alignment.edlen / 4,
+							blockStartPixel - arrowHeadWidthPixel - alignment.edlen / 4,
+							blockEndPixel,
+							blockEndPixel];
+						yListPixel = [
+							yRect,
+							yRect,
+							yRect + alignmentHeight,
+							yRect + alignmentHeight,
+							yRect];
+						igv.graphics.fillPolygon(ctx, xListPixel, yListPixel, {fillStyle: "rgba(51,204,102,0.8)"});
+						if (strokeOutline) {
+							igv.graphics.strokePolygon(ctx, xListPixel, yListPixel, {strokeStyle: blockOutlineColor});
+						}
+					}
+					if(polyA && alignment.ed) {
+						let xListPixel;
+						let yListPixel;
+						xListPixel = [
+								blockStartPixel,
+								blockEndPixel,
+								blockEndPixel + arrowHeadWidthPixel + alignment.edlen / 4,
+								blockEndPixel,
+								blockStartPixel,
+								blockStartPixel];
+						yListPixel = [
+								yRect,
+								yRect,
+								yRect + (alignmentHeight / 2.0),
+								yRect + alignmentHeight,
+								yRect + alignmentHeight,
+								yRect];
 
-                    const lastBlockPositiveStrand = (true === alignment.strand && b === blocks.length - 1);
-                    const lastBlockReverseStrand = (false === alignment.strand && b === 0);
-                    const lastBlock = lastBlockPositiveStrand | lastBlockReverseStrand;
+						
+						igv.graphics.fillPolygon(ctx, xListPixel, yListPixel, {fillStyle: "rgba(255,188,0,0.8)"});
+						if (strokeOutline) {
+							igv.graphics.strokePolygon(ctx, xListPixel, yListPixel, {strokeStyle: blockOutlineColor});
+						}
+					}
+					
+					
+					
+					if (lastBlock && typeof(this.parent.config.samplename) == "undefined") {
+						let xListPixel;
+						let yListPixel;
+						if (lastBlockPositiveStrand) {
+							xListPixel = [
+								blockStartPixel,
+								blockEndPixel,
+								blockEndPixel + arrowHeadWidthPixel,
+								blockEndPixel,
+								blockStartPixel,
+								blockStartPixel];
+							yListPixel = [
+								yRect,
+								yRect,
+								yRect + (alignmentHeight / 2.0),
+								yRect + alignmentHeight,
+								yRect + alignmentHeight,
+								yRect];
 
-                    if (lastBlock) {
-                        let xListPixel;
-                        let yListPixel;
-                        if (lastBlockPositiveStrand) {
-                            xListPixel = [
-                                blockStartPixel,
-                                blockEndPixel,
-                                blockEndPixel + arrowHeadWidthPixel,
-                                blockEndPixel,
-                                blockStartPixel,
-                                blockStartPixel];
-                            yListPixel = [
-                                yRect,
-                                yRect,
-                                yRect + (alignmentHeight / 2.0),
-                                yRect + alignmentHeight,
-                                yRect + alignmentHeight,
-                                yRect];
+						}
 
-                        }
+						// Last block on - strand ?
+						else if (lastBlockReverseStrand) {
+							xListPixel = [
+								blockEndPixel,
+								blockStartPixel,
+								blockStartPixel - arrowHeadWidthPixel,
+								blockStartPixel,
+								blockEndPixel,
+								blockEndPixel];
+							yListPixel = [
+								yRect,
+								yRect,
+								yRect + (alignmentHeight / 2.0),
+								yRect + alignmentHeight,
+								yRect + alignmentHeight,
+								yRect];
 
-                        // Last block on - strand ?
-                        else if (lastBlockReverseStrand) {
-                            xListPixel = [
-                                blockEndPixel,
-                                blockStartPixel,
-                                blockStartPixel - arrowHeadWidthPixel,
-                                blockStartPixel,
-                                blockEndPixel,
-                                blockEndPixel];
-                            yListPixel = [
-                                yRect,
-                                yRect,
-                                yRect + (alignmentHeight / 2.0),
-                                yRect + alignmentHeight,
-                                yRect + alignmentHeight,
-                                yRect];
+						}
+						igv.graphics.fillPolygon(ctx, xListPixel, yListPixel, {fillStyle: alignmentColor});
 
-                        }
-                        igv.graphics.fillPolygon(ctx, xListPixel, yListPixel, {fillStyle: alignmentColor});
-
-                        if (strokeOutline) {
-                            igv.graphics.strokePolygon(ctx, xListPixel, yListPixel, {strokeStyle: blockOutlineColor});
-                        }
-                    }
+						if (strokeOutline) {
+							igv.graphics.strokePolygon(ctx, xListPixel, yListPixel, {strokeStyle: blockOutlineColor});
+						}
+					}
 
                     // Internal block
                     else {
@@ -21763,13 +21633,34 @@ var igv = (function (igv) {
                 else return 0;
             }
 
-            // test if the real CIGAR is encoded in a CG:B,I tag
-            if (cigarArray.length != 1 || al.start < 0) return false;
             var p = seq_offset + ((lseq + 1) >> 1) + lseq;
+			var p_CG = 0;
+			var CGvalue = 'E';
+			al.hd = false;
+			al.ed = false;
+			al.edlen = 0;
             while (p + 4 < block_end) {
                 var tag = String.fromCharCode(ba[p]) + String.fromCharCode(ba[p + 1]);
-                if (tag == 'CG') break;
-                var type = String.fromCharCode(ba[p + 2]);
+				var type = String.fromCharCode(ba[p + 2]);
+                if (tag == 'CG'){
+					p_CG = p;
+					//original code want to find CG tag, and break.
+					//So store the p to p_CG and return it back for later process
+					//I want the code can decode all the tag untill find the tag I want
+				}
+				if (tag == 'HD'){
+					if(ba[p + 3] == 1){//have head
+						al.hd = true;
+					}
+						
+				}
+				if(tag == 'ED'){	
+					if(ba[p + 3] > 0){//have poly A
+						al.edlen = ba[p + 3];
+						al.ed = true;
+					}
+				}
+
                 if (type == 'B') { // the binary array type
                     type = String.fromCharCode(ba[p + 3]);
                     var size = type2size(type);
@@ -21783,9 +21674,11 @@ var igv = (function (igv) {
                     p += 3 + type2size(type);
                 }
             }
-            if (p >= block_end) return false; // no CG tag
+            if (p_CG == 0) return false; // no CG tag
+			p = p_CG;
+			// test if the real CIGAR is encoded in a CG:B,I tag
+            if (cigarArray.length != 1 || al.start < 0) return false;
             if (String.fromCharCode(ba[p + 2]) != 'B' || String.fromCharCode(ba[p + 3]) != 'I') return false; // not of type B,I
-
             // now we know the real CIGAR length and its offset in the binary array
             var cigar_len = readInt(ba, p + 4);
             var cigar_offset = p + 8; // 4 for "CGBI" and 4 for length
@@ -21893,7 +21786,8 @@ var igv = (function (igv) {
                 alignment.lengthOnRef = lengthOnRef;
                 alignment.fragmentLength = tlen;
                 alignment.mq = mq;
-
+				if(alignment.readName === "97963e8f-2db8-4673-bcc0-780f6e662775:P-T-P:77:1113:1037:1126:Q8.03")
+					alignment.test="";
                 igv.BamUtils.bam_tag2cigar(ba, blockEnd, p, lseq, alignment, cigarArray);
 
                 alignment.end = alignment.start + alignment.lengthOnRef;
@@ -22118,7 +22012,16 @@ var igv = (function (igv) {
 
         alignment.scStart = alignment.start;
         alignment.scLengthOnRef = alignment.lengthOnRef;
+		if((alignment.stand != 0 && alignment.hd) || (alignment.stand == 0 && alignment.ed)){
+			blocks.push(new igv.AlignmentBlock({
+				        start: pos,
+                        seqOffset: seqOffset,
+                        len: 1,
+                        type: 'A'
+			}))
 
+		}
+	
         for (let c of cigarArray) {
 
             switch (c.ltr) {
@@ -22162,6 +22065,13 @@ var igv = (function (igv) {
                         seqOffset: seqOffset,
                         type: 'I'
                     }));
+					blocks.push(new igv.AlignmentBlock({
+                        start: pos,
+                        seqOffset: seqOffset,
+                        len: c.len,
+                        type: 'M',
+                        gapType: gapType
+                    }));
                     seqOffset += c.len;
                     gapType = 'I';
                     break;
@@ -22186,7 +22096,6 @@ var igv = (function (igv) {
                     console.log('Error processing cigar element: ' + c.len + c.ltr);
             }
         }
-
         alignment.blocks =  blocks;
         alignment.insertions = insertions;
 
@@ -22397,57 +22306,51 @@ var igv = (function (igv) {
     // Uncompress data,  assumed to be series of bgzipped blocks
     igv.unbgzf = function (data, lim) {
 
-        var oBlockList = [],
-            ptr = 0,
-            totalSize = 0;
+		const oBlockList = [];
+		let ptr = 0;
+		let totalSize = 0;
 
-        lim = lim || data.byteLength - 18;
+		lim = lim || data.byteLength - 18;
 
-        while (ptr < lim) {
+		while (ptr < lim) {
+			try {
+				const ba = new Uint8Array(data, ptr, 18);
+				const xlen = (ba[11] << 8) | (ba[10]);
+				const si1 = ba[12];
+				const si2 = ba[13];
+				const slen = (ba[15] << 8) | (ba[14]);
+				const bsize = ((ba[17] << 8) | (ba[16])) + 1;
+				const start = 12 + xlen + ptr;    // Start of CDATA
+				const bytesLeft = data.byteLength - start;
+				const cDataSize = bsize - xlen - 19;
+				if (bytesLeft < cDataSize || cDataSize <= 0) break;
 
-            try {
-                var ba = new Uint8Array(data, ptr, 18);
+				const a = new Uint8Array(data, start, cDataSize);
+				const inflate = new Zlib.RawInflate(a);
+				const unc = inflate.decompress();
 
-                var xlen = (ba[11] << 8) | (ba[10]);
-                var si1 = ba[12];
-                var si2 = ba[13];
-                var slen = (ba[15] << 8) | (ba[14]);
-                var bsize = (ba[17] << 8) | (ba[16]) + 1;
+				ptr += inflate.ip + 26;
+				totalSize += unc.byteLength;
+				oBlockList.push(unc);
+			} catch (e) {
+				console.error(e);
+				break;
+			}
+		}
 
-                var start = 12 + xlen + ptr;    // Start of CDATA
-                var bytesLeft = data.byteLength - start;
-                var cDataSize = bsize - xlen - 19;
-                if(bytesLeft < cDataSize) break;
-
-                const a = new Uint8Array(data, start, bytesLeft);
-                var inflate = new Zlib.RawInflate(a);
-                var unc = inflate.decompress();
-
-
-                ptr += inflate.ip + 26
-
-                totalSize += unc.byteLength;
-                oBlockList.push(unc);
-
-            } catch (e) {
-                console.error(e)
-                break;
-            }
-        }
-
-        // Concatenate decompressed blocks
-        if (oBlockList.length == 1) {
-            return oBlockList[0];
-        } else {
-            var out = new Uint8Array(totalSize);
-            var cursor = 0;
-            for (var i = 0; i < oBlockList.length; ++i) {
-                var b = new Uint8Array(oBlockList[i]);
-                arrayCopy(b, 0, out, cursor, b.length);
-                cursor += b.length;
-            }
-            return out.buffer;
-        }
+		// Concatenate decompressed blocks
+		if (oBlockList.length === 1) {
+			return oBlockList[0];
+		} else {
+			const out = new Uint8Array(totalSize);
+			let cursor = 0;
+			for (let i = 0; i < oBlockList.length; ++i) {
+				var b = new Uint8Array(oBlockList[i]);
+				arrayCopy(b, 0, out, cursor, b.length);
+				cursor += b.length;
+			}
+			return out;
+		}
     }
 
     igv.bgzBlockSize = function (data) {
@@ -23360,7 +23263,20 @@ var igv = (function (igv) {
     };
 
     igv.Browser.prototype.renderSVG = function (config) {
-
+		igv.needDownsample = false;
+		igv.browser.trackViews.forEach(function(trackview){
+			trackview.viewports.forEach(function(viewport){
+				if(viewport.tile && viewport.tile.features instanceof igv.AlignmentContainer){
+					if(viewport.tile.features.packedAlignmentRows.length > 50)
+						igv.needDownsample = true;
+				}
+				
+			});
+		});
+		if(igv.needDownsample){
+			if(!confirm("Too much reads for converting to SVG! Do you want to DownSample to 50?"))
+				igv.needDownsample = false;
+		}
         let svg = this.toSVG();
 
         if (config.$container) {
@@ -23375,7 +23291,7 @@ var igv = (function (igv) {
         const path = config.filename || 'igv.svg';
         const data = URL.createObjectURL(new Blob([svg], {type: "application/octet-stream"}));
         igv.download(path, data);
-
+		igv.needDownsample = false;
     };
 
     /**
@@ -23832,6 +23748,7 @@ var igv = (function (igv) {
 		trackView = new igv.TrackView(this, $(this.trackContainerDiv), track);
 		if(track.config && track.config.clustername){
 			trackView.clustername = track.config.clustername;
+			trackView.name = track.config.clustername;
 		}
         this.trackViews.push(trackView);
 
@@ -23880,13 +23797,23 @@ var igv = (function (igv) {
 
         // Find track panel
         var trackPanelRemoved;
+		if(track.config && track.config.clustername){
+			igv.clusternames.splice(igv.clusternames.indexOf(track.config.clustername), 1);
+		}
         for (var i = 0; i < this.trackViews.length; i++) {
             if (track === this.trackViews[i].track) {
                 trackPanelRemoved = this.trackViews[i];
                 break;
             }
         }
-
+		var remained_track = [];
+		igv.browser.trackViews.forEach(function(x){
+			if(x.track.type=="alignment");
+			remained_track.push(x);
+			});
+		if(remained_track.count == 0){
+			browser.genome_panel.ctx.canvas.style.width = ((browser.genome_panel.ctx.canvas.style.width) + 'px');
+		}
         if (trackPanelRemoved) {
             this.trackViews.splice(i, 1);
             $(trackPanelRemoved.trackDiv).remove();
@@ -30022,7 +29949,7 @@ var igv = (function (igv) {
                 const lut =
                     {
                         "COLLAPSED": "Collapse",
-                        "SQUISHED": "Squish",
+						"SQUISHED": "Squish",
                         "EXPANDED": "Expand"
                     };
 
@@ -36238,7 +36165,7 @@ var igv = (function (igv) {
 
         panel.$canvas = $('<canvas>');
         panel.$ideogram.append(panel.$canvas);
-
+        browser.genome_panel = panel;
         setupCanvasSize(panel);
 
         panel.ideograms = {};
@@ -38124,14 +38051,17 @@ var igv = (function (igv) {
     function logo() {
 
         return $(
-            '<svg width="690px" height="324px" viewBox="0 0 690 324" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' +
+            '<svg width="690px" height="324px" viewBox="0 0 182.5625 110" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">' +
             '<title>IGV</title>' +
             '<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">' +
             '<g id="IGV" fill="#666666">' +
-            '<polygon id="Path" points="379.54574 8.00169252 455.581247 8.00169252 515.564813 188.87244 532.884012 253.529506 537.108207 253.529506 554.849825 188.87244 614.833392 8.00169252 689.60164 8.00169252 582.729511 320.722144 486.840288 320.722144"></polygon>' +
-            '<path d="M261.482414,323.793286 C207.975678,323.793286 168.339046,310.552102 142.571329,284.069337 C116.803612,257.586572 103.919946,217.158702 103.919946,162.784513 C103.919946,108.410325 117.437235,67.8415913 144.472217,41.0770945 C171.507199,14.3125977 212.903894,0.930550071 268.663545,0.930550071 C283.025879,0.930550071 298.232828,1.84616386 314.284849,3.6774189 C330.33687,5.50867394 344.839793,7.97378798 357.794056,11.072835 L357.794056,68.968378 C339.48912,65.869331 323.578145,63.5450806 310.060654,61.9955571 C296.543163,60.4460336 284.574731,59.6712835 274.154998,59.6712835 C255.850062,59.6712835 240.502308,61.4320792 228.111274,64.9537236 C215.720241,68.4753679 205.793482,74.2507779 198.330701,82.2801269 C190.867919,90.309476 185.587729,100.87425 182.48997,113.974767 C179.392212,127.075284 177.843356,143.345037 177.843356,162.784513 C177.843356,181.942258 179.251407,198.000716 182.067551,210.960367 C184.883695,223.920018 189.671068,234.41436 196.429813,242.443709 C203.188559,250.473058 212.059279,256.178037 223.042241,259.558815 C234.025202,262.939594 247.683295,264.629958 264.01693,264.629958 C268.241146,264.629958 273.098922,264.489094 278.590403,264.207362 C284.081883,263.925631 289.643684,263.50304 295.275972,262.939577 L295.275972,159.826347 L361.595831,159.826347 L361.595831,308.579859 C344.698967,313.087564 327.239137,316.750019 309.215815,319.567334 C291.192494,322.38465 275.281519,323.793286 261.482414,323.793286 L261.482414,323.793286 L261.482414,323.793286 Z" id="Path"></path>;' +
-            '<polygon id="Path" points="0.81355666 5.00169252 73.0472883 5.00169252 73.0472883 317.722144 0.81355666 317.722144"></polygon>' +
-            '</g> </g> </svg>'
+			'<path id="path837" d="m 30.756632,21.502705 c -7.435103,0 -14.870207,0 -22.3053102,0 0,5.2688 0,10.537599 0,15.806399 6.3884612,0 12.7769222,0 19.1653832,0 1.347721,5.007187 -0.756998,7.712406 -5.626306,6.6237 -4.513026,0 -9.026052,0 -13.5390772,0 0,8.994587 0,17.989174 0,26.983761 -4.628871,1.42698 -6.7879284,-1.259627 -5.8651404,-5.556618 0,-16.826956 0,-33.653913 0,-50.480869 9.3901506,0 18.7803006,0 28.1704506,0 0,2.207876 0,4.415751 0,6.623627 z" />' + 
+			'<path id="path839" d="m 64.436754,70.916565 c -3.246113,0.372892 -6.490825,0.506795 -5.872742,-3.766294 -4.777357,3.906502 -12.200949,8.300289 -17.68679,2.099148 -5.838072,-6.011981 -3.730507,-14.625887 -4.107341,-22.135691 0,-6.078243 0,-12.156485 0,-18.234728 7.956865,-2.559169 5.194962,6.640941 5.567789,11.425209 0.242691,7.139132 -0.738895,14.556823 1.120009,21.496135 3.223227,6.948423 15.116315,2.655939 15.410135,-3.983382 0,-9.646547 0,-19.293093 0,-28.93964 9.42029,-2.534646 4.297217,10.053482 5.568913,15.374827 1.6e-5,8.888139 -2.6e-5,17.776278 2.7e-5,26.664416 z" />' + 
+			'<path id="path841" d="m 81.025031,70.916565 c -4.655206,1.479228 -6.382688,-1.401965 -5.568922,-5.556618 0,-17.667454 0,-35.334909 0,-53.002363 4.655206,-1.479227 6.382688,1.401966 5.568922,5.556619 0,17.667454 0,35.334908 0,53.002362 z" />' + 
+			'<path id="path843" d="m 123.9472,21.502705 c -5.25295,0 -10.50591,0 -15.75886,0 0,16.471287 0,32.942573 0,49.41386 -4.62887,1.42698 -6.78793,-1.259627 -5.86514,-5.556618 0,-14.619081 0,-29.238161 0,-43.857242 -5.252957,0 -10.505913,0 -15.75887,0 -1.347741,-5.007218 0.757022,-7.712306 5.626304,-6.623627 10.585526,0 21.171046,0 31.756566,0 0,2.207876 0,4.415751 0,6.623627 z" />' +
+			'<path id="path845" d="m 135.41089,21.841424 c -5.53593,2.219009 -8.446,-3.32158 -5.40218,-7.477957 5.72864,-1.600449 5.82818,3.04484 5.40218,7.19698 z m -0.35546,49.075141 c -4.65521,1.479228 -6.38269,-1.401967 -5.56892,-5.556618 0,-12.160316 0,-24.320631 0,-36.480947 4.65521,-1.479227 6.38269,1.401968 5.56892,5.556619 0,12.160315 0,24.320631 0,36.480946 z" />' +
+			'<path id="path847" d="m 181.29525,14.879078 c -5.35171,18.67916 -10.70338,37.358327 -16.05509,56.037487 -2.60673,0 -5.21345,0 -7.82018,0 -5.35171,-18.67916 -10.70338,-37.358327 -16.05509,-56.037487 6.76294,-2.300502 7.76314,4.208372 8.86302,9.206123 3.75009,13.36495 7.50018,26.729903 11.25027,40.094855 4.61115,-16.433659 9.22229,-32.867321 13.83345,-49.300978 1.99454,0 3.98908,0 5.98362,0 z" />' +
+    '</g> </g> </svg>'
         );
     }
 
@@ -44319,6 +44249,39 @@ var igv = (function (igv) {
 
         return menuItems;
 	};
+	
+	igv.addSample = function(samplename){
+		if(!igv.samplenames){
+			console.log("Without sample")
+		}
+		var needZoomOut = true;
+		igv.browser.trackViews.forEach(function (trackView) {
+			if(trackView.track.config && trackView.track.config.clusterreads){
+				var track = trackView.track;
+				var clustername = track.config.clustername;
+				var reads = track.config.clusterreads;
+				const newtrackconfig = {visibilityWindow:track.visibilityWindow, 
+				clustername:clustername, type:"alignment", 
+				url:igv.clusterfiles[samplename].url,
+				indexURL: igv.clusterfiles[samplename].indexurl,
+				name:clustername, 
+				samplename : igv.clusterfiles[samplename].name, 
+				clusterreads: reads};
+				const newtrack = igv.createTrack(newtrackconfig, igv.browser);
+				newtrack.alignmentTrack.alignmentRowHeight = track.alignmentTrack.alignmentRowHeight;
+				trackView.addviewport(newtrack, needZoomOut);
+				needZoomOut = false;
+			}
+			
+        });
+	}
+	igv.removeSample = function(samplename){
+		igv.browser.trackViews.forEach(function (trackView) {
+			if(trackView.track.config && trackView.track.config.clusterreads){
+				trackView.removeviewport(samplename);
+			}
+        });
+	}
 	igv.addSampleViewport = function(trackView, samplename){
         
         var $e,
@@ -44372,12 +44335,14 @@ var igv = (function (igv) {
         return {object: $e, click: menuClickHandler};
 
 	}
+	
 	igv.getsamplenames = async function(){
         const clusterurl = igv.browser.config.clusterurl ;
         var options = igv.buildOptions({});
 		igv.samplenames = await igv.xhr.loadJson(clusterurl, options);
 		return igv.samplenames;
     }
+	/*
     igv.listsamplenames = function(trackView){
 		let menuItems = [];
 		var samplenames = igv.samplenames;
@@ -44403,7 +44368,7 @@ var igv = (function (igv) {
 
         return {object: $e, click: menuClickHandler};
     }
-
+	*/
     /**
      * Configure item list for track "gear" menu.
      * @param trackView
@@ -44422,11 +44387,11 @@ var igv = (function (igv) {
             }
             menuItems.push(igv.trackHeightMenuItem(trackView));
         }
-        if(trackView.track.type  === "cluster" || trackView.track.config.clusterreads){
+        /*if(trackView.track.type  === "cluster" || trackView.track.config.clusterreads){
             let trackGearPopover = new igv.TrackGearPopover(trackView.$parent);
              trackGearPopover.$popover.hide();
             menuItems.push(igv.splitbysample(trackView, trackGearPopover));
-        }
+        }*/
         if (doProvideColoSwatchWidget(trackView.track)) {
             menuItems.push(igv.colorPickerMenuItem(trackView))
         }
@@ -44775,7 +44740,12 @@ var igv = (function (igv) {
         }
 
         if (typeof track.paintAxis === 'function') {
+			if(track.config && track.config.clustername){
+				track.paintAxis = undefined;
+			}
+			else{
             appendLeftHandGutter.call(this, $(this.trackDiv));
+			}
         }
 
         this.$viewportContainer = $('<div class="igv-viewport-container">');
@@ -44817,11 +44787,67 @@ var igv = (function (igv) {
 
 
 	};
-	
-    igv.TrackView.prototype.addviewport = function(track){
+	igv.TrackView.prototype.removeviewport = function(samplename){
+		var self = this;
+		if(!self.clustersamplenum){
+			self.clustersamplenum = 1;
+			return false;
+		}
+		if(self.samples){
+			self.samples.splice(self.samples.indexOf(samplename), 1);
+		}
+		var needremoveviewport = self.viewports.filter(function(v, index, array){
+			return v.track.samplename == samplename;
+		});
+		//although use list but in fact only one element
+		for(var viewport in needremoveviewport){
+			viewport = needremoveviewport[viewport];
+			viewport.dispose();
+			self.$viewportContainer.find(".igv-viewport-div")[self.viewports.indexOf(viewport)].remove();
+			self.viewports.splice(self.viewports.indexOf(viewport), 1)
+		}
+		var outerdiv = self.$viewportContainer.find(".igv-scrollbar-outer-div");
+		for(var i = 0; i < outerdiv.length - 1; i++){
+			outerdiv[i].remove();
+		}
+		
+		self.clustersamplenum--;
+		igv.browser.clustersamplenum = self.clustersamplenum;
+		igv.browser.genome_panel.ctx.canvas.style.width = ((igv.browser.genome_panel.ctx.canvas.style.width * (self.clustersamplenum + 1) / self.clustersamplenum) + 'px');
+        var width = self.browser.viewportContainerWidth() / self.clustersamplenum;
+		var labelLeft = width / 2 - 50;
+		self.viewports.forEach(function(v){
+			v.$sampleLabel.css("left", labelLeft + "px");
+			v.setWidth(width);
+		});
+        this.decorateViewports();
+        this.configureViewportContainer(this.$viewportContainer, this.viewports);
+		igv.browser.trackViews.forEach(function(v){
+			if(v == this)
+				return;
+			if(v.track.samplename)
+				return;
+			while(v.viewports.length > igv.browser.clustersamplenum){
+				v.$viewportContainer.find(".igv-viewport-div")[v.viewports.length - 1].remove();
+				v.viewports.pop();
+			}
+			var outerdiv = v.$viewportContainer.find(".igv-scrollbar-outer-div");
+			for(var i = 0; i < outerdiv.length - 1; i++){
+				outerdiv[i].remove();
+			}
+			v.viewports.forEach(function(v){v.setWidth(width);})
+			v.decorateViewports();
+			v.configureViewportContainer(v.$viewportContainer, v.viewports);
+			v.updateViews(true);
+		})
+		self.browser.genomicStateList[0].referenceFrame.bpPerPixel = this.browser.genomicStateList[0].referenceFrame.bpPerPixel * self.clustersamplenum / (self.clustersamplenum + 1);
+		igv.browser.updateViews(self.browser.genomicStateList[0]);
+		return true;
+	}
+    igv.TrackView.prototype.addviewport = function(track, zoomout){
         var self = this;
 		var viewport;
-		if(!self.clustersamplenum){
+		if(!self.clustersamplenum || self.clustersamplenum == 0){
 			self.clustersamplenum = 1;
 		}
 		if(track.config.samplename && self.track && self.track.config.samplename){
@@ -44843,30 +44869,81 @@ var igv = (function (igv) {
 			}
 		}
         self.clustersamplenum++;
+		igv.browser.clustersamplenum = self.clustersamplenum;
+		igv.browser.genome_panel.ctx.canvas.style.width = ((igv.browser.genome_panel.ctx.canvas.style.width * (self.clustersamplenum - 1) / self.clustersamplenum) + 'px');
         var width = self.browser.viewportContainerWidth() / self.clustersamplenum;
-        self.viewports.forEach(function(v){v.setWidth(width);})
+		var labelLeft = width / 2 - 50;
+		track.isMain = false;
         viewport = new igv.Viewport(self, self.$viewportContainer, self.browser.genomicStateList[0], width, track);
         self.viewports.push(viewport);
+		self.viewports.forEach(function(v){
+			v.$sampleLabel.css("left", labelLeft + "px");
+			v.setWidth(width);
+			});
         this.decorateViewports();
         this.configureViewportContainer(this.$viewportContainer, this.viewports);
-		this.updateViews(true);
+
+		igv.browser.trackViews.forEach(function(v){
+			if(v == this)
+				return;
+			if(v.track.config){
+				if(v.track.samplename)
+					return;
+				v.viewports.forEach(function(v){v.setWidth(width);});
+
+				while(v.viewports.length < igv.browser.clustersamplenum){
+					//let newtrack = igv.createTrack(v.track.config, igv.browser);
+					vv = new igv.Viewport(v, v.$viewportContainer, v.viewports[0].genomicState, width, v.track);
+					v.viewports.push(vv);
+				}
+				while(v.viewports.length > igv.browser.clustersamplenum){
+					v.viewports.pop();
+				}
+				v.decorateViewports();
+				v.configureViewportContainer(v.$viewportContainer, v.viewports);
+				v.updateViews(true);
+			}
+			else{
+				v.viewports.forEach(function(v){v.setWidth(width);});
+				while(v.viewports.length < igv.browser.clustersamplenum){
+					vv = new igv.Viewport(v, v.$viewportContainer, v.viewports[0].genomicState, width, v.track);
+					v.viewports.push(vv);
+				}
+				while(v.viewports.length > igv.browser.clustersamplenum){
+					v.viewports.pop();
+				}
+				v.decorateViewports();
+				v.configureViewportContainer(v.$viewportContainer, v.viewports);
+				v.updateViews(true);
+				
+			}
+		})
+		if(zoomout){
+		self.browser.genomicStateList[0].referenceFrame.bpPerPixel = this.browser.genomicStateList[0].referenceFrame.bpPerPixel * self.clustersamplenum / (self.clustersamplenum - 1);
+		igv.browser.updateViews(self.browser.genomicStateList[0]);
+		}
+		else{
+			this.updateViews(true);
+		}
 		return true;
 	};
 	
     igv.TrackView.prototype.renderSVGContext = function (context, offset) {
-
+		var index = 0;
         for (let viewport of this.viewports) {
 
-            const index = viewport.browser.genomicStateList.indexOf(viewport.genomicState);
+            //const index = viewport.browser.genomicStateList.indexOf(viewport.genomicState);
             const bbox = viewport.$viewport.get(0).getBoundingClientRect();
 
             let o =
                 {
                     deltaX: offset.deltaX + index * viewport.$viewport.width(),
-                    deltaY: offset.deltaY + bbox.y
+                    deltaY: offset.deltaY + bbox.y,
+					index: index
                 };
 
             viewport.renderSVGContext(context, o);
+			index++;
         }
 
     };
@@ -44900,7 +44977,8 @@ var igv = (function (igv) {
             $viewport = viewport.$viewport;
 
             if (self.viewports.length > 1) {
-                $viewport.find('.igv-multi-locus-panel-close-container').show();
+                //$viewport.find('.igv-multi-locus-panel-close-container').show();
+				$viewport.find('.igv-multi-locus-panel-close-container').hide();
                 $viewport.find('.igv-multi-locus-panel-label-div').show();
             } else {
                 $viewport.find('.igv-multi-locus-panel-close-container').hide();
@@ -45148,7 +45226,8 @@ var igv = (function (igv) {
         var width;
 
         width = this.browser.viewportContainerWidth() / this.browser.genomicStateList.length;
-
+		if(igv.browser.clustersamplenum)
+			width = width / igv.browser.clustersamplenum;
         if (width === 0) return;
         this.viewports.forEach(function (viewport) {
             viewport.setWidth(width);
@@ -48530,11 +48609,55 @@ var igv = (function (igv) {
                 self.$zoomInNotice = createZoomInNotice.call(this, $(this.contentDiv));
             }
         }
+		if (track.samplename){
+			this.$sampleLabel = $('<div class="igv-track-label2">');
+			this.$viewport.append(this.$sampleLabel);
+			this.$sampleLabel.empty();
+			this.$sampleLabel.html(track.samplename);
+			var width = this.browser.viewportContainerWidth();
+			var labelLeft = width / 2 - 50;
+			this.$sampleLabel.css("left", labelLeft + "px");
+			const txt = this.$sampleLabel.text();
+			this.$sampleLabel.attr('title', txt);
+			if (false === self.browser.trackLabelsVisible) {
+                this.$sampleLabel.hide();
+            }
+			this.$sampleLabel.click(function (e) {
+                let str;
 
+                e.stopPropagation();
+
+                if (typeof track.findnum === 'function') {
+                    str = track.findnum();
+				} else if(typeof track.description === 'function'){
+					str = track.description();
+				} else {
+                    str = track.name;
+                }
+
+                const page = igv.pageCoordinates(e);
+
+                self.popover.presentTrackContent(page.x, page.y, str);
+
+            });
+            this.$sampleLabel.mousedown(function (e) {
+                // Prevent bubbling
+                e.stopPropagation();
+            });
+            this.$sampleLabel.mouseup(function (e) {
+                // Prevent  bubbling
+                e.stopPropagation();
+            });
+            this.$sampleLabel.mousemove(function (e) {
+                // Prevent  bubbling
+                e.stopPropagation();
+            });
+		}
         if (track.name) {
 
             this.$trackLabel = $('<div class="igv-track-label">');
-            this.$viewport.append(this.$trackLabel);
+			if(typeof(track.isMain) == "undefined")
+				this.$viewport.append(this.$trackLabel);
 
             igv.setTrackLabel(this.$trackLabel, track, track.name);
 
@@ -48718,7 +48841,12 @@ var igv = (function (igv) {
         const bpWidth = pixelWidth * referenceFrame.bpPerPixel;
         const bpStart = Math.floor(Math.max(0, referenceFrame.start - bpWidth / 3));
         const bpEnd = Math.ceil(Math.min(chrLength, bpStart + bpWidth));
-
+		if(this.track && this.track.config && this.track.config.start){
+			if(this.track.config.start > referenceFrame.end || this.track.config.end < referenceFrame.start){
+				self.tile = new Tile(referenceFrame.chrName, bpStart, bpEnd, referenceFrame.bpPerPixel, self.tile.features);
+				return;
+			}
+		}
 
         if (self.loading && self.loading.start === bpStart && self.loading.end === bpEnd) {
             return Promise.resolve(undefined);
@@ -48776,7 +48904,10 @@ var igv = (function (igv) {
         const bpStart = isWGV ? 0 : tile.startBP;
         const bpEnd = isWGV ? referenceFrame.initialEnd : tile.endBP;
         const pixelWidth = isWGV ? this.$viewport.width() : Math.ceil((bpEnd - bpStart) / bpPerPixel);
+		
 
+		
+		
         // For deep tracks we paint a canvas == 3*viewportHeight centered on the current vertical scroll position
         const viewportHeight = this.$viewport.height()
         let pixelHeight = Math.min(self.getContentHeight(), 3 * viewportHeight);
@@ -49033,7 +49164,7 @@ var igv = (function (igv) {
         let str = this.track.name || this.track.id;
         str = str.replace(/\W/g, '');
 
-        const index = this.browser.genomicStateList.indexOf(this.genomicState);
+        const index = offset.index;
         const id = str.toLowerCase() + '_genomic_index_' + index;
 
         // If present, paint axis canvas. Only in first multi-locus panel.
@@ -49105,7 +49236,6 @@ var igv = (function (igv) {
         }));
         igv.download(filename, data);
     };
-
     /**
      * Called when the associated track is removed.  Do any needed cleanup here.
      */
@@ -49344,6 +49474,8 @@ var igv = (function (igv) {
 						return;
 					}
 					const track = self.trackView.track;
+					if(!/bed$/.test(track.config.filename))
+						return;
 					const dataList = track.popupData(clickState);
 					let clustername;
 					let  start=0, end=0, chr;
@@ -49378,11 +49510,14 @@ var igv = (function (igv) {
 						const referenceFrame = genomicState.referenceFrame;
 						const isWGV = igv.isWholeGenomeView(self.genomicState.referenceFrame);
 						const bpStart = isWGV ? 0 : self.tile.startBP;
-						if(bpStart < start)
-							start = bpStart; 
+						/*if(bpStart < start)
+							start = bpStart; */
 						const bpEnd = isWGV ? referenceFrame.initialEnd : self.tile.endBP;
-						if(bpEnd > end)
+						/*if(bpEnd > end)
 							end = bpEnd;
+						*/
+						start = Math.max(0, start - 10000);
+						end = end + 10000;
 						return igv.getclusterreads(chr, start, end, clustername).then(function(reads){
 
 							if(!igv.clusterfiles){
@@ -49392,9 +49527,33 @@ var igv = (function (igv) {
 							if(igv.clusterfiles["default"]){
 								url = igv.clusterfiles["default"];
 							}
-							const newtrackconfig = {visibilityWindow:track.visibilityWindow, clustername:clustername, type:"alignment", url:igv.clusterfiles["default"].url,indexURL: igv.clusterfiles["default"].indexurl,name:clustername, samplename : igv.clusterfiles["default"].name, clusterreads: reads};
+							const samplename = igv.clusterfiles["default"].name;
+							const newtrackconfig = {visibilityWindow:track.visibilityWindow, 
+							clustername:clustername, 
+							type:"alignment", 
+							url:igv.clusterfiles["default"].url,
+							indexURL: igv.clusterfiles["default"].indexurl,
+							name:clustername, 
+							samplename : samplename, clusterreads: reads,
+							start: start, end: end};
 							const newtrack = igv.createTrack(newtrackconfig, igv.browser);
 							igv.browser.addTrack(newtrack);
+							for(samplename2 in igv.samplenames){
+								samplename2 = igv.samplenames[samplename2];
+								if(samplename2 == samplename)
+									continue;
+								const newtrackconfig2 = {visibilityWindow:track.visibilityWindow, 
+								clustername:clustername, type:"alignment", 
+								url:igv.clusterfiles[samplename2].url,
+								indexURL: igv.clusterfiles[samplename2].indexurl,
+								name:clustername, 
+								samplename : igv.clusterfiles[samplename2].name, 
+								clusterreads: reads,
+								start: start,
+								end: end};
+								const newtrack2 = igv.createTrack(newtrackconfig2, igv.browser);
+								newtrack.trackView.addviewport(newtrack2, false);
+							}
 							if(igv.clusternames.length > 3){
 								let n = igv.clusternames.shift();
 								igv.browser.removeTrackByName(n);
@@ -49407,8 +49566,6 @@ var igv = (function (igv) {
 					const newtrackconfig = {visibilityWindow:selectedtrackview.track.visibilityWindow, clustername:clustername, type:"cluster",name:clustername, samplename : samplename, url:url};
 					const newtrack = igv.createTrack(newtrackconfig, igv.browser);
 					igv.browser.addTrack(newtrack);
-					
-
 					if(igv.clusternames.length > 3){
 						let n = igv.clusternames.shift();
 						igv.browser.removeTrackByName(n);
@@ -50057,7 +50214,8 @@ function defineClass() {
         if (config.coverageTrackHeight === undefined) {
             config.coverageTrackHeight = DEFAULT_COVERAGE_TRACK_HEIGHT;
         }
-
+		if(config.samplename)
+			this.samplename = config.samplename;
         this.featureSource = new igv.ClusterSource(config, browser);
         this.coverageTrack = new CoverageTrack(config, this);
         this.alignmentTrack = new AlignmentTrack(config, this);
@@ -50066,6 +50224,7 @@ function defineClass() {
         this.viewAsPairs = config.viewAsPairs;
         this.pairsSupported = (undefined === config.pairsSupported);
         this.showSoftClips = config.showSoftClips;
+		this.squish = false;
         this.showAllBases = config.showAllBases;
         this.color = config.color || DEFAULT_ALIGNMENT_COLOR;
         this.coverageColor = config.coverageColor || DEFAULT_COVERAGE_COLOR;
@@ -50308,7 +50467,7 @@ function defineClass() {
 				}
 			});
 		}
-
+		
 		menuItems.push({
 			object: igv.createCheckbox("Show soft clips", self.showSoftClips),
 			click: function () {
@@ -50769,11 +50928,14 @@ function defineClass() {
 				blocks,
 				block,
 				b,
-				diagnosticColor;
+				diagnosticColor,
+				needPaintFirstArrow,
+				firstArrowX,
+				firstArrowY;
 
 			alignmentColor = this.getAlignmentColor(alignment);
 			const outlineColor = alignmentColor;
-
+			needPaintFirstArrow	= false;
 			blocks = showSoftClips ? alignment.blocks : alignment.blocks.filter(b => 'S' !== b.type);
 
 			if ((alignment.start + alignment.lengthOnRef) < bpStart || alignment.start > bpEnd) {
@@ -50795,8 +50957,10 @@ function defineClass() {
 				// then skip.
 				if ((b != blocks.length - 1) && blocks[b + 1].start < bpStart) continue;
 
+				
+				
 				drawBlock.call(this, block);
-
+				
 				if ((block.start + block.len) > bpEnd) break;  // Do this after drawBlock to insure gaps are drawn
 
 				if (alignment.insertions) {
@@ -50808,7 +50972,9 @@ function defineClass() {
 					}
 				}
 			}
-
+			if(needPaintFirstArrow){
+				igv.graphics.fillPolygon(ctx, firstArrowX, firstArrowY, {fillStyle: "rgba(128,0,128,0.8)"});
+			}
 			function drawBlock(block) {
 
 
@@ -50836,13 +51002,64 @@ function defineClass() {
 						igv.graphics.strokeLine(ctx, lastBlockEnd, yStrokedLine, blockStartPixel, yStrokedLine, {strokeStyle: this.skippedColor});
 					}
 				}
+				if(block.type === 'I')
+					return;
 				lastBlockEnd = blockEndPixel;
 
 				const lastBlockPositiveStrand = (true === alignment.strand && b === blocks.length - 1);
 				const lastBlockReverseStrand = (false === alignment.strand && b === 0);
-				const lastBlock = lastBlockPositiveStrand | lastBlockReverseStrand;
+				const firstBlockPositiveStrand = (true === alignment.strand && b === 0);
+				const firstBlockReverseStrand = (false === alignment.strand && b === blocks.length - 1); 
 
-				if (lastBlock) {
+				const lastBlock = lastBlockPositiveStrand | lastBlockReverseStrand;
+				const firstBlock = firstBlockPositiveStrand | firstBlockReverseStrand;
+				if(firstBlock && block.type === 'A') {
+					let xListPixel;
+					let yListPixel;
+					//will coveryed by  later paint
+					if (firstBlockPositiveStrand) {
+						needPaintFirstArrow = true;
+						firstArrowX = [
+							blockStartPixel,
+							blockEndPixel,
+							blockEndPixel + arrowHeadWidthPixel,
+							blockEndPixel,
+							blockStartPixel,
+							blockStartPixel];
+						firstArrowY = [
+							yRect,
+							yRect,
+							yRect + (alignmentHeight / 2.0),
+							yRect + alignmentHeight,
+							yRect + alignmentHeight,
+							yRect];
+
+					}
+
+					// Last block on - strand ?
+					if (firstBlockReverseStrand) {
+						xListPixel = [
+							blockEndPixel,
+							blockStartPixel,
+							blockStartPixel - arrowHeadWidthPixel,
+							blockStartPixel,
+							blockEndPixel,
+							blockEndPixel];
+						yListPixel = [
+							yRect,
+							yRect,
+							yRect + (alignmentHeight / 2.0),
+							yRect + alignmentHeight,
+							yRect + alignmentHeight,
+							yRect];
+
+					}
+					igv.graphics.fillPolygon(ctx, xListPixel, yListPixel, {fillStyle: "rgba(128,0,128,0.8)"});
+
+					if (strokeOutline) {
+						igv.graphics.strokePolygon(ctx, xListPixel, yListPixel, {strokeStyle: blockOutlineColor});
+					}
+				}else if (lastBlock) {
 					let xListPixel;
 					let yListPixel;
 					if (lastBlockPositiveStrand) {
@@ -50881,7 +51098,7 @@ function defineClass() {
 							yRect];
 
 					}
-					igv.graphics.fillPolygon(ctx, xListPixel, yListPixel, {fillStyle: alignmentColor});
+					igv.graphics.fillPolygon(ctx, xListPixel, yListPixel, {fillStyle: block.type === "E" ? "rgba(128,0,128,0.8)": alignmentColor});
 
 					if (strokeOutline) {
 						igv.graphics.strokePolygon(ctx, xListPixel, yListPixel, {strokeStyle: blockOutlineColor});
