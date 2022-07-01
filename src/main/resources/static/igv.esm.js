@@ -18289,8 +18289,8 @@ var igv = (function (igv) {
         this.alignments = [];
         this.downsampledIntervals = [];
 
-        this.samplingWindowSize = samplingWindowSize === undefined ? 100 : samplingWindowSize;
-        this.samplingDepth = samplingDepth === undefined ? 1000 : samplingDepth;
+        this.samplingWindowSize = samplingWindowSize === undefined ? 1000 : samplingWindowSize;
+        this.samplingDepth = samplingDepth === undefined ? 150 : 150;
 
         this.pairsSupported = pairsSupported === undefined ? true : pairsSupported;
         this.paired = false;  // false until proven otherwise
@@ -20973,8 +20973,8 @@ var igv = (function (igv) {
 
 					const lastBlock = lastBlockPositiveStrand | lastBlockReverseStrand;
 					const firstBlock = firstBlockPositiveStrand | firstBlockReverseStrand;
-					const polyA = lastBlockPositiveStrand | firstBlockReverseStrand;
-					const primer = lastBlockReverseStrand | firstBlockPositiveStrand;
+					const polyA = lastBlockPositiveStrand | lastBlockReverseStrand;
+					const primer = firstBlockReverseStrand | firstBlockPositiveStrand;
 					if(primer && block.type === 'A') {
 						let xListPixel;
 						let yListPixel;
@@ -20998,21 +20998,38 @@ var igv = (function (igv) {
 					if(polyA && alignment.ed) {
 						let xListPixel;
 						let yListPixel;
-						xListPixel = [
-								blockStartPixel,
-								blockEndPixel,
-								blockEndPixel + arrowHeadWidthPixel + alignment.edlen / 4,
-								blockEndPixel,
-								blockStartPixel,
-								blockStartPixel];
-						yListPixel = [
-								yRect,
-								yRect,
-								yRect + (alignmentHeight / 2.0),
-								yRect + alignmentHeight,
-								yRect + alignmentHeight,
-								yRect];
-
+						if(lastBlockPositiveStrand){
+							xListPixel = [
+									blockStartPixel,
+									blockEndPixel,
+									blockEndPixel + arrowHeadWidthPixel + alignment.edlen / 4,
+									blockEndPixel,
+									blockStartPixel,
+									blockStartPixel];
+							yListPixel = [
+									yRect,
+									yRect,
+									yRect + (alignmentHeight / 2.0),
+									yRect + alignmentHeight,
+									yRect + alignmentHeight,
+									yRect];
+						}
+						else{
+							xListPixel = [
+									blockStartPixel,
+									blockEndPixel,
+									blockStartPixel - arrowHeadWidthPixel - alignment.edlen / 4,
+									blockEndPixel,
+									blockStartPixel,
+									blockStartPixel];
+							yListPixel = [
+									yRect,
+									yRect,
+									yRect + (alignmentHeight / 2.0),
+									yRect + alignmentHeight,
+									yRect + alignmentHeight,
+									yRect];
+						}
 						
 						igv.graphics.fillPolygon(ctx, xListPixel, yListPixel, {fillStyle: "rgba(255,188,0,0.8)"});
 						if (strokeOutline) {
@@ -22012,7 +22029,7 @@ var igv = (function (igv) {
 
         alignment.scStart = alignment.start;
         alignment.scLengthOnRef = alignment.lengthOnRef;
-		if((alignment.stand != 0 && alignment.hd) || (alignment.stand == 0 && alignment.ed)){
+		if(alignment.strand != false && alignment.hd){
 			blocks.push(new igv.AlignmentBlock({
 				        start: pos,
                         seqOffset: seqOffset,
@@ -22021,7 +22038,7 @@ var igv = (function (igv) {
 			}))
 
 		}
-	
+
         for (let c of cigarArray) {
 
             switch (c.ltr) {
@@ -22096,6 +22113,14 @@ var igv = (function (igv) {
                     console.log('Error processing cigar element: ' + c.len + c.ltr);
             }
         }
+		if(alignment.strand == false && alignment.hd){
+			blocks.push(new igv.AlignmentBlock({
+				        start: pos,
+                        seqOffset: seqOffset,
+                        len: 1,
+                        type: 'A'
+			}))
+		}
         alignment.blocks =  blocks;
         alignment.insertions = insertions;
 
@@ -33749,7 +33774,7 @@ var igv = (function (igv) {
         this.readGroupSetIds = config.readGroupSetIds;
         this.authKey = config.authKey;   // Might be undefined or nill
 
-        this.samplingWindowSize = config.samplingWindowSize === undefined ? 100 : config.samplingWindowSize;
+        this.samplingWindowSize = config.samplingWindowSize === undefined ? 1000 : config.samplingWindowSize;
         this.samplingDepth = config.samplingDepth === undefined ? 1000 : config.samplingDepth;
         if (config.viewAsPairs) {
             this.pairsSupported = true;
@@ -44740,12 +44765,7 @@ var igv = (function (igv) {
         }
 
         if (typeof track.paintAxis === 'function') {
-			if(track.config && track.config.clustername){
-				track.paintAxis = undefined;
-			}
-			else{
             appendLeftHandGutter.call(this, $(this.trackDiv));
-			}
         }
 
         this.$viewportContainer = $('<div class="igv-viewport-container">');
@@ -45051,7 +45071,9 @@ var igv = (function (igv) {
     function resizeControlCanvas(width, height) {
 
         var devicePixelRatio = window.devicePixelRatio;
-
+		
+		if(this.track.config && this.track.config.clustername)
+			width = height = 0;
         if (this.leftHandGutter) {
 
             if (this.controlCanvas) {
@@ -49222,11 +49244,65 @@ var igv = (function (igv) {
 
         draw.call(this, drawConfig, features);
 
+
+		if (this.$trackLabel && true === this.browser.trackLabelsVisible && this == this.trackView.viewports[0]) {
+			const xx = this.$trackLabel.offset();
+			this.renderTrackLabelSVG(context, offset.deltaX + 20, offset.deltaY - this.$trackLabel.height(), this.$trackLabel.width(), this.$trackLabel.height())
+		}
+		if (this.$sampleLabel && true === this.browser.trackLabelsVisible && igv.browser.trackViews[2] == this.trackView) {
+			this.renderSampleLabelSVG(context, offset.deltaX + width / 2 - 50, offset.deltaY - this.$sampleLabel.height(), this.$sampleLabel.width(), this.$sampleLabel.height())
+		}
+
         context.restore();
+    };
+	igv.Viewport.prototype.renderSampleLabelSVG = function(context, tx, ty, width, height) {
+
+        const str = (this.trackView.track.samplename || this.trackView.track.id).replace(/\W/g, '')
+        const id = `${str}_track_label_guid1`
+
+        context.addTrackGroupWithTranslationAndClipRect(id, tx, ty, width, height, 0)
+
+        context.fillStyle = "white"
+        context.fillRect(0, 0, width, height)
+
+        context.font = "12px Arial"
+        context.fillStyle = 'rgb(68, 68, 68)'
+
+        const {width: stringWidth} = context.measureText(this.$sampleLabel.text())
+        const dx = 0.25 * (width - stringWidth)
+        const dy = 0.7 * (height - 12)
+        context.fillText(this.$sampleLabel.text(), dx, height - dy)
+
+        context.strokeStyle = 'rgb(68, 68, 68)'
+        context.strokeRect(0, 0, width, height)
+
 
 
     };
+	igv.Viewport.prototype.renderTrackLabelSVG = function(context, tx, ty, width, height) {
 
+        const str = (this.trackView.track.name || this.trackView.track.id).replace(/\W/g, '')
+        const id = `${str}_track_label_guid1`
+
+        context.addTrackGroupWithTranslationAndClipRect(id, tx, ty, width, height, 0)
+
+        context.fillStyle = "white"
+        context.fillRect(0, 0, width, height)
+
+        context.font = "12px Arial"
+        context.fillStyle = 'rgb(68, 68, 68)'
+
+        const {width: stringWidth} = context.measureText(this.$trackLabel.text())
+        const dx = 0.25 * (width - stringWidth)
+        const dy = 0.7 * (height - 12)
+        context.fillText(this.$trackLabel.text(), dx, height - dy)
+
+        context.strokeStyle = 'rgb(68, 68, 68)'
+        context.strokeRect(0, 0, width, height)
+
+
+
+    };
     igv.Viewport.prototype.saveSVG = function () {
         const str = this.$trackLabel ? this.$trackLabel.text() : this.track.id;
         const filename = str + ".svg";

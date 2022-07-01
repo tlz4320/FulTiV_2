@@ -48,168 +48,170 @@
 <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 <link href="css/bootstrap-select.min.css" rel="stylesheet">
 
-<body>
+<body style="background-color:#CCCCFF">
 
-<h1 align="center">查看本地cluster文件</h1>
+<div style="background-color: #CCCCFF">
+    <div class="container"  style="background-color: #FFFF99">
+        <div style="background-color: white">
+            <p style="text-align : center"><img src="logo.png" width="50%" align="center"/> </p>
+            <h1 align="center">Full Length Transcript isoform Viewer</h1>
+        </div>
+        <div class="row">
+            <div class="span12"  style="background-color: white">
+                <div id="loadFulTiV" >
+                    <div class="span2" style="background-color: #0099CC">
+                    </div>
+                    <div class="span8">
+                        <table class="table" >
+                            <thead>
+                            <tr>
+                                <th>
+                                    Info
+                                </th>
+                                <th>
+                                    Button
+                                </th>
+                                <th>
+                                    Info
+                                </th>
+                                <th>
+                                    Button
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    Default Sample Bam
+                                </td>
+                                <td>
+                                    <input class="file" type="file" id="bamfile" />
+                                </td>
+                                <td>
+                                    Default Sample Bam Index
+                                </td>
+                                <td>
+                                    <input class="file" type="file" id="bamindex" />
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    ClusterInfo File
+                                </td>
+                                <td>
+                                    <input class="file" type="file" id="cluster" />
+                                </td>
+                                <td>
+                                    ClusterInfo Index File
+                                </td>
+                                <td>
+                                    <input class="file" type="file" id="indexfile" />
+                                </td>
+                            </tr>
+                            <tr class="info">
+                                <td>
+                                    Cluster Bed File
+                                </td>
+                                <td>
+                                    <input class="file" type="file" id="bedfile" />
+                                </td>
+                                <td>
+                                    Genome Selection
+                                </td>
+                                <td>
+                                    <select class="form-control" id="genome" title="Select Sample to Remove"></select>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn btn-block btn-info" onClick="loadFulTiV();">
+                            载入</button>
+                    </div>
+                    <div class="span2">
+                    </div>
 
 
-<div class="container">
-    <div class="row">
-        <div class="span12">
-            <div class="row" id="loadFulTiV">
-                <div class="span2">
                 </div>
-                <div class="span8">
-                    <table class="table" >
-                        <thead>
-                        <tr>
-                            <th>
-                                Info
-                            </th>
-                            <th>
-                                Button
-                            </th>
-                            <th>
-                                Info
-                            </th>
-                            <th>
-                                Button
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                Default Sample Bam
-                            </td>
-                            <td>
-                                <input class="file" type="file" id="bamfile" />
-                            </td>
-                            <td>
-                                Default Sample Bam Index
-                            </td>
-                            <td>
-                                <input class="file" type="file" id="bamindex" />
-                            </td>
-                        </tr>
-                        <tr class="success">
-                            <td>
-                                ClusterInfo File
-                            </td>
-                            <td>
-                                <input class="file" type="file" id="cluster" />
-                            </td>
-                            <td>
-                                ClusterInfo Index File
-                            </td>
-                            <td>
-                                <input class="file" type="file" id="indexfile" />
-                            </td>
-                        </tr>
-                        <tr class="info">
-                            <td>
-                                Cluster Bed File
-                            </td>
-                            <td>
-                                <input class="file" type="file" id="bedfile" />
-                            </td>
-                            <td>
-                                Genome Selection
-                            </td>
-                            <td>
-                                <select class="form-control" id="genome" title="Select Sample to Remove"></select>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <button class="btn btn-block btn-info" onClick="loadFulTiV();">
-                        载入</button>
-                </div>
-                <div class="span2">
+                <div>
+                    <div class="span1"></div>
+                    <div class="span10">
+                        <div id="igv-div" style="padding-top: 10px;padding-bottom: 10px; border:1px solid lightgray"></div>
+                    </div>
+                    <div class="span1"></div>
                 </div>
 
-
-            </div>
-            <div class="row">
-                <div class="span1"></div>
-                <div class="span10">
-                    <div id="igv-div" style="padding-top: 10px;padding-bottom: 10px; border:1px solid lightgray"></div>
-                </div>
-                <div class="span1"></div>
-            </div>
-
-            <div class="row">
-                <div class="span4">
-                </div>
-                <div class="span4" id="addSample" style="display:none">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>
-                                Info
-                            </th>
-                            <th>
-                                Button
-                            </th>
-                            <th>
-                                Info
-                            </th>
-                            <th>
-                                Button
-                            </th>
-                            <th>
-                                Action
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr class="success">
-                            <td>Another Sample Bam</td>
-                            <td><input class="file" type="file" id="newsample" /></td>
-                            <td>Sample Bam Index</td>
-                            <td><input class="file" type="file" id="newsampleindex" /></td>
-                            <td><input class="btn btn-info" type="button" value="载入" onClick="addSample();" /></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <tr class="success">
-                            <td>
-                                <select class="form-control" id="sampleSelect" title="Select Sample to Remove">
-                                </select>
-                            </td>
-                            <td>
-                                <button class="btn btn-block btn-info" onClick="delSample();">Delete</button>
-                            </td>
-                        </tr>
-                    </table>
-
-
+                <div>
                     <div class="span4">
-                </div>
+                    </div>
+                    <div class="span4" id="addSample" style="display:none">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>
+                                    Info
+                                </th>
+                                <th>
+                                    Button
+                                </th>
+                                <th>
+                                    Info
+                                </th>
+                                <th>
+                                    Button
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="success">
+                                <td>Another Sample Bam</td>
+                                <td><input class="file" type="file" id="newsample" /></td>
+                                <td>Sample Bam Index</td>
+                                <td><input class="file" type="file" id="newsampleindex" /></td>
+                                <td><input class="btn btn-info" type="button" value="Load" onClick="addSample();" /></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="table">
+                            <tr class="success">
+                                <td>
+                                    <select class="form-control" id="sampleSelect" title="Select Sample to Remove">
+                                    </select>
+                                </td>
+                                <td>
+                                    <button class="btn btn-block btn-info" onClick="delSample();">Delete</button>
+                                </td>
+                            </tr>
+                        </table>
 
+
+                        <div class="span4">
+                    </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="span2">
-        </div>
-        <div class="span6">
-            <div align="center">
-                <label>请按照要求输入文件(若输入错误会导致显示出错，请刷新重试)：</label>
-                <hr>
-                <label>请注意，由于浏览器资源限制，设置visibility大小时按需设置，请勿设置过大，导致占用内存过多而奔溃</label>
-                <hr>
-                <label>若出现genome载入失败，请刷新重试，这个是igv服务器不稳定导致的</label>
+    <div class="container" style="background-color:#FFCC99">
+        <div class="row">
+            <div class="span2">
+            </div>
+            <div class="span6">
+                <div align="center">
+                    <label>Please input file follow description (reload if error):</label>
+                    <hr>
+                    <label>Please Do Not Load Too Much Reads for limitation of local resource</label>
+                    <hr>
+                    <label>Reload if genome don't show up (depend on IGV server connection stability)</label>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
-
-
 
 
 <script type="text/javascript">
@@ -276,7 +278,7 @@ addSample = function(){
     var newsampleindex = document.getElementById("newsampleindex").files[0];
     var sampleName = newsample.name.substring(0, newsample.name.lastIndexOf("."));
     if(igv.samplenames.includes(sampleName)){
-        window.alert("Sample已经存在");
+        window.alert("Sample existed");
         return;
     }
     igv.clusterfiles[sampleName] = [];
@@ -284,7 +286,7 @@ addSample = function(){
     igv.clusterfiles[sampleName].indexurl = newsampleindex;
     igv.clusterfiles[sampleName].name = sampleName;
     igv.samplenames.push(sampleName);
-    window.alert("添加新Sample成功");
+    window.alert("add new sample succeed");
     igv.addSample(sampleName);
     addSelect(sampleName);
     console.log()
