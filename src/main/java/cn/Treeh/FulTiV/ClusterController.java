@@ -102,6 +102,7 @@ public class ClusterController {
                 if (list2.size() >= maxrows)
                     break;
             }
+
             Iterator<SAMRecord> i = list.iterator();
             while (list2.size() <= maxrows && i.hasNext())
                 list2.add(i.next());
